@@ -1,0 +1,13 @@
+const mongoose = require("mongoose");
+const url =  'mongodb://localhost/restaurant'
+
+//function mmongodb database connection
+const mongoDbConnect = async () => {
+  try {
+    await mongoose.connect(url);
+    console.log(`Connected To Database ${mongoose.connection.host} `);
+  } catch (error) {
+    console.log("DB Error", error);
+  }
+};
+module.exports = mongoDbConnect;
