@@ -1,9 +1,14 @@
 const express = require("express");
 const mongoDbConnect = require("./dbConn/mongoDbConn");
-const itemRouter = require("./routes/items")
+const itemRouter = require("./routes/menuRoutes");
+const cors = require('cors');
+
+
 
 //rest object
 const app = express();
+
+app.use(cors());
 
 //middlewares
 app.use(express.json());
@@ -18,8 +23,8 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/items", itemRouter)
-app.post("/items", itemRouter)
+app.get("/api/menu/items", itemRouter)
+app.post("/api/menu/items", itemRouter)
 
 //PORT
 const PORT = process.env.PORT || 5000;
