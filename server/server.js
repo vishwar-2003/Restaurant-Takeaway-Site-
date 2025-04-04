@@ -1,35 +1,33 @@
-const express = require("express");
-const mongoDbConnect = require("./dbConn/mongoDbConn");
-const itemRouter = require("./routes/menuRoutes");
+const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
+// Routes
+const authRoutes = require('./routes/auth');
+const reviewRoutes = require('./routes/reviews');
+const menuRoutes = require('./routes/menuRoutes');
 
-
-//rest object
 const app = express();
 
+// Middleware
 app.use(cors());
-
-//middlewares
 app.use(express.json());
 
-mongoDbConnect();
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log("MongoDB connection error:", err));
 
+// Routes
 app.get("/", (req, res) => {
-  return res
-    .status(200)
-    .send({
-        "message" : "success"
-    });
+  res.status(200).send({ message: "success" });
 });
 
-app.get("/api/menu/items", itemRouter)
-app.post("/api/menu/items", itemRouter)
+app.use('/api/auth', authRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/menu', menuRoutes); // handles GET/POST under /api/menu
 
-//PORT
+// Server
 const PORT = process.env.PORT || 5000;
-
-//listen
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
