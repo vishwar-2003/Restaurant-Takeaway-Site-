@@ -11,16 +11,14 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/menu/items" element={<MenuPage />} />
-      </Routes>
       <Header />
       
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/menu/items" element={<MenuPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/menu" element={<MenuPage />} />
+
       </Routes>
       <Footer />
     </Router>
