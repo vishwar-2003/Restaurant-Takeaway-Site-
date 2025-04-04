@@ -1,0 +1,126 @@
+.gallery-container {
+    position: relative;
+    padding: 40px 0;
+    overflow: hidden;
+  }
+  
+  .gallery-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .gallery-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .gallery-item {
+    flex: 0 0 auto;
+    width: 300px;
+    height: 300px;
+    scroll-snap-align: start;
+    border: 10px solid black;      /* 🔲 black border added */
+    border-radius: 0;             /* ❌ no rounded corners */
+    overflow: hidden;
+    box-sizing: border-box;       /* ensures border is included in size */
+  }
+    
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  
+  /* Arrows */
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  
+    /* Center the icon inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .scroll-btn.left {
+    left: 10px;
+  }
+  
+  .scroll-btn.right {
+    right: 10px;
+  }
+  
+  .gallery-item {
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    user-select: none;
+  }
+  
+  .lightbox-nav.left {
+    left: 30px;
+  }
+  
+  .lightbox-nav.right {
+    right: 30px;
+  }

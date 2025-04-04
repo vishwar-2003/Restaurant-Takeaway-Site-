@@ -1,0 +1,163 @@
+
+/* 3D Carousel Review Slider */
+
+.review-carousel-container {
+    perspective: 1200px;
+    overflow: hidden;
+    padding: 4rem 1rem;
+    
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .carousel-card {
+    position: absolute;
+    width: 320px;
+    height: 500px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+    z-index: 0;
+  }
+  
+  .carousel-card.active {
+    transform: scale(1) translateZ(50px);
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .carousel-card.left,
+  .carousel-card.right {
+    opacity: 0.4;
+    z-index: 1;
+    transform: scale(0.85);
+  }
+  
+  .carousel-card.left {
+    transform: translateX(-60%) scale(0.85);
+  }
+  
+  .carousel-card.right {
+    transform: translateX(60%) scale(0.85);
+  }
+  
+  .carousel-card img {
+    width: 100%;
+    height: 195px;
+    border: 1px solid #000000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    object-fit: cover;
+  }
+  
+  .carousel-card .card-content {
+    padding: 0.80rem;
+    text-align: center;
+    border: 1px solid #000000;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  
+  .card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .card-content p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-card {
+      width: 90%;
+      height: auto;
+    }
+  
+    .carousel-card.left,
+    .carousel-card.right {
+      display: none;
+    }
+  }
+  
+  
+
+
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 2.5rem;
+    color: #fff;
+    background: rgb(0, 0, 0);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+  }
+  
+  .nav-btn:hover {
+    background: rgba(0, 0, 0, 0.687);
+  }
+  
+  .nav-btn.left {
+    left: 2%;
+  }
+  
+  .nav-btn.right {
+    right: 2%;
+  }
+  
+
+  .card-content h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2e7d32;
+  }
+  
+  .card-content .review-count {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .category-ratings {
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #222;
+  }
+  
+  .category-ratings div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.3rem 0;
+  }
+  
+  .green-dots {
+    color: #00aa6c;
+    font-size: 1.1rem;
+    letter-spacing: 0.15rem;
+  }
+  

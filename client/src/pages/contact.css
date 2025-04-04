@@ -1,0 +1,14 @@
+.contact-page {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .contact-page h2 {
+    color: #16a085;
+  }
+  
+  .contact-page p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  

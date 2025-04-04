@@ -1,0 +1,152 @@
+/* Default desktop layout */
+.main-navbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+}
+
+/* Hamburger button (visible only on small screens) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 999;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Navigation links */
+.main-navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 0.6s forwards ease-out;
+}
+.nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-item:nth-child(2) { animation-delay: 0.2s; }
+.nav-item:nth-child(3) { animation-delay: 0.3s; }
+.nav-item:nth-child(4) { animation-delay: 0.4s; }
+.nav-item:nth-child(5) { animation-delay: 0.5s; }
+.nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hover Effects */
+.nav-link {
+  position: relative;
+  font-size: 1.1rem;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}
+.nav-link:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/img/leaf.png');
+  background-size: contain;
+  background-position: center;
+  opacity: 0.2;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+.nav-link:hover::before {
+  left: 0;
+}
+.nav-link.active {
+  font-weight: 700;
+  border-bottom: 2px solid #000;
+}
+
+/* ========== MOBILE STYLES ========== */
+@media (max-width: 768px) {
+  .main-navbar {
+    display: none;
+  }
+
+  .main-navbar.mobile-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #ffffff;
+    z-index: 998;
+    padding-top: 5rem;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    animation: slideFromRight 0.3s ease-in-out forwards;
+  }
+
+  @keyframes slideFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .main-navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1.5rem;
+  }
+
+  .nav-item {
+    padding-bottom: 1.2rem;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hamburger {
+    display: flex;
+    position: absolute;
+    right: 1.5rem;
+    top: 2.5rem;
+  }
+
+  .site-header {
+    position: relative;
+    z-index: 999;
+  }
+}
