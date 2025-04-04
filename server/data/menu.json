@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Dosa",
+    "price": 70
+  },
+  {
+    "name": "Idli",
+    "price": 60
+  },
+  {
+    "name": "Vada",
+    "price": 20
+  },
+  {
+    "name": "Pongal",
+    "price": 65
+  },
+  {
+    "name": "Chicken Biryani ",
+    "price": 120
+  },
+  {
+    "name": "Parotta",
+    "price": 85
+  }
+]
