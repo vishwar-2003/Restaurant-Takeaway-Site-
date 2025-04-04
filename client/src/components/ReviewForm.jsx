@@ -15,7 +15,7 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
         try {
             await axios.post(
                 'http://localhost:5000/api/reviews',
-                { rating, comment },
+                { rating, comment,customerName: name},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

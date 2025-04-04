@@ -63,14 +63,12 @@ const ReviewPage = () => {
     };
 
     const filtered = reviews.filter((r) =>
-        r.customerName.toLowerCase().includes(search.toLowerCase()) ||
-        r.comment.toLowerCase().includes(search.toLowerCase())
+        (r.customerName?.toLowerCase().includes(search.toLowerCase()) || false) ||
+        (r.comment?.toLowerCase().includes(search.toLowerCase()) || false)
     );
 
     return (
         <div className="container p-3">
-
-            {/* Centered Header */}
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2 className="mb-0">Customer Reviews</h2>
                 {token && (
@@ -84,8 +82,6 @@ const ReviewPage = () => {
                 )}
             </div>
 
-
-            {/* Auth or Review Form */}
             <div className="d-flex justify-content-center">
                 <div style={{ width: '100%', maxWidth: '480px' }}>
                     {!token ? (
@@ -104,7 +100,6 @@ const ReviewPage = () => {
                 </div>
             </div>
 
-            {/* Rating Summary */}
             {ratingStats.total > 0 && (
                 <div className="my-4">
                     <h4 className="mb-3">
@@ -131,7 +126,6 @@ const ReviewPage = () => {
                 </div>
             )}
 
-            {/* Search */}
             <div className="mb-4">
                 <input
                     type="text"
@@ -144,7 +138,6 @@ const ReviewPage = () => {
 
             <hr />
 
-            {/* Grid Layout for Reviews */}
             <div className="row">
                 <AnimatePresence>
                     {filtered.map((r) => (
@@ -157,15 +150,14 @@ const ReviewPage = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className="card-body d-flex">
-                                    {/* Left: Avatar & Rating */}
                                     <div className="me-3 text-center" style={{ minWidth: '80px' }}>
                                         <div
                                             className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center mx-auto"
                                             style={{ width: '50px', height: '50px', fontSize: '1rem' }}
                                         >
-                                            {r.customerName.charAt(0).toUpperCase()}
+                                            {r.customerName ? r.customerName.charAt(0).toUpperCase() : '?'}
                                         </div>
-                                        <small className="d-block mt-1">{r.customerName}</small>
+                                        <small className="d-block mt-1">{r.customerName || 'Unknown'}</small>
                                         <div style={{ color: '#f8c02c' }}>
                                             {[...Array(5)].map((_, i) => (
                                                 <FaStar key={i} fill={i < r.rating ? '#f8c02c' : '#e4e5e9'} />
@@ -173,11 +165,12 @@ const ReviewPage = () => {
                                         </div>
                                     </div>
 
-                                    {/* Right: Review Content */}
                                     <div className="flex-grow-1">
-                                        <p className="mb-2">{r.comment}</p>
+                                        <p className="mb-2">{r.comment || 'No comment provided.'}</p>
                                         <div className="d-flex justify-content-between align-items-center">
-                                            <small className="text-muted">{new Date(r.createdAt).toLocaleString()}</small>
+                                            <small className="text-muted">
+                                                {r.createdAt ? new Date(r.createdAt).toLocaleString() : ''}
+                                            </small>
                                             <button
                                                 className="btn btn-sm btn-outline-success"
                                                 onClick={() => toast.info('You marked this as helpful!')}
