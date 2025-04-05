@@ -26,7 +26,8 @@ app.get("/", (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
-app.use('/api/menu', menuRoutes); // handles GET/POST under /api/menu
+app.use('/api/menu/items', menuRoutes); // handles GET/POST under /api/menu
+
 
 // Server
 const PORT = process.env.PORT || 5000;

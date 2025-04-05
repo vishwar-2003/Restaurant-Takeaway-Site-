@@ -25,7 +25,7 @@ app.get('/api/menu', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}/api/menu`);
 });
 
 
@@ -77,4 +77,3 @@ app.post('/api/menu', (req, res) => {
 
   res.status(201).json({ success: true, added: newDish });
 });
-
