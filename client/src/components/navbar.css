@@ -1,6 +1,7 @@
 /* Default desktop layout */
 .main-navbar {
-  background-color: #ffffff;
+  background-color: #000000;
+  color: white;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -23,7 +24,7 @@
 .hamburger span {
   height: 3px;
   width: 25px;
-  background: #000;
+  background: #ffffff;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -55,12 +56,16 @@
     transform: translateX(0);
   }
 }
-
+.nav-item:hover {
+  
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+}
 /* Hover Effects */
 .nav-link {
   position: relative;
   font-size: 1.1rem;
-  color: #000;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   padding: 0.3rem 0.5rem;
@@ -69,26 +74,17 @@
   overflow: hidden;
 }
 .nav-link:hover {
-  color: #000;
-  transform: scale(1.1);
+  color: #ff0000;
+  transform: scale(1.12);
 }
-.nav-link::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 100%;
-  background-image: url('../assets/img/leaf.png');
-  background-size: contain;
-  background-position: center;
-  opacity: 0.2;
-  transition: left 0.4s ease;
-  z-index: -1;
+.nav-link.active {
+  color: red;
 }
+
+
 .nav-link:hover::before {
   left: 0;
+
 }
 .nav-link.active {
   font-weight: 700;
@@ -108,7 +104,7 @@
     right: 0;
     height: 100vh;
     width: 250px;
-    background-color: #ffffff;
+    background-color: #000000;
     z-index: 998;
     padding-top: 5rem;
     transition: transform 0.3s ease-in-out;
@@ -149,4 +145,42 @@
     position: relative;
     z-index: 999;
   }
+}
+
+
+.nav-buttonr {
+  background-color: transparent;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: #ff0000;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(255, 0, 0); 
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-buttonr:hover {
+  background-color: #ff0000;
+  color: #000000;
+}
+
+.nav-buttonl {
+  background-color: transparent;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: #ff0000;
+  font-size: 1rem;
+
+  border: 1px solid rgb(255, 0, 0); 
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-buttonl:hover {
+  background-color: #ff0000;
+  color: #000000;
 }

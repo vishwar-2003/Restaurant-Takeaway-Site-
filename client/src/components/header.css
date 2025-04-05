@@ -1,19 +1,22 @@
 .site-header {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding: auto;
   max-width: 95%;
   margin: auto;
 }
+
 
 /* Logo Left */
 .logo img {
   width: auto;
   height: 50px;
+  border: 2px solid rgb(255, 255, 255); 
   border-radius: 50%;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
@@ -27,7 +30,7 @@
   margin-left: 10px;
   font-size: 1.8rem;
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   white-space: nowrap;
 }
 
@@ -70,3 +73,4 @@
     height: 50px;
   }
 }
+

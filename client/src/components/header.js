@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 import './header.css';
 import './navbar.css';
 import AOS from 'aos';
+// import { useNavigate } from 'react-router-dom';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
+  // const navigate = useNavigate();
 
+    // const handleRegisterClick = () => {
+    //   handleNavClick(); // your custom toggle or UI close function
+    //   navigate('/RegisterForm'); // or '/RegisterForm' if that's your route path
+    // };
 
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -23,6 +31,7 @@ function Header() {
 
   return (
     
+
 
     <header className="site-header">
       <div className="header-container">
@@ -61,11 +70,16 @@ function Header() {
             <ul>
               <li className="nav-item"><a href="/" className="nav-link" onClick={handleNavClick}>Home</a></li>
               <li className="nav-item"><a href="/about" className="nav-link" onClick={handleNavClick}>About</a></li>
-              <li className="nav-item"><a href="/paativeedu" className="nav-link" onClick={handleNavClick}>Paati Veedu</a></li>
-              <li className="nav-item"><a href="/bhakshanam" className="nav-link" onClick={handleNavClick}>Bhakshanam</a></li>
-              <li className="nav-item"><a href="/gallery" className="nav-link" onClick={handleNavClick}>Gallery</a></li>
-              <li className="nav-item"><a href="/contact" className="nav-link" onClick={handleNavClick}>Contact</a></li>
-            </ul>
+              <li className="nav-item"><a href="/menu" className="nav-link" onClick={handleNavClick}>Menu</a></li>
+              <li className="nav-item"><Link to="/contact" className="nav-link" onClick={handleNavClick}>Contact</Link>
+              </li>
+              
+<li className="nav-item">
+  <button className="nav-buttonl" onClick={() => { handleNavClick(); window.location.href = "/LoginForm"; }}>
+    Log-In
+  </button>
+</li>
+</ul>
           </nav>
 
 
