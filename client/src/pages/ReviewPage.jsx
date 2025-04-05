@@ -3,9 +3,11 @@ import axios from 'axios';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import ReviewForm from '../components/ReviewForm';
-import { FaStar, FaThumbsUp } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { FaStar} from 'react-icons/fa';
+import {AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
+import bgImage from '../assets/img/review-bg.jpg';
+import AnimatedReviewCard from '../components/AnimatedReviewCard';
 
 const ReviewPage = () => {
     const [token, setToken] = useState(localStorage.getItem('token'));
@@ -21,7 +23,7 @@ const ReviewPage = () => {
                 const res = await axios.get('http://localhost:5000/api/reviews');
                 setReviews(res.data);
                 calculateStats(res.data);
-            } catch (err) {
+            } catch {
                 toast.error('Failed to load reviews');
             }
         };
@@ -33,7 +35,7 @@ const ReviewPage = () => {
             const res = await axios.get('http://localhost:5000/api/reviews');
             setReviews(res.data);
             calculateStats(res.data);
-        } catch (err) {
+        } catch {
             toast.error('Failed to reload reviews');
         }
     };
@@ -68,122 +70,115 @@ const ReviewPage = () => {
     );
 
     return (
-        <div className="container p-3">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2 className="mb-0">Customer Reviews</h2>
+        <div
+            style={{
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                minHeight: '100vh',
+                padding: '50px 0',
+                position: 'relative'
+            }}
+        >
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0, left: 0, right: 0, bottom: 0,
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    zIndex: 1
+                }}
+            ></div>
+
+            <div
+                style={{
+                    position: 'relative',
+                    zIndex: 2,
+                    maxWidth: '1200px',
+                    margin: '0 auto',
+                    backgroundColor: '#F5F5F5',
+                    backdropFilter: 'blur(4px)',
+                    WebkitBackdropFilter: 'blur(4px)',
+                    borderRadius: '16px',
+                    padding: '2rem',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+                }}
+            >
+
                 {token && (
-                    <button
-                        className="btn btn-outline-danger"
-                        onClick={logout}
-                        style={{ fontWeight: 500 }}
-                    >
-                        Logout
-                    </button>
+                    <div className="d-flex justify-content-end mb-3">
+                        <button className="btn btn-outline-danger" onClick={logout}>
+                            Logout
+                        </button>
+                    </div>
                 )}
-            </div>
 
-            <div className="d-flex justify-content-center">
-                <div style={{ width: '100%', maxWidth: '480px' }}>
-                    {!token ? (
-                        authMode === 'login' ? (
-                            <LoginForm
-                                setToken={setToken}
-                                setName={setName}
-                                switchToRegister={() => setAuthMode('register')}
-                            />
+                <div className="d-flex justify-content-center">
+                    <div style={{ width: '100%', maxWidth: '480px' }}>
+                        {!token ? (
+                            authMode === 'login' ? (
+                                <LoginForm
+                                    setToken={setToken}
+                                    setName={setName}
+                                    switchToRegister={() => setAuthMode('register')}
+                                />
+                            ) : (
+                                <RegisterForm switchToLogin={() => setAuthMode('login')} />
+                            )
                         ) : (
-                            <RegisterForm switchToLogin={() => setAuthMode('login')} />
-                        )
-                    ) : (
-                        <ReviewForm token={token} name={name} fetchReviews={handleRefreshReviews} />
-                    )}
+                            <ReviewForm token={token} name={name} fetchReviews={handleRefreshReviews} />
+                        )}
+                    </div>
                 </div>
-            </div>
 
-            {ratingStats.total > 0 && (
-                <div className="my-4">
-                    <h4 className="mb-3">
-                        ⭐ {ratingStats.average} / 5{' '}
-                        <small className="text-muted">({ratingStats.total} reviews)</small>
-                    </h4>
-                    {[5, 4, 3, 2, 1].map((star) => (
-                        <div className="d-flex align-items-center mb-2" key={star}>
-                            <div style={{ width: 40 }}>
-                                {star} <FaStar className="text-warning" />
-                            </div>
-                            <div className="progress flex-grow-1 mx-2" style={{ height: '16px' }}>
-                                <div
-                                    className="progress-bar bg-warning"
-                                    role="progressbar"
-                                    style={{ width: `${ratingStats.percent[5 - star]}%` }}
-                                ></div>
-                            </div>
-                            <div style={{ width: 80, fontSize: '0.85rem' }}>
-                                {ratingStats.percent[5 - star]}% ({ratingStats.count[5 - star]})
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            <div className="mb-4">
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search reviews..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-            </div>
-
-            <hr />
-
-            <div className="row">
-                <AnimatePresence>
-                    {filtered.map((r) => (
-                        <div className="col-md-6" key={r._id}>
-                            <motion.div
-                                className="card shadow-sm my-3"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <div className="card-body d-flex">
-                                    <div className="me-3 text-center" style={{ minWidth: '80px' }}>
-                                        <div
-                                            className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center mx-auto"
-                                            style={{ width: '50px', height: '50px', fontSize: '1rem' }}
-                                        >
-                                            {r.customerName ? r.customerName.charAt(0).toUpperCase() : '?'}
-                                        </div>
-                                        <small className="d-block mt-1">{r.customerName || 'Unknown'}</small>
-                                        <div style={{ color: '#f8c02c' }}>
-                                            {[...Array(5)].map((_, i) => (
-                                                <FaStar key={i} fill={i < r.rating ? '#f8c02c' : '#e4e5e9'} />
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-grow-1">
-                                        <p className="mb-2">{r.comment || 'No comment provided.'}</p>
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <small className="text-muted">
-                                                {r.createdAt ? new Date(r.createdAt).toLocaleString() : ''}
-                                            </small>
-                                            <button
-                                                className="btn btn-sm btn-outline-success"
-                                                onClick={() => toast.info('You marked this as helpful!')}
-                                            >
-                                                <FaThumbsUp /> Helpful
-                                            </button>
-                                        </div>
-                                    </div>
+                {ratingStats.total > 0 && (
+                    <div className="my-4 text-center">
+                        <h4 className="mb-3">
+                            ⭐ {ratingStats.average} / 5{' '}
+                            <small className="text-muted">({ratingStats.total} reviews)</small>
+                        </h4>
+                        {[5, 4, 3, 2, 1].map((star) => (
+                            <div className="d-flex align-items-center mb-2" key={star}>
+                                <div style={{ width: 40 }}>
+                                    {star} <FaStar className="text-warning" />
                                 </div>
-                            </motion.div>
-                        </div>
-                    ))}
-                </AnimatePresence>
+                                <div className="progress flex-grow-1 mx-2" style={{ height: '16px' }}>
+                                    <div
+                                        className="progress-bar bg-warning"
+                                        role="progressbar"
+                                        style={{ width: `${ratingStats.percent[5 - star]}%` }}
+                                    ></div>
+                                </div>
+                                <div style={{ width: 80, fontSize: '0.85rem' }}>
+                                    {ratingStats.percent[5 - star]}% ({ratingStats.count[5 - star]})
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search reviews..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </div>
+
+                {
+                    <div className="row">
+                        <AnimatePresence>
+                            {filtered.map((r, index) => (
+                                <div className="col-md-6" key={r._id}>
+                                    <AnimatedReviewCard review={r} index={index} />
+                                </div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+
+}
             </div>
         </div>
     );

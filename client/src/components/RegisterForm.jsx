@@ -1,3 +1,4 @@
+// RegisterForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -8,10 +9,7 @@ const RegisterForm = ({ switchToLogin }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const validatePassword = (pw) => {
-        const regex = /^(?=.*[A-Z])(?=.*\d).{6,}$/; // allows special characters too
-        return regex.test(pw);
-    };
+    const validatePassword = (pw) => /^(?=.*[A-Z])(?=.*\d).{6,}$/.test(pw);
 
     const getStrengthClass = () => {
         if (password.length >= 8) return 'bg-success';
@@ -24,35 +22,34 @@ const RegisterForm = ({ switchToLogin }) => {
         setError('');
 
         if (!validatePassword(password)) {
-            const msg = "Password must be at least 6 characters, contain an uppercase letter and a number.";
-            setError(msg);
-            toast.error("Weak password. Please follow the rules.");
+            toast.error("Password must be at least 6 characters, contain an uppercase letter and a number.");
             return;
         }
 
         try {
-            await axios.post('http://localhost:5000/api/auth/register', {
-                name,
-                email,
-                password,
-            });
+            await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
             toast.success("Registration successful! You can now log in.");
             switchToLogin();
         } catch (err) {
-            const errMsg = err.response?.data?.error || 'Registration failed.';
-            setError(errMsg);
-            toast.error(errMsg);
+            const msg = err.response?.data?.error || 'Registration failed.';
+            setError(msg);
+            toast.error(msg);
         }
     };
 
     return (
         <div className="d-flex justify-content-center">
-            <div className="card shadow-sm p-4 w-100" style={{ maxWidth: '450px' }}>
-                <h4 className="text-center mb-3">Sign Up to Leave a Review</h4>
+            <div className="card shadow-lg p-4 w-100" style={{
+                maxWidth: '500px',
+                borderRadius: '18px',
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(6px)'
+            }}>
+                <h4 className="text-center mb-4">Sign Up to Leave a Review</h4>
                 <form onSubmit={register}>
                     <input
                         type="text"
-                        className="form-control mb-3"
+                        className="form-control mb-3 rounded-3"
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -60,7 +57,7 @@ const RegisterForm = ({ switchToLogin }) => {
                     />
                     <input
                         type="email"
-                        className="form-control mb-3"
+                        className="form-control mb-3 rounded-3"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +65,7 @@ const RegisterForm = ({ switchToLogin }) => {
                     />
                     <input
                         type="password"
-                        className="form-control mb-2"
+                        className="form-control mb-2 rounded-3"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -81,7 +78,6 @@ const RegisterForm = ({ switchToLogin }) => {
                             <div className="progress">
                                 <div
                                     className={`progress-bar ${getStrengthClass()}`}
-                                    role="progressbar"
                                     style={{
                                         width: `${Math.min(password.length * 12, 100)}%`,
                                         transition: 'width 0.3s ease',
@@ -94,12 +90,12 @@ const RegisterForm = ({ switchToLogin }) => {
 
                     {error && <div className="text-danger mb-2">{error}</div>}
 
-                    <button className="btn btn-success w-100 mb-2">Register</button>
+                    <button className="btn btn-success w-100 rounded-3">Register</button>
                 </form>
 
-                <div className="text-center">
+                <div className="text-center mt-3">
                     <small>
-                        Already have an account?{" "}
+                        Already have an account?{' '}
                         <button
                             className="btn btn-link p-0 align-baseline"
                             onClick={switchToLogin}

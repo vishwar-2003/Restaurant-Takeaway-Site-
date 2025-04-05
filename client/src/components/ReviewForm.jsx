@@ -1,3 +1,4 @@
+// ReviewForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -15,11 +16,9 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
         try {
             await axios.post(
                 'http://localhost:5000/api/reviews',
-                { rating, comment,customerName: name},
+                { rating, comment, customerName: name },
                 {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 }
             );
             toast.success('Review submitted!');
@@ -32,11 +31,14 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
     };
 
     return (
-        <div className="card p-4 shadow-sm mb-4">
-            <h5 className="mb-3">Leave a Review</h5>
+        <div className="card p-4 shadow-lg mb-4" style={{
+            borderRadius: '18px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(6px)'
+        }}>
+            <h5 className="mb-3 text-center">Leave a Review</h5>
             <form onSubmit={handleSubmit}>
-                {/* Star Rating */}
-                <div className="mb-3 d-flex align-items-center">
+                <div className="mb-3 d-flex align-items-center justify-content-center">
                     {[...Array(5)].map((_, i) => {
                         const value = i + 1;
                         return (
@@ -58,22 +60,19 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
                             </label>
                         );
                     })}
-                    <span className="ms-2">{rating} Star{rating > 1 ? 's' : ''}</span>
+                    {/* <span className="ms-2">{rating} Star{rating > 1 ? 's' : ''}</span> */}
                 </div>
 
-                {/* Comment Field */}
-                <div className="mb-3">
-                    <textarea
-                        className="form-control"
-                        placeholder="Comment"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        rows={3}
-                        required
-                    />
-                </div>
+                <textarea
+                    className="form-control mb-3 rounded-3"
+                    placeholder="Write your thoughts..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    rows={3}
+                    required
+                />
 
-                <button className="btn btn-success">Submit Review</button>
+                <button className="btn btn-success w-100 rounded-3">Submit Review</button>
             </form>
         </div>
     );
