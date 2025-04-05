@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 import './menu.css';
 import Review from './review';
@@ -14,10 +15,17 @@ function Home() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
-    axios.get('http://localhost:5000/api/menu')
-      .then(res => setMenuItems(res.data))
+    axios.get('http://localhost:5000/api/menu/items')
+      .then(res => setMenuItems(res.data.data))
       .catch(err => console.error('Menu fetch error:', err));
   }, []);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // optional: call API here if needed
+      navigate('/menu');
+    };
 
   return (
     <div className="home-page">
@@ -41,7 +49,7 @@ function Home() {
         <div className="hero-content">
           <h1 data-aos="zoom-in">Welcome to Thendral Mess!</h1>
           <p data-aos="zoom-in">Experience the authentic flavors of India</p>
-          
+          <a data-aos="zoom-in" href="/gallery" className="cta-button">View Gallery</a>
         </div>
       </section>
 
@@ -50,12 +58,11 @@ function Home() {
       {/* Menu Section */}
       <section className="menu-page">
         <div className="menu-header">
-          <p className="menu-tag">MENU</p>
-          <h1>Choose your combo <br /> & order now!</h1>
+          <h1 className="menu-tag">OUR MENU</h1>
         </div>
 
         <div className="menu-list">
-          {menuItems.map((item, index) => (
+          {menuItems.slice(0, 7).map((item, index) => (
             <div key={index} className="menu-row">
               <div className="dish-name">{item.name}</div>
               <div className="dish-price">₹ {item.price}</div>
@@ -64,8 +71,10 @@ function Home() {
         </div>
 
         <div className="menu-btn-wrapper">
-          <a href="/menu" className="menu-cta">BROWSE OUR MENU</a>
-        </div>
+        <button className="menu-cta" onClick={handleClick}>
+          BROWSE OUR MENU
+        </button>
+    </div>
       </section>
 
       {/* Reviews Section */}
@@ -81,8 +90,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
-
-    

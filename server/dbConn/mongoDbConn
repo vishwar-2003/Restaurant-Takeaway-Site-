@@ -3,11 +3,8 @@ const url =  'mongodb://localhost/restaurant'
 
 //function mmongodb database connection
 const mongoDbConnect = async () => {
-  try {
-    await mongoose.connect(url);
-    console.log(`Connected To Database ${mongoose.connection.host} `);
-  } catch (error) {
-    console.log("DB Error", error);
-  }
+    await mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.log("MongoDB connection error:", err));
 };
 module.exports = mongoDbConnect;

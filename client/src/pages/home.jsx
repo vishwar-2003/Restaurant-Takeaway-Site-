@@ -13,9 +13,9 @@ function Home() {
   
   useEffect(() => {
     AOS.init({ duration: 1000 });
-
-    axios.get('http://localhost:5000/api/menu')
-      .then(res => setMenuItems(res.data))
+    axios.get('http://localhost:5000/api/menu/items')
+      .then(res => 
+        setMenuItems(res.data.data))
       .catch(err => console.error('Menu fetch error:', err));
   }, []);
 
@@ -42,7 +42,7 @@ function Home() {
         <div className="hero-content">
           <h1 data-aos="zoom-in">Welcome to Thendral Mess!</h1>
           <p data-aos="zoom-in">Experience the authentic flavors of India</p>
-          <a data-aos="zoom-in" href="/gallery" className="cta-button">View Gallery</a>
+          
         </div>
       </section>
 
@@ -54,7 +54,7 @@ function Home() {
         </div>
 
         <div className="menu-list">
-          {menuItems.map((item, index) => (
+          {Array.isArray(menuItems) && menuItems.map((item, index) => (
             <div key={index} className="menu-row">
               <div className="dish-name">{item.name}</div>
               <div className="dish-price">€ {item.price}</div>
@@ -62,8 +62,9 @@ function Home() {
           ))}
         </div>
 
+
         <div className="menu-btn-wrapper">
-          <a href="/menu" className="menu-cta">BROWSE OUR MENU</a>
+          <a href="/MenuPage" className="menu-cta">BROWSE OUR MENU</a>
         </div>
       </section>
       
