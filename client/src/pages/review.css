@@ -1,0 +1,251 @@
+.review-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background: #f6f6f6;
+  min-height: 100vh;
+}
+
+.carousel-container {
+  flex: 1;
+  max-width: 600px;
+  position: relative;
+  perspective: 1200px;
+  margin-bottom: 2rem;
+}
+
+.carousel-wrapper {
+  display: flex;
+  margin-right: 120px;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+  height: 100%;
+}
+
+.carousel-card {
+  position: absolute;
+  width: 280px;
+  height: 460px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: scale(0.8);
+  z-index: 0;
+}
+
+.carousel-card.active {
+  transform: scale(1) translateZ(40px);
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-card.left {
+  transform: translateX(-60%) scale(0.85);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.carousel-card.right {
+  transform: translateX(60%) scale(0.85);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-content blockquote {
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.ratings p {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+
+.star {
+  color: gold;
+  margin-right: 0.15rem;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.4rem 0.6rem;
+  z-index: 5;
+}
+
+.nav-btn.left {
+  left: -30px;
+}
+
+.nav-btn.right {
+  right: -30px;
+}
+
+.review-cta {
+  flex: 1;
+  max-width: 400px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.review-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.review-cta .btn-review {
+  padding: 0.75rem 1.5rem;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.review-cta .btn-review:hover {
+  background: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .review-section {
+    flex-direction: column;
+  }
+  
+  .carousel-card.left,
+  .carousel-card.right {
+    display:flex;
+  }
+
+  .carousel-container,
+  .review-cta {
+    max-width: 90%;
+  }
+
+  .carousel-card {
+    position: absolute;
+    width: 280;
+    height: auto;
+    background: #fff;
+    margin-top: 190px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+    z-index: 0;
+  }
+  
+  .carousel-card.active {
+    transform: scale(1) translateZ(40px);
+    opacity: 1;
+    margin-right: 190px;
+    z-index: 2;
+  }
+}
+
+
+.review-3d-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  min-height:600px;
+  background: #ffffff;
+}
+
+.review-carousel-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.review-column.right {
+  flex: 1;
+  min-width: 280px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.review-column h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.btn.review-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0c040; /* Golden-yellow */
+  color: #000; /* Black text */
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn.review-button:hover {
+  background-color: #e0b030;
+  transform: translateY(-2px);
+}
+
+.btn.review-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+  .review-3d-section {
+    flex-direction: column;
+    text-align: center;
+    min-height: 800px;
+    min-width: 100px;
+  }
+
+  .review-carousel-column, .review-column.right {
+    width: 100%;
+    padding: 1rem 0;
+  }
+}

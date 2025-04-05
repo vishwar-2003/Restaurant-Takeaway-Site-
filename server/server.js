@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const mongoDbConnect = require("./dbConn/mongoDbConn");
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -15,9 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log("MongoDB connection error:", err));
+mongoDbConnect();
 
 // Routes
 app.get("/", (req, res) => {
@@ -26,7 +25,9 @@ app.get("/", (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
-app.use('/api/menu', menuRoutes); // handles GET/POST under /api/menu
+app.get('/api/menu/items', menuRoutes);
+app.post('/api/menu/items', menuRoutes);
+
 
 // Server
 const PORT = process.env.PORT || 5000;

@@ -17,7 +17,7 @@ const LoginForm = ({ setToken, setName, switchToRegister }) => {
             localStorage.setItem('name', res.data.name);
             setToken(res.data.token);
             setName(res.data.name);
-            toast.success('Logged in successfully!');
+            toast.success('Logged in successfully!');   
         } catch {
             toast.error('Invalid email or password');
         }
