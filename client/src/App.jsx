@@ -8,11 +8,11 @@ import './App.css';
 import ReviewPage from './pages/ReviewPage';
 import HomePage from './pages/HomePage';
 import Contact from './pages/contact';
+import SignInForm from './components/SignInForm'; // ✅ Import SignIn
 
 
 function App() {
     return (
-        
         <Router>
             <Header />
             <Routes>
@@ -20,7 +20,8 @@ function App() {
                 <Route path="/reviews" element={<ReviewPage />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/menu" element={<MenuPage />} /> {/* ✅ Route added */}
+                <Route path="/menu" element={<MenuPage />} />
+                <Route path="/signin" element={<SignInForm />} /> 
             </Routes>
             <Footer />
         </Router>

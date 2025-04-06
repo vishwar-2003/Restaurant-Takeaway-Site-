@@ -26,7 +26,6 @@ function Home() {
     // optional: call API here if needed
       navigate('/menu');
     };
-
   return (
     <div className="home-page">
       {/* Hero Video Section */}
@@ -49,7 +48,7 @@ function Home() {
         <div className="hero-content">
           <h1 data-aos="zoom-in">Welcome to Thendral Mess!</h1>
           <p data-aos="zoom-in">Experience the authentic flavors of India</p>
-          
+          <a data-aos="zoom-in" href="/gallery" className="cta-button">View Gallery</a>
         </div>
       </section>
 

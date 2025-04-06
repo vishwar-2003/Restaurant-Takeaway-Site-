@@ -2,100 +2,106 @@ import React, { useEffect, useState } from 'react';
 import './header.css';
 import './navbar.css';
 import AOS from 'aos';
-// import { useNavigate } from 'react-router-dom';
 import 'aos/dist/aos.css';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Header() {
-  // const navigate = useNavigate();
-
-    // const handleRegisterClick = () => {
-    //   handleNavClick(); // your custom toggle or UI close function
-    //   navigate('/RegisterForm'); // or '/RegisterForm' if that's your route path
-    // };
+  const navigate = useNavigate();
 
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [token, setToken] = useState(null);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    
+    // Load token & name from localStorage
+    const storedToken = localStorage.getItem('token');
+    const storedName = localStorage.getItem('name');
+
+    if (storedToken) setToken(storedToken);
+    if (storedName) setName(storedName);
   }, []);
 
   const handleNavClick = () => {
     if (window.innerWidth <= 768) setIsMobileOpen(false);
   };
+
   const toggleMobileMenu = () => {
     setIsMobileOpen(!isMobileOpen);
   };
-  
+
+  const logout = () => {
+    localStorage.clear();
+    setToken(null);
+    setName('');
+    toast.info('Logged out');
+    navigate('/'); // optional redirect after logout
+  };
 
   return (
-    
-
-
     <header className="site-header">
       <div className="header-container">
-          <div className="logo" data-aos="zoom-in">
-            <img src="/assets/img/logo.jpg" alt="Thendral_Mess" className="logo" />
+        <div className="logo" data-aos="zoom-in">
+          <img src="/assets/img/logo.jpg" alt="Thendral_Mess" className="logo" />
+        </div>
 
-          </div>
-          <div className="title-text" data-aos="fade-left">
-            <h1 className="animated-title">
-              {"THENDRAL MESS".split("").map((char, index) => (
-                <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
-            </h1>
-            {/* <div className="hamburger" onClick={toggleMenu}>
-            <span className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></span>
-            <span className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></span>
-            <span className={`bar ${isMobileMenuOpen ? 'open' : ''}`}></span>
-            </div> */}
-          </div>
-          <div className="hamburger" onClick={toggleMobileMenu}>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+        <div className="title-text" data-aos="fade-left">
+          <h1 className="animated-title">
+            {"THENDRAL MESS".split("").map((char, index) => (
+              <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+          </h1>
+        </div>
 
-          
+        <div className="hamburger" onClick={toggleMobileMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-          
-         
+        <nav className={`main-navbar ${isMobileOpen ? 'mobile-open' : ''}`}>
+          <ul>
+            <li className="nav-item"><a href="/" className="nav-link" onClick={handleNavClick}>Home</a></li>
+            <li className="nav-item"><a href="/about" className="nav-link" onClick={handleNavClick}>About</a></li>
+            <li className="nav-item"><a href="/menu" className="nav-link" onClick={handleNavClick}>Menu</a></li>
+            <li className="nav-item"><Link to="/contact" className="nav-link" onClick={handleNavClick}>Contact</Link></li>
 
-          <nav className={`main-navbar ${isMobileOpen ? 'mobile-open' : ''}`}>
-
-          
-            <ul>
-              <li className="nav-item"><a href="/" className="nav-link" onClick={handleNavClick}>Home</a></li>
-              <li className="nav-item"><a href="/about" className="nav-link" onClick={handleNavClick}>About</a></li>
-              <li className="nav-item"><a href="/menu" className="nav-link" onClick={handleNavClick}>Menu</a></li>
-              <li className="nav-item"><Link to="/contact" className="nav-link" onClick={handleNavClick}>Contact</Link>
+            {/* ✅ Auth Buttons */}
+            {!token ? (
+              <li className="nav-item">
+                <button
+                  className="nav-buttonl"
+                  onClick={() => {
+                    handleNavClick();
+                    navigate('/signin'); // Redirects to your SignInForm component
+                  }}
+                >
+                  Log In
+                </button>
               </li>
-              
-<li className="nav-item">
-  <button className="nav-buttonl" onClick={() => { handleNavClick(); window.location.href = "/LoginForm"; }}>
-    Log-In
-  </button>
-</li>
-</ul>
-          </nav>
-
-
-  
- 
-
-  
-
-
-
+            ) : (
+              <li className="nav-item">
+                <button
+                  className="nav-buttonl logout-button"
+                  onClick={() => {
+                    handleNavClick();
+                    logout();
+                  }}
+                >
+                  Log Out
+                </button>
+              </li>
+            )}
+          </ul>
+        </nav>
       </div>
-
     </header>
   );
 }
 
 export default Header;
-
-
