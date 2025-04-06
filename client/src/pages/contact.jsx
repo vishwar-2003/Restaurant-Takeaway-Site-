@@ -1,103 +1,87 @@
-import React from "react";
-import "./contact.css";
+import React from 'react';
+import './contact.css';
+import { FaMapMarkerAlt, FaClock, FaEnvelope} from 'react-icons/fa';
 
-// ✅ Import the image from src
-import contactImage from "../assets/img/contact/bgs_1.png";
-import mapIcon from "../assets/img/contact/map.svg";
-import phoneIcon from "../assets/img/contact/tel.svg";
-import mailIcon from "../assets/img/contact/mail.svg";
-
-const ContactPage = () => {
+const Contact = () => {
   return (
-    <section className="contact-section">
-      <div className="contact-container">
-        <div className="contact-row">
-          {/* Left Arch Image */}
-          <div className="contact-image-col motion-left">
-            <div className="arch-wrapper">
-              <img src={contactImage} alt="Contact" className="arch-image" />
-            </div>
+    
+
+    <section className="contact-info-section">
+      <div className="contact-page-container">
+      <div className="contact-page-image">
+        <img src="../assets/img/ho.jpg" alt="Delicious Food" />
+      </div>
+
+      <div className="contact-page-form-section">
+        <h2 className="contact-page-heading">Contact us</h2>
+        <form className="contact-page-form">
+          <div className="contact-page-form-row">
+            <input type="text" placeholder="Full name" className="contact-page-input" />
+            <input type="email" placeholder="Email address" className="contact-page-input" />
           </div>
-
-          {/* Right Content */}
-          <div className="contact-content-col">
-            <h1 className="contact-heading motion-text">WE ARE AT</h1>
-            <p className="contact-location motion-text">
-              Maynooth, Co. Kildare, Ireland. Eircode: W23 F2H6
-            </p>
-
-            <div className="map-link-group motion-text">
-              <a
-                href="https://www.google.com/maps/place/Maynooth+University"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={mapIcon} alt="Map" className="map-icon" />
-              </a>
-              <a
-                href="https://www.google.com/maps/place/Maynooth+University"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="view-map-button"
-              >
-                View on Google Map
-              </a>
-            </div>
-
-            <div className="reservation-text motion-text">
-              <h5>For Reservations & Enquiry</h5>
-            </div>
-
-            <div className="contact-details motion-text">
-              <div className="contact-block">
-                <img src={phoneIcon} alt="Phone" />
-                <p>
-                  <a href="tel:1234567890">+1234567890</a>
-                </p>
-                <p>
-                  <a href="tel:0123456789">+0123456789</a>
-                </p>
-              </div>
-              <div className="contact-block">
-                <img src={mailIcon} alt="Mail" />
-                <p>
-                  <a href="mailto:thendral@gmail.com">thendral@gmail.com</a>
-                </p>
-              </div>
-            </div>
-
-            <div className="opening-hours motion-text">
-              <h2 className="section-title">OPENING HOURS</h2>
-
-              <div className="time-block">
-                <h3 className="subheading">Lunch</h3>
-                <div className="time-details">
-                  <div>
-                    <h6>Mon - Thu</h6>
-                    <p>12:00PM - 3:30PM</p>
-                  </div>
-                  <div>
-                    <h6>Fri - Sun</h6>
-                    <p>11:30AM - 3:30PM</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="time-block">
-                <h3 className="subheading">Dinner</h3>
-                <div className="time-details single">
-                  <div>
-                    <h6>Mon - Sun</h6>
-                    <p>7:00PM - 10:00PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="contact-page-form-row">
+            <input type="text" placeholder="Phone number" className="contact-page-input" />
+            <input type="text" placeholder="Subject" className="contact-page-input" />
           </div>
+          <textarea placeholder="Message" className="contact-page-textarea"></textarea>
+          <button type="submit" className="contact-page-submit-btn">SUBMIT MESSAGE</button>
+        </form>
+        <div className="contact-info-box">
+      <h3><FaMapMarkerAlt className="icon" /> Address</h3>
+      <p><strong>Town:</strong> Callan Building, Maynooth University</p>
+      <p><strong>City:</strong> Maynooth</p>
+    </div>
+    <div className="contact-info-box">
+      <h3><FaClock className="icon" /> Open Hours</h3>
+      <p><strong>Day:</strong> Monday - Sunday</p>
+      <p><strong>Time:</strong> 11:00 AM - 11:00 PM</p>
+      <p><strong>Phone:</strong> +(353)-089-7654321</p>
+    </div>
+    <div className="contact-info-box">
+        <h3><FaEnvelope className="icon" /> Email</h3>
+        <p><strong>Mail:</strong> thendralmess@gmail.com</p>
+        <p><strong>Website:</strong> www.thendralmess.com</p>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div className="map-newsletter-section">
+      <div className="map-container">
+        <iframe
+          title="Google Map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.726061296233!2d-6.603944171697023!3d53.383950767111834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48676ffd2527a759%3A0xaa8530c2f2780a0f!2sCallan%20Building!5e0!3m2!1sen!2sie!4v1743924827642!5m2!1sen!2sie"
+          width="100%"
+          height="350"
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <div className="newsletter-box">
+          <h3>Subscribe Our Newsletter</h3>
+          <p>Get our newsletter delivered monthly with food deals, updates, and events.</p>
+          
+          <form className="newsletter-form">
+              <div className="input-wrapper">
+                <FaEnvelope className="email-icon" />
+                    <input type="email" placeholder="Your Email Address..." required />
+          </div>
+        <button type="submit">Subscribe</button>
+      </form>
         </div>
       </div>
+
+      <div className="after-map">
+        
+      </div>
+    </div>
+
+    
+
+    
     </section>
   );
 };
 
-export default ContactPage;
+export default Contact;

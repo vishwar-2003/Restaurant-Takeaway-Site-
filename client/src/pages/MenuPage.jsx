@@ -77,7 +77,7 @@ const MenuPage = () => {
                 fontWeight: '700' // ✅ Make both name & price bold
                 }}>
                 <span>{item.name}</span>
-                <span style={{ color: '#d32f2f' }}>₹{item.price}</span>
+                <span style={{ color: '#d32f2f' }}>€{item.price}</span>
                 </div>
             ))}
             </div>
