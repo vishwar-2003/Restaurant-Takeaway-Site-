@@ -1,72 +1,31 @@
-// LoginForm.jsx
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
-const LoginForm = ({ setToken, setName, switchToRegister }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+import React from 'react';
+// import SignIn from './SignInForm';
+import {useNavigate } from 'react-router-dom';
+import './SignInForm.css';
 
-    const login = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('name', res.data.name);
-            setToken(res.data.token);
-            setName(res.data.name);
-            toast.success('Logged in successfully!');
-        } catch {
-            toast.error('Invalid email or password');
-        }
-    };
+const SignInPrompt = () => {
+  const navigate = useNavigate();
 
-    return (
-        <div className="d-flex justify-content-center">
-            <div className="card shadow-lg p-4 w-100" style={{
-                maxWidth: '500px',
-                borderRadius: '18px',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(6px)'
-            }}>
-                <h4 className="text-center mb-4">Login to Leave a Review</h4>
-                <form onSubmit={login}>
-                    <input
-                        type="email"
-                        className="form-control mb-3 rounded-3"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        autoComplete="email"
-                    />
-                    <input
-                        type="password"
-                        className="form-control mb-3 rounded-3"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        autoComplete="current-password"
-                    />
-                    <button className="btn btn-primary w-100 rounded-3">Login</button>
-                </form>
+  return (
+    <div className="signin-wrapper">
+      <div className="signin-card text-center">
+        <h2 className="signin-title">Welcome!</h2>
+        <p className="signin-subtitle">Please log in to continue give Review🍽️</p>
 
-                <div className="text-center mt-3">
-                    <small>
-                        Don’t have an account?{' '}
-                        <button
-                            className="btn btn-link p-0 align-baseline"
-                            onClick={switchToRegister}
-                            style={{ fontSize: '0.9rem' }}
-                        >
-                            Sign up
-                        </button>
-                    </small>
-                </div>
-            </div>
-        </div>
-    );
+        <button
+          className="signin-button-modern"
+          onClick={() => navigate("/SignIn")}
+        >
+          Sign In
+        </button>
+
+        {/* <p className="register-prompt mt-3">
+          Don’t have an account? <Link to="/SignIn">Register here</Link>
+        </p> */}
+      </div>
+    </div>
+  );
 };
 
-export default LoginForm;
+export default SignInPrompt;
