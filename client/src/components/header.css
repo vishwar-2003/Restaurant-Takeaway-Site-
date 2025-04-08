@@ -28,8 +28,10 @@
 
 .animated-title {
   margin-left: 10px;
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-family: "Parisienne", cursive;
+  font-weight: 100;
+  margin-top: 10px;
+  font-style: normal;
   color: rgb(255, 255, 255);
   white-space: nowrap;
 }

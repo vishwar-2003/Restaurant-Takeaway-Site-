@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+
 .menu-page {
     padding: 3rem 1.5rem;
     font-family: 'Segoe UI', sans-serif;
@@ -5,18 +7,18 @@
     background-size: contain;
   background-position: center;
 
-  
-
-
   text-align: center;
   }
   
   .menu-tag {
-    color: red;
+    color: rgb(0, 0, 0);
+     font-family: "Calistoga", serif;
     font-weight: bold;
+    letter-spacing: 0.2rem;
     margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
+  
   
   .menu-header h1 {
     font-size: 2.5rem;
@@ -73,19 +75,30 @@
   }
   
   .menu-cta {
-    background-color: #e74c3c;
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
     display: inline-block;
-    transition: 0.3s ease;
+  padding: 10px 20px;
+  background-color: #f0c040; /* Golden-yellow */
+  color: #000; /* Black text */
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .menu-cta:hover {
-    background-color: #c0392b;
+    background-color: #e0b030;
+  transform: translateY(-2px);
   }
+
+  .menu-cta:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
   
   /* Responsive */
   @media (max-width: 600px) {

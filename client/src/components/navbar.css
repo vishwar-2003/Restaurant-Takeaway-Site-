@@ -41,6 +41,10 @@
 .nav-item {
   opacity: 0;
   transform: translateX(-50px);
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
   animation: slideIn 0.6s forwards ease-out;
 }
 .nav-item:nth-child(1) { animation-delay: 0.1s; }
@@ -171,11 +175,14 @@
   padding-left: 0.4rem;
   padding-right: 0.4rem;
   color: #ff0000;
-  font-size: 1rem;
+  font-size: 23px;
   border: 1px solid rgb(255, 0, 0); 
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 600;
+    font-family: "Parisienne", cursive;
+
+  font-style: normal;
+
   transition: all 0.3s ease;
 }
 
