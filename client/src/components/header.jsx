@@ -6,6 +6,9 @@ import 'aos/dist/aos.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+
+
+
 function Header() {
   const navigate = useNavigate();
 
@@ -50,7 +53,7 @@ function Header() {
 
         <div className="title-text" data-aos="fade-left">
           <h1 className="animated-title">
-            {"THENDRAL MESS".split("").map((char, index) => (
+            {"Thendral Mess".split("").map((char, index) => (
               <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
                 {char === " " ? "\u00A0" : char}
               </span>

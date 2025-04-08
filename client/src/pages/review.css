@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+
 .review-section {
   display: flex;
   flex-wrap: wrap;
@@ -205,9 +207,17 @@
   text-align: center;
 }
 
-.review-column h1 {
+.review-entry h2 {
   font-size: 1.8rem;
+  font-family: "Calistoga", serif;
+  letter-spacing: 0.1rem;
   margin-bottom: 1rem;
+}
+.review-entry p {
+  font-size: 1.2rem;  /* Slightly larger than the default text */
+  color: #666;  /* Lighter grey color for the paragraph */
+  margin-bottom: 1.5rem;  /* Adds space below the paragraph */
+  font-family: Arial, sans-serif;
 }
 
 .btn.review-button {
