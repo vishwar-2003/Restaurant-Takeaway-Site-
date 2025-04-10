@@ -8,6 +8,10 @@ const mongoDbConnect = require("./dbConn/mongoDbConn");
 const authRoutes = require('./routes/auth');
 const reviewRoutes = require('./routes/reviews');
 const menuRoutes = require('./routes/menuRoutes');
+const ordersRoutes = require('./routes/order'); 
+const addressRoutes = require('./routes/addressRoutes');
+const deliveryChargesRoutes = require('./routes/deliveryChargesRoutes');
+
 
 const app = express();
 
@@ -27,6 +31,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.get('/api/menu/items', menuRoutes);
 app.post('/api/menu/items', menuRoutes);
+app.use('/api/orders', ordersRoutes);
+app.use('/api/address', addressRoutes);
+app.get('/api/delivery_charges', deliveryChargesRoutes);
+
 
 
 // Server
