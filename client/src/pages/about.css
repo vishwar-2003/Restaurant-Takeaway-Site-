@@ -237,7 +237,7 @@
 }
 
 .about-container {
-  background-color: #f8ecc7;
+  background-color: #fefefd;
   padding: 60px 80px;
   font-family: "Segoe UI", sans-serif;
   display: flex;
@@ -358,7 +358,7 @@
 
 /* Mission & Vision Section */
 .mission-container {
-  background-color: #fff;
+  background-color: #fbeebf;
   padding: 80px 20px;
   text-align: center;
   position: relative;
@@ -465,6 +465,7 @@
 }
 
 /* Team Section */
+/* Team Section */
 .team-container {
   background-image: url("../assets/img/sandy.jpg");
   padding: 80px 20px;
@@ -521,6 +522,8 @@
   margin-bottom: 30px;
   transition: transform 0.3s ease;
   position: relative;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
 }
 
 .team-member::after {
@@ -601,9 +604,21 @@
   font-size: 1rem;
 }
 
+/* Animation for fade-in effect */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Fun Facts Section */
 .fun-facts-container {
-  background: white;
+  background: rgb(244, 226, 189);
   padding: 100px 20px;
   text-align: center;
 }
