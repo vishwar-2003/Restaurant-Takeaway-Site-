@@ -73,7 +73,8 @@ function Home() {
         <button className="menu-cta" onClick={handleClick}>
           Explore More
         </button>
-    </div>
+        </div>
+
       </section>
 
       {/* Reviews Section */}

@@ -39,6 +39,8 @@ const SignInForm = ({ setToken, setName }) => {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("name", res.data.name);
+      localStorage.setItem("email", res.data.email);
+      localStorage.setItem("customerId", res.data.customerId);
       if (setToken) setToken(res.data.token);
       if (setName) setName(res.data.name);
 
@@ -212,7 +214,7 @@ const SignInForm = ({ setToken, setName }) => {
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "center",
+                    alignItems: "center", 
                   }}
                 >
                   <small className="text-muted">Password strength</small>

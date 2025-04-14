@@ -57,12 +57,12 @@ const ReviewPage = () => {
         setRatingStats({ count, percent, average, total: sum });
     };
 
-    const logout = () => {
-        localStorage.clear();
-        setToken(null);
-        setName(null);
-        toast.info('Logged out');
-    };
+    // const logout = () => {
+    //     localStorage.clear();
+    //     setToken(null);
+    //     setName(null);
+    //     toast.info('Logged out');
+    // };
 
     const filtered = reviews.filter((r) =>
         (r.customerName?.toLowerCase().includes(search.toLowerCase()) || false) ||
@@ -105,13 +105,6 @@ const ReviewPage = () => {
                 }}
             >
 
-                {token && (
-                    <div className="d-flex justify-content-end mb-3">
-                        <button className="btn btn-outline-danger" onClick={logout}>
-                            Logout
-                        </button>
-                    </div>
-                )}
 
                 <div className="d-flex justify-content-center">
                     <div style={{ width: '100%', maxWidth: '480px' }}>
