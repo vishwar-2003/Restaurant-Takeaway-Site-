@@ -1,0 +1,124 @@
+.customers-container {
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.customers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.customers-header h2 {
+  color: #424242;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.customers-search {
+  position: relative;
+}
+
+.search-input {
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  width: 300px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #FF8A65;
+  box-shadow: 0 0 0 2px rgba(255, 138, 101, 0.2);
+}
+
+.customers-table-container {
+  overflow-x: auto;
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.customers-table th {
+  background-color: #FFF5F5;
+  color: #666;
+  font-weight: 500;
+  padding: 12px 15px;
+  font-size: 0.9rem;
+}
+
+.customers-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #424242;
+}
+
+.customer-row:hover {
+  background-color: #FFF5F5;
+}
+
+.action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.action-button.view {
+  background-color: #FF8A65;
+  color: white;
+}
+
+.action-button.view:hover {
+  background-color: #FF7043;
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+
+@media (max-width: 768px) {
+  .customers-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .customers-search {
+    width: 100%;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  .customers-table th:nth-child(4),
+  .customers-table td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .customers-table th:nth-child(3),
+  .customers-table td:nth-child(3),
+  .customers-table th:nth-child(5),
+  .customers-table td:nth-child(5) {
+    display: none;
+  }
+} 

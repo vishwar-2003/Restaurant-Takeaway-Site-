@@ -8,7 +8,9 @@ import "./App.css";
 import ReviewPage from "./pages/ReviewPage";
 import HomePage from "./pages/HomePage"; // Make sure you have the HomePage component
 import Contact from "./pages/contact";
-import SignInForm from "./components/SignInForm"; // ✅ Import SignIn
+import SignInForm from "./components/SignInForm";
+import Dashboard from "./admin/Dashboard.tsx";
+// ✅ Import SignIn
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/signin" element={<SignInForm />} />
+        <Route path="/admin" element={<Dashboard />} />
         <Route path="/home" element={<HomePage />} />{" "}
         {/* Add the /home route here */}
       </Routes>

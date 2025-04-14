@@ -120,9 +120,11 @@ function About() {
               <div className="about-card">
                 <h4>Our Journey</h4>
                 <p>
-                  Our journey began with a dream to share the authentic tastes of India. Over the years, we’ve expanded our menu, refined our techniques, and built relationships with local farmers and spice merchants, ensuring that every bite is as fresh and vibrant as the Indian culture itself.
-
-    
+                  Our journey began with a dream to share the authentic tastes
+                  of India. Over the years, we’ve expanded our menu, refined our
+                  techniques, and built relationships with local farmers and
+                  spice merchants, ensuring that every bite is as fresh and
+                  vibrant as the Indian culture itself.
                 </p>
               </div>
             </div>
@@ -171,26 +173,59 @@ function About() {
           <p className="team-subtitle">Meet Our Team</p>
           <h3 className="team-title">The People Behind Our Success</h3>
           <div className="team-members">
-            <div className="team-member">
+            <div
+              className="team-member fade-in"
+              style={{ animationDelay: "0.2s" }}
+            >
               <div className="member-image">
-                <img src="../assets/img/bg-img-1.jpg" alt="Team Member 1" />
+                <img src="../assets/img/bg-img-3.png" alt="Team Member 1" />
               </div>
-              <h4>John Smith</h4>
+              <h4>Aswin Kumar Viswanathan</h4>
               <p>Executive Chef</p>
             </div>
-            <div className="team-member">
+
+            <div
+              className="team-member fade-in"
+              style={{ animationDelay: "0.4s" }}
+            >
               <div className="member-image">
-                <img src="../assets/img/bg-img-2.jpg" alt="Team Member 2" />
+                <img src="../assets/img/bg-img-1.png" alt="Team Member 2" />
               </div>
-              <h4>Sarah Johnson</h4>
+              <h4>Viswa Ravikumar</h4>
               <p>Sous Chef</p>
             </div>
-            <div className="team-member">
+
+            <div
+              className="team-member fade-in"
+              style={{ animationDelay: "0.6s" }}
+            >
               <div className="member-image">
-                <img src="../assets/img/bg-img-3.jpg" alt="Team Member 3" />
+                <img src="../assets/img/bg-img-2.jpg" alt="Team Member 3" />
               </div>
-              <h4>Michael Chen</h4>
+              <h4>Santhosh Prabhakaran</h4>
               <p>Pastry Chef</p>
+            </div>
+
+            <div
+              className="team-member fade-in"
+              style={{ animationDelay: "0.8s" }}
+            >
+              <div className="member-image">
+                <img src="../assets/img/team-4.jpg" alt="Team Member 4" />
+              </div>
+              <h4>Abenesh Ramesh</h4>
+              <p>Restaurant Manager</p>
+            </div>
+
+            <div
+              className="team-member fade-in"
+              style={{ animationDelay: "1s" }}
+            >
+              <div className="member-image">
+                <img src="../assets/img/Team-5.jpeg" alt="Team Member 5" />
+              </div>
+              <h4>Deepa sri Thamarai Selvam</h4>
+              <p>Sommelier</p>
             </div>
           </div>
         </div>
