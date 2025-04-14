@@ -3,12 +3,19 @@ import "./SignInForm.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // Add this import
+import { useNavigate, useLocation } from "react-router-dom"; // ✅ updated
 
 const SignInForm = ({ setToken, setName }) => {
   const [formType, setFormType] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // const params = new URLSearchParams(location.search);
+
+
+  // ✅ Get redirect query param (e.g. /signin?redirect=/reviews)
+  const redirectTo = new URLSearchParams(location.search).get("redirect") || "/home";
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,13 +48,14 @@ const SignInForm = ({ setToken, setName }) => {
       localStorage.setItem("name", res.data.name);
       localStorage.setItem("email", res.data.email);
       localStorage.setItem("customerId", res.data.customerId);
+
       if (setToken) setToken(res.data.token);
       if (setName) setName(res.data.name);
 
       toast.success("Logged in successfully!");
 
-      // Redirect to the home page after login is successful
-      navigate("/home"); // This will redirect to /home
+      // ✅ Redirect to where the user came from or default to /home
+      navigate(redirectTo);
     } catch {
       toast.error("Invalid email or password");
     }
@@ -94,29 +102,29 @@ const SignInForm = ({ setToken, setName }) => {
           )}
         </h1>
 
-        <p className="signin-info">
-          {formType === "login" ? (
-            <>
-              If you don't have an account <br />
-              <button
-                onClick={() => setFormType("register")}
-                className="register-link"
-              >
-                Register here!
-              </button>
-            </>
-          ) : (
-            <>
-              Already have an account? <br />
-              <button
-                onClick={() => setFormType("login")}
-                className="register-link"
-              >
-                Log in here!
-              </button>
-            </>
-          )}
-        </p>
+        <div className="signin-info">
+  {formType === "login" ? (
+    <>
+      <p>If you don't have an account</p>
+      <button
+        onClick={() => setFormType("register")}
+        className="register-link"
+      >
+        Register here!
+      </button>
+    </>
+  ) : (
+    <>
+      <p>Already have an account?</p>
+      <button
+        onClick={() => setFormType("login")}
+        className="register-link"
+      >
+        Log in here!
+      </button>
+    </>
+  )}
+</div>
 
         <img
           src="../assets/img/images/illustration-2.png"
@@ -207,14 +215,13 @@ const SignInForm = ({ setToken, setName }) => {
               className="signin-input"
             />
 
-            {/* ✅ Password strength meter + emoji */}
             {form.password && (
               <div style={{ width: "100%", marginBottom: "12px" }}>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "center", 
+                    alignItems: "center",
                   }}
                 >
                   <small className="text-muted">Password strength</small>
