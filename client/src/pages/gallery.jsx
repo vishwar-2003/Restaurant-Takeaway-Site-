@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./gallery.css";
+import "./styles/Gallery.css";
 
 const images = [
   { src: "../assets/img/images/g-img-1.jpg", alt: "Image 1" },

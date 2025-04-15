@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./about.css"; // Import the corresponding CSS file for styling
+import "./styles/About.css"; // Import the corresponding CSS file for styling
 
 function About() {
   // State for animated counters
@@ -89,7 +89,7 @@ function About() {
           </h2>
           <p>Fresh, authentic, and full of flavor.</p>
           <button className="find-more-btn" onClick={scrollToSection}>
-            Find for more
+            Look Our Story
           </button>
         </div>
       </section>
@@ -211,7 +211,7 @@ function About() {
               style={{ animationDelay: "0.8s" }}
             >
               <div className="member-image">
-                <img src="../assets/img/team-4.png" alt="Team Member 4" />
+                  <img src="../assets/img/team-4.png" alt="Team Member 4" />
               </div>
               <h4>Abenesh Ramesh</h4>
               <p>Restaurant Manager</p>

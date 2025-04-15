@@ -1,5 +1,5 @@
 import React from 'react';
-import './contact.css';
+import './styles/Contact.css';
 import { FaMapMarkerAlt, FaClock, FaEnvelope} from 'react-icons/fa';
 
 const Contact = () => {

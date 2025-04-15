@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './header.css';
-import './navbar.css';
+import './styles/Header.css';
+import './styles/Navbar.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
-
 
 
 function Header() {
@@ -72,6 +70,16 @@ function Header() {
             <li className="nav-item"><a href="/" className="nav-link" onClick={handleNavClick}>Home</a></li>
             <li className="nav-item"><a href="/about" className="nav-link" onClick={handleNavClick}>About</a></li>
             <li className="nav-item"><a href="/menu" className="nav-link" onClick={handleNavClick}>Menu</a></li>
+            <li className="nav-item dropdown">
+              <span className="nav-link dropdown-toggle" role="button">
+                Order
+              </span>
+              <ul className="dropdown-menu">
+                <li><Link to="/order" className="dropdown-item" onClick={handleNavClick}>Make an Order</Link></li>
+                <li><Link to="/my-order" className="dropdown-item" onClick={handleNavClick}>My Orders</Link></li>
+              </ul>
+            </li>
+            <li className="nav-item"><Link to="/review" className="nav-link" onClick={handleNavClick}>Review</Link></li>
             <li className="nav-item"><Link to="/contact" className="nav-link" onClick={handleNavClick}>Contact</Link></li>
 
             {/* ✅ Auth Buttons */}

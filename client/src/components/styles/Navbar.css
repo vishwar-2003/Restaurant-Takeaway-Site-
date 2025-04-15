@@ -1,0 +1,221 @@
+/* Default desktop layout */
+.main-navbar {
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+}
+
+/* Hamburger button (visible only on small screens) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 999;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Navigation links */
+.main-navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  opacity: 0;
+  transform: translateX(-50px);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  margin-top: 10px;
+  animation: slideIn 0.6s forwards ease-out;
+}
+.nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-item:nth-child(2) { animation-delay: 0.2s; }
+.nav-item:nth-child(3) { animation-delay: 0.3s; }
+.nav-item:nth-child(4) { animation-delay: 0.4s; }
+.nav-item:nth-child(5) { animation-delay: 0.5s; }
+.nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.nav-item:hover {
+  
+  color: #f0c040;
+  cursor: pointer;
+}
+/* Hover Effects */
+.nav-link {
+  position: relative;
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}
+.nav-link:hover {
+  color: #f0c040;
+  transform: scale(1.12);
+}
+.nav-link.active {
+  color: f0c040;
+}
+
+
+.nav-link:hover::before {
+  left: 0;
+
+}
+.nav-link.active {
+  font-weight: 700;
+  border-bottom: 2px solid #000;
+}
+
+/* ========== MOBILE STYLES ========== */
+@media (max-width: 768px) {
+  .main-navbar {
+    display: none;
+  }
+
+  .main-navbar.mobile-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #000000;
+    z-index: 998;
+    padding-top: 5rem;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    animation: slideFromRight 0.3s ease-in-out forwards;
+  }
+
+  @keyframes slideFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .main-navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1.5rem;
+  }
+
+  .nav-item {
+    padding-bottom: 1.2rem;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hamburger {
+    display: flex;
+    position: absolute;
+    right: 1.5rem;
+    top: 2.5rem;
+  }
+
+  .site-header {
+    position: relative;
+    z-index: 999;
+  }
+}
+
+
+.nav-buttonr {
+  background-color: transparent;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: #f0c040;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #f0c040;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-buttonr:hover {
+  background-color: #f0c040;
+  color: #f0c040;
+}
+
+.nav-buttonl {
+  background-color: transparent;
+  padding: 5px;
+  color: #f0c040;
+  font-size: 14px;
+  border: 1px solid #f0c040; 
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  transition: all 0.3s ease;
+}
+
+.nav-buttonl:hover {
+  background-color: #f0c040;
+  color: #000000;
+}
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.nav-item .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 0.5rem;
+  display: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  display: block;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
