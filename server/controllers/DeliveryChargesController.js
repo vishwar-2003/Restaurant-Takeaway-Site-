@@ -1,4 +1,4 @@
-const DeliveryCharges = require('../models/DeliveryCharges');
+const DeliveryCharges = require('../models/DeliveryCharge');
 
 const getDeliveryCharges = async (req, res) => {
   try {

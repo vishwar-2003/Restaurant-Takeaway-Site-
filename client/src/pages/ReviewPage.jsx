@@ -17,7 +17,7 @@ const ReviewPage = () => {
     useEffect(() => {
         const fetchInitialReviews = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/reviews');
+                const res = await axios.get('http://localhost:5000/api/review');
                 setReviews(res.data);
                 calculateStats(res.data);
             } catch {
@@ -29,7 +29,7 @@ const ReviewPage = () => {
 
     const handleRefreshReviews = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/reviews');
+            const res = await axios.get('http://localhost:5000/api/review');
             setReviews(res.data);
             calculateStats(res.data);
         } catch {
@@ -156,16 +156,17 @@ const ReviewPage = () => {
                     />
                 </div>
 
-                {/* Review Cards */}
-                <div className="row">
-                    <AnimatePresence>
-                        {filtered.map((r, index) => (
-                            <div className="col-md-6" key={r._id}>
-                                <AnimatedReviewCard review={r} index={index} />
-                            </div>
-                        ))}
-                    </AnimatePresence>
-                </div>
+                {
+                    <div className="row">
+                        <AnimatePresence>
+                            {filtered.map((r, index) => (
+                                <div className="col-md-6" key={r._id}>
+                                    <AnimatedReviewCard review={r} index={index} />
+                                </div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                }
             </div>
         </div>
     );

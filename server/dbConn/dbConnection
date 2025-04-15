@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const url =  'mongodb://localhost/restaurant'
 
 //function mmongodb database connection
 const mongoDbConnect = async () => {

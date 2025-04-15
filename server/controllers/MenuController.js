@@ -1,4 +1,4 @@
-const MenuItem = require('../models/MenuItems');
+const MenuItem = require('../models/MenuItem');
 
 const getMenuItems = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ const getMenuItems = async (req, res) => {
   }
 };
 
-const insertMenuItems = async (req, res) => {
+const insertMenuItem = async (req, res) => {
         try{
             const data = Array.isArray(req.body) ? req.body : [req.body];
             const newItem = await MenuItem.insertMany(data)
@@ -20,4 +20,4 @@ const insertMenuItems = async (req, res) => {
         }
     }
 
-module.exports = {getMenuItems, insertMenuItems};
+module.exports = {getMenuItems, insertMenuItem};

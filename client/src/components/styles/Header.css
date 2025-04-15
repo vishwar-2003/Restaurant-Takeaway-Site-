@@ -1,5 +1,5 @@
 .site-header {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 
 .header-container {
@@ -28,12 +28,13 @@
 
 .animated-title {
   margin-left: 10px;
-  font-family: "Parisienne", cursive;
-  font-weight: 100;
-  margin-top: 10px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 80;
+  margin-top: 6 px;
   font-style: normal;
-  color: rgb(255, 255, 255);
+  color: #f0c040;
   white-space: nowrap;
+  font-size: 28px;
 }
 
 .animated-title span {

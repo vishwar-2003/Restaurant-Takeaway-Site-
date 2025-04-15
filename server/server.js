@@ -2,20 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-const mongoDbConnect = require("./dbConn/mongoDbConn");
+const mongoDbConnect = require("./dbConn/dbConnection");
 
 // Routes
-const authRoutes = require('./routes/auth');
-const reviewRoutes = require('./routes/reviews');
-const menuRoutes = require('./routes/menuRoutes');
-const ordersRoutes = require('./routes/order'); 
-const addressRoutes = require('./routes/addressRoutes');
-const deliveryChargesRoutes = require('./routes/deliveryChargesRoutes');
+const authRoute = require('./routes/authRoute');
+const reviewRoute = require('./routes/reviewRoute');
+const menuRoute = require('./routes/menuRoute');
+const ordersRoute = require('./routes/orderRoute'); 
+const addressRoute = require('./routes/addressRoute');
+const deliveryChargeRoute = require('./routes/deliveryChargeRoute');
 
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -26,14 +25,12 @@ mongoDbConnect();
 app.get("/", (req, res) => {
   res.status(200).send({ message: "success" });
 });
-
-app.use('/api/auth', authRoutes);
-app.use('/api/reviews', reviewRoutes);
-app.get('/api/menu/items', menuRoutes);
-app.post('/api/menu/items', menuRoutes);
-app.use('/api/orders', ordersRoutes);
-app.use('/api/address', addressRoutes);
-app.get('/api/delivery_charges', deliveryChargesRoutes);
+app.use('/api/auth', authRoute);
+app.use('/api/review', reviewRoute);
+app.use('/api/menu', menuRoute);
+app.use('/api/order', ordersRoute);
+app.use('/api/address', addressRoute);
+app.use('/api/delivery/charges', deliveryChargeRoute);
 
 
 

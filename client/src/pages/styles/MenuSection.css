@@ -3,11 +3,9 @@
 .menu-page {
     padding: 3rem 1.5rem;
     font-family: 'Segoe UI', sans-serif;
-    background:     url('../assets/img/menubg.jpg') ; /* update the path as needed */
     background-size: contain;
-  background-position: center;
-
-  text-align: center;
+    background-position: center;
+    text-align: center;
   }
   
   .menu-tag {

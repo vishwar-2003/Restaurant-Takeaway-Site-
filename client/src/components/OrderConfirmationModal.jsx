@@ -1,5 +1,5 @@
 import React from 'react';
-import './OrderConfirmationModal.css';
+import './styles/OrderConfirmationModal.css';
 
 const OrderConfirmationModal = ({
     isOpen,

@@ -33,8 +33,10 @@ const orderSchema = new mongoose.Schema({
   deliveryAddressId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Address',
-    required: true
-  },
+    required: function () {
+      return this.deliveryType === 'delivery';
+    }
+  },  
   orderedAt: {
     type: Date,
     default: Date.now

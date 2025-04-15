@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './faq.css';
+import './styles/Faq.css';
 
 const faqs = [
   {
@@ -97,22 +97,6 @@ function FAQSection() {
           </div>
         ))}
       </div>
-
-
-
-
-
-      <div className="support-box">
-        <div>
-          <h4>Talk to an expert</h4>
-          <p>Need help with booking or dietary info? We’re here to help.</p>
-          <a href="/contact" className="support-btn">Contact support</a>
-        </div>
-        <img src="/assets/img/sappu.png" alt="Support" />
-      </div>
-
-
-
 
 
     </div>

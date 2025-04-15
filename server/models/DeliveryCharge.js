@@ -13,4 +13,4 @@ const deliveryChargesSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('delivery_charge', deliveryChargesSchema);
+module.exports = mongoose.model('DeliveryCharge', deliveryChargesSchema);

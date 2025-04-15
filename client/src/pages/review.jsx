@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './review.css';
-import reviews from './reviewData';
+import './styles/Review.css';
+import reviews from './ReviewData';
 
 function ReviewCarousel3D() {
   const [current, setCurrent] = useState(0);
@@ -50,7 +50,7 @@ function ReviewCarousel3D() {
         <section className="review-entry">
         <h2>Love Our Food?</h2>
         <p>Leave your feedback or check out what others are saying!</p>
-          <a href="/reviews" className="btn review-button">Go to Reviews</a>
+          <a href="/review" className="btn review-button">Go to Reviews</a>
         </section>
       </div>
     </section>
