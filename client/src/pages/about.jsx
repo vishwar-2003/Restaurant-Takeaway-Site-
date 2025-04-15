@@ -211,7 +211,7 @@ function About() {
               style={{ animationDelay: "0.8s" }}
             >
               <div className="member-image">
-                <img src="../assets/img/team-4.png" alt="Team Member 4" />
+                  <img src="../assets/img/team-4.png" alt="Team Member 4" />
               </div>
               <h4>Abenesh Ramesh</h4>
               <p>Restaurant Manager</p>
