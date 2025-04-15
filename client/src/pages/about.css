@@ -467,7 +467,7 @@
 /* Team Section */
 /* Team Section */
 .team-container {
-  background-image: url("../assets/img/sandy.jpg");
+  background-image: white;
   padding: 80px 20px;
   text-align: center;
   position: relative;
@@ -618,7 +618,7 @@
 
 /* Fun Facts Section */
 .fun-facts-container {
-  background: rgb(244, 226, 189);
+  background: #fbeebf;
   padding: 100px 20px;
   text-align: center;
 }

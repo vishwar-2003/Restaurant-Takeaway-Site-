@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   min-height: 100vh;
-  background-color: #FFF5F5;
+  background-color: #f8f9fa;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -23,14 +23,16 @@
 .dashboard-logo {
   font-size: 18px;
   font-weight: bold;
-  color: #ff5e6c;
+  color: #e65100;
   margin-bottom: 15px;
   text-align: center;
   line-height: 1;
+  padding: 10px;
+  border-bottom: 2px solid #ff8f00;
 }
 
 .dashboard-logo h2 {
-  color: #FF6B6B;
+  color: #e65100;
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
@@ -59,15 +61,15 @@
 }
 
 .dashboard-nav-item:hover {
-  background-color: #ffecec;
-  color: #ff6b6b;
+  background-color: #fff3e0;
+  color: #e65100;
 }
 
 .dashboard-nav-item.active {
-  background-color: #FF6B6B;
+  background-color: #ff8f00;
   color: white;
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 2px 6px rgba(255, 143, 0, 0.3);
 }
 
 .dashboard-icon {
@@ -89,6 +91,10 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .dashboard-header h1 {
@@ -106,7 +112,7 @@
 .dashboard-search-bar {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #f8f9fa;
   border-radius: 6px;
   padding: 4px 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -118,6 +124,7 @@
   padding: 4px 8px;
   width: 180px;
   font-size: 0.85rem;
+  background-color: transparent;
 }
 
 .dashboard-search-button {
@@ -153,6 +160,7 @@
   padding: 12px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #ff8f00;
 }
 
 .dashboard-stat-card h3 {
@@ -178,7 +186,7 @@
 }
 
 .dashboard-stat-change.negative {
-  color: #FF6B6B;
+  color: #f44336;
 }
 
 .dashboard-charts-grid {
@@ -200,6 +208,8 @@
   color: #333;
   margin: 0 0 8px 0;
   font-size: 1.1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
 }
 
 .dashboard-chart-placeholder {
@@ -207,7 +217,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
   border-radius: 6px;
   color: #666;
 }
@@ -222,13 +232,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px;
+  padding: 8px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .dashboard-trending-item:hover {
-  background-color: #F8F9FA;
+  background-color: #fff3e0;
 }
 
 .dashboard-trending-item img {
@@ -250,23 +261,85 @@
   color: #666;
 }
 
-.dashboard-revenue-card {
+/* Restaurant-specific elements */
+.dashboard-menu-section {
   background-color: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-top: 15px;
 }
 
-.dashboard-revenue-card h3 {
-  color: #333;
-  margin: 0 0 1rem 0;
+.dashboard-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.dashboard-menu-title {
   font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.dashboard-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.dashboard-menu-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.dashboard-menu-item:hover {
+  transform: translateY(-3px);
+}
+
+.dashboard-menu-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.dashboard-menu-item-info {
+  padding: 10px;
+}
+
+.dashboard-menu-item-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.dashboard-menu-item-price {
+  font-size: 0.85rem;
+  color: #e65100;
+  font-weight: 500;
+}
+
+.dashboard-menu-item-category {
+  font-size: 0.75rem;
+  color: #666;
+  background-color: #fff3e0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .dashboard-charts-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .dashboard-menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
 
@@ -282,6 +355,10 @@
 
   .dashboard-search-bar input {
     width: 140px;
+  }
+  
+  .dashboard-menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
 }
 
@@ -326,6 +403,10 @@
 
   .dashboard-search-bar input {
     width: 160px;
+  }
+  
+  .dashboard-menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
 
