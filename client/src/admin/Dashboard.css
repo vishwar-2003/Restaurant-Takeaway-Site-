@@ -2,7 +2,7 @@
   display: flex;
   min-height: 100vh;
   background-color: #f8f9fa;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Sidebar Styling */
@@ -182,7 +182,7 @@
 }
 
 .dashboard-stat-change.positive {
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .dashboard-stat-change.negative {
@@ -337,7 +337,7 @@
   .dashboard-charts-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .dashboard-menu-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
@@ -356,7 +356,7 @@
   .dashboard-search-bar input {
     width: 140px;
   }
-  
+
   .dashboard-menu-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
@@ -404,13 +404,8 @@
   .dashboard-search-bar input {
     width: 160px;
   }
-  
+
   .dashboard-menu-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
-
-
-
-
-
