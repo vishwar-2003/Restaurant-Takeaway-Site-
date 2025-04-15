@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
 import SignInForm from "./components/SignInForm"; 
-import HomePage from "./pages/Home"; 
-import About from "./pages/About";
+import HomePage from "./pages/Home.jsx"; 
+import About from "./pages/About.jsx";
 import MenuPage from "./pages/Menu";
-import ReviewPage from "./pages/ReviewPage";
-import Contact from "./pages/Contact";
+import ReviewPage from "./pages/Review.jsx";
+import Contact from "./pages/Contact.jsx";
 import OrderPage from "./pages/Order";
 import MyOrderPage from "./pages/MyOrders";
-import Dashboard from "./admin/Dashboard.tsx";
+import Dashboard from "./pages/admin/Dashboard.tsx";
 import MyOrderDetailsPage from "./pages/MyOrderDetails";
 
 function App() {

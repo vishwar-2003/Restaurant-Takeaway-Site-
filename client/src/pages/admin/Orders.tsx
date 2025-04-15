@@ -1,5 +1,7 @@
+// TODO: This file needs to be converted to JSX
+
 import React, { useState } from 'react';
-import './Orders.css';
+import '../styles/admin/Orders.css';
 
 // Mock data for orders
 const mockOrders = [

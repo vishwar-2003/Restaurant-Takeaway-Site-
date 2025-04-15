@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Home.css';
 import './styles/MenuSection.css';
-import Review from './Review';
+import Review from './ReviewSection';
 import FAQ from './Faq';
 import Gallery from './Gallery';
 import AOS from 'aos';

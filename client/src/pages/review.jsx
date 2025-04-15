@@ -1,63 +1,175 @@
 import React, { useState, useEffect } from 'react';
-import './styles/Review.css';
-import reviews from './ReviewData';
+import axios from 'axios';
+import ReviewForm from '../components/ReviewForm';
+import { FaStar } from 'react-icons/fa';
+import { AnimatePresence } from 'framer-motion';
+import { toast } from 'react-toastify';
+import bgImage from '../assets/img/review-bg.jpg';
+import AnimatedReviewCard from '../components/AnimatedReviewCard';
 
-function ReviewCarousel3D() {
-  const [current, setCurrent] = useState(0);
+const ReviewPage = () => {
+    const [token] = useState(localStorage.getItem('token'));
+    const [name] = useState(localStorage.getItem('name'));
+    const [reviews, setReviews] = useState([]);
+    const [search, setSearch] = useState('');
+    const [ratingStats, setRatingStats] = useState({});
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % reviews.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [current]);
+    useEffect(() => {
+        const fetchInitialReviews = async () => {
+            try {
+                const res = await axios.get('http://localhost:5000/api/review');
+                setReviews(res.data);
+                calculateStats(res.data);
+            } catch {
+                toast.error('Failed to load reviews');
+            }
+        };
+        fetchInitialReviews();
+    }, []);
 
+    const handleRefreshReviews = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/api/review');
+            setReviews(res.data);
+            calculateStats(res.data);
+        } catch {
+            toast.error('Failed to reload reviews');
+        }
+    };
 
+    const calculateStats = (reviews) => {
+        const count = [0, 0, 0, 0, 0];
+        let total = 0;
 
-  const getCardClass = (index) => {
-    if (index === current) return 'carousel-card active';
-    if (index === (current - 1 + reviews.length) % reviews.length) return 'carousel-card left';
-    if (index === (current + 1) % reviews.length) return 'carousel-card right';
-    return 'carousel-card hidden';
-  };
+        reviews.forEach((r) => {
+            const i = 5 - r.rating;
+            count[i] += 1;
+            total += r.rating;
+        });
 
-  return (
-    <section className="review-3d-section">
-      <div className="review-carousel-column">
-        
-        <div className="carousel-wrapper">
-          {reviews.map((review, index) => (
-            <div key={index} className={getCardClass(index)}>
-              <img src={review.img} alt="review dish" />
-              <div className="card-content">
-                <h3>⭐ {review.rating}</h3>
-                <p className="review-count">{review.totalReviews} reviews</p>
-                <div className="category-ratings">
-                  <div><span>🍽️ Food</span><span>{"⭐".repeat(review.food)}</span></div>
-                  <div><span>🧑‍🍳 Service</span><span>{"⭐".repeat(review.service)}</span></div>
-                  <div><span>💰 Value</span><span>{"⭐".repeat(review.value)}</span></div>
-                  <div><span>🎉 Atmosphere</span><span>{"⭐".repeat(review.atmosphere)}</span></div>
+        const sum = count.reduce((a, b) => a + b, 0);
+        const average = sum ? (total / sum).toFixed(1) : 0;
+        const percent = count.map((c) => (sum ? ((c / sum) * 100).toFixed(1) : 0));
+
+        setRatingStats({ count, percent, average, total: sum });
+    };
+
+    const filtered = reviews.filter((r) =>
+        (r.customerName?.toLowerCase().includes(search.toLowerCase()) || false) ||
+        (r.comment?.toLowerCase().includes(search.toLowerCase()) || false)
+    );
+
+    return (
+        <div
+            style={{
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                minHeight: '100vh',
+                padding: '50px 0',
+                position: 'relative',
+            }}
+        >
+            {/* Overlay */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    zIndex: 1,
+                }}
+            ></div>
+
+            {/* Content */}
+            <div
+                style={{
+                    position: 'relative',
+                    zIndex: 2,
+                    maxWidth: '1200px',
+                    margin: '0 auto',
+                    backgroundColor: '#F5F5F5',
+                    backdropFilter: 'blur(4px)',
+                    WebkitBackdropFilter: 'blur(4px)',
+                    borderRadius: '16px',
+                    padding: '2rem',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+                }}
+            >
+                {/* Review Form (shows only if logged in, else redirects) */}
+                <div className="d-flex justify-content-center">
+                    <div style={{ width: '100%', maxWidth: '480px' }}>
+                        <ReviewForm
+                            token={token}
+                            name={name}
+                            fetchReviews={handleRefreshReviews}
+                        />
+                    </div>
                 </div>
-                <blockquote>{review.review}</blockquote>
-              </div>
+
+                {/* Rating Summary */}
+                {ratingStats.total > 0 && (
+                    <div className="my-4 text-center">
+                        <h4 className="mb-3">
+                            ⭐ {ratingStats.average} / 5{' '}
+                            <small className="text-muted">
+                                ({ratingStats.total} reviews)
+                            </small>
+                        </h4>
+                        {[5, 4, 3, 2, 1].map((star) => (
+                            <div className="d-flex align-items-center mb-2" key={star}>
+                                <div style={{ width: 40 }}>
+                                    {star} <FaStar className="text-warning" />
+                                </div>
+                                <div
+                                    className="progress flex-grow-1 mx-2"
+                                    style={{ height: '16px' }}
+                                >
+                                    <div
+                                        className="progress-bar bg-warning"
+                                        role="progressbar"
+                                        style={{
+                                            width: `${ratingStats.percent[5 - star]}%`,
+                                        }}
+                                    ></div>
+                                </div>
+                                <div style={{ width: 80, fontSize: '0.85rem' }}>
+                                    {ratingStats.percent[5 - star]}% (
+                                    {ratingStats.count[5 - star]})
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* Search */}
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search reviews..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </div>
+
+                {
+                    <div className="row">
+                        <AnimatePresence>
+                            {filtered.map((r, index) => (
+                                <div className="col-md-6" key={r._id}>
+                                    <AnimatedReviewCard review={r} index={index} />
+                                </div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                }
             </div>
-          ))}
         </div>
-     
-      </div>
-  
-      <div className="review-column right">
-        <section className="review-entry">
-        <h2>Love Our Food?</h2>
-        <p>Leave your feedback or check out what others are saying!</p>
-          <a href="/review" className="btn review-button">Go to Reviews</a>
-        </section>
-      </div>
-    </section>
+    );
+};
 
-    
-  );
-  
-}
-
-export default ReviewCarousel3D;
+export default ReviewPage;

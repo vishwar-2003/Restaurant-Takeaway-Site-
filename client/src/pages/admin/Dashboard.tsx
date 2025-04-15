@@ -1,5 +1,7 @@
+// TODO: This file needs to be converted to JSX
+
 import React, { useState } from "react";
-import "./Dashboard.css";
+import "../styles/admin/Dashboard.css";
 import Orders from "./Orders.tsx";
 import Customers from "./Customers.tsx";
 import Reviews from "./Reviews.tsx";
