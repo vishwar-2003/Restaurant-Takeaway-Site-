@@ -41,6 +41,19 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  deliveryDate: {
+    type: String, // Format: 'YYYY-MM-DD'
+    required: function () {
+      return this.deliveryType === 'delivery';
+    }
+  },
+  deliveryWindowId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'DeliveryWindow',
+    required: function () {
+      return this.deliveryType === 'delivery';
+    }
+  }
 });
 
 module.exports = mongoose.model('Order', orderSchema);

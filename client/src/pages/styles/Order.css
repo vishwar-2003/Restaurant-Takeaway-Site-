@@ -224,6 +224,13 @@
 .place-order-button:hover {
     background-color: #f0c040;
 }
+    
+.place-order-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+  
   
   /* === ANIMATION (optional) === */
   @keyframes dropSpin {
@@ -253,4 +260,38 @@
   .add-address-button:hover {
     background-color: #f0c040;
   }
+
+  .delivery-slot-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .delivery-slot-section label {
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  
+  .delivery-slot-section input[type="date"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #f0c040;
+    min-width: 200px;
+    margin-bottom: 6px;
+  }
+
+  .slot-dropdown {
+    margin-top: 8px;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #f0c040;
+    border-radius: 6px;
+    width: 61%;
+    max-width: 260px;
+    background-color: white;
+  }
+  
+  
   

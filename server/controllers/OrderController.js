@@ -1,6 +1,7 @@
 const Order = require('../models/Order');
 const OrderItem = require('../models/OrderItem');
 const MenuItem = require("../models/MenuItem");
+const DeliveryWindow = require("../models/DeliveryWindow"); // <-- Add this line
 
 const placeOrder = async (req, res) => {
   try {
@@ -10,6 +11,8 @@ const placeOrder = async (req, res) => {
       deliveryType,       // 'takeaway' or 'delivery'
       deliveryAddressId,  // optional if takeaway
       totalPrice,
+      deliveryDate,
+      deliveryWindowId,
       items               // array of { _id, quantity, price }
     } = req.body;
 
@@ -17,8 +20,27 @@ const placeOrder = async (req, res) => {
       return res.status(400).json({ success: false, message: 'No items in order.' });
     }
 
-    if (deliveryType === 'delivery' && !deliveryAddressId) {
-      return res.status(400).json({ success: false, message: 'Delivery address is required for delivery orders.' });
+    if (deliveryType === 'delivery') {
+      if (!deliveryAddressId) {
+        return res.status(400).json({ success: false, message: 'Delivery address is required for delivery orders.' });
+      }
+      if (!deliveryDate || !deliveryWindowId) {
+        return res.status(400).json({ success: false, message: 'Delivery date and slot are required for delivery orders.' });
+      }
+
+      // Validate and decrement delivery slot
+      const deliveryWindow = await DeliveryWindow.findById(deliveryWindowId);
+      if (!deliveryWindow || deliveryWindow.date !== deliveryDate) {
+        return res.status(400).json({ success: false, message: 'Invalid delivery slot.' });
+      }
+
+      if (deliveryWindow.availableSlots <= 0) {
+        return res.status(400).json({ success: false, message: 'Selected delivery slot is full.' });
+      }
+
+      // Decrement slot
+      deliveryWindow.availableSlots -= 1;
+      await deliveryWindow.save();
     }
 
     const paymentStatus = paymentMethod === 'card' ? 'paid' : 'unpaid';
@@ -34,6 +56,8 @@ const placeOrder = async (req, res) => {
 
     if (deliveryType === 'delivery') {
       orderData.deliveryAddressId = deliveryAddressId;
+      orderData.deliveryDate = deliveryDate;
+      orderData.deliveryWindowId = deliveryWindowId;
     }
 
     const order = await Order.create(orderData);
@@ -64,6 +88,7 @@ const getUserOrders = async (req, res) => {
 
     const orders = await Order.find({ customerId: userId })
       .populate('deliveryAddressId')
+      .populate('deliveryWindowId')
       .sort({ orderedAt: -1 });
 
     const ordersWithItems = await Promise.all(
@@ -92,6 +117,7 @@ const getOrderById = async (req, res) => {
     const { orderId } = req.params;
     const order = await Order.findById(orderId)
       .populate('deliveryAddressId')
+      .populate('deliveryWindowId')
       .populate('customerId');
 
     const items = await OrderItem.find({ orderId }).populate('menuItemId');
@@ -112,5 +138,4 @@ const getOrderById = async (req, res) => {
   }
 };
 
-
-module.exports = {getUserOrders, placeOrder, getOrderById};
+module.exports = { getUserOrders, placeOrder, getOrderById };

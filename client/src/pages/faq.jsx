@@ -17,10 +17,6 @@ const faqs = [
   {
     question: 'Can I host a private event at your restaurant?',
     answer: 'Yes! We host birthdays, family gatherings, and small events. Contact us for availability.'
-  },
-  {
-    question: 'Do you offer student discounts?',
-    answer: 'Yes, students get 10% off with a valid student ID.'
   }
 ];
 
