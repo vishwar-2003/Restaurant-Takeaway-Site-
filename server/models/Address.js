@@ -33,7 +33,7 @@ const addressSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    default: 'Ireland',  // or India/US/etc. based on your app
+    default: 'Ireland', 
     trim: true
   },
   isDefault: {

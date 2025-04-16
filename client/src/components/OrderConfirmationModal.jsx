@@ -1,54 +1,78 @@
-  import React from 'react';
-  import './styles/OrderConfirmationModal.css';
+import React from 'react';
+import './styles/OrderConfirmationModal.css';
 
-  const OrderConfirmationModal = ({
-    isOpen,
-    onClose,
-    onConfirm,
-    total,
-    paymentMethod,
-    setPaymentMethod,
-    deliveryType,
-    userAddress,
-    deliveryDate,         
-    selectedWindow,
-    cardDetails,
-    setCardDetails      
-  }) => {
-    if (!isOpen) return null;
+/**
+ * OrderConfirmationModal Component
+ * Modal used to confirm the order before final submission.
+ * 
+ * Props:
+ * - isOpen: boolean – whether the modal is visible
+ * - onClose: function – to close the modal
+ * - onConfirm: function – triggered when the user confirms the order
+ * - total: number – total price to be shown
+ * - paymentMethod: string – selected payment method ('cash' or 'card')
+ * - setPaymentMethod: function – updates the selected payment method
+ * - deliveryType: string – either 'delivery' or 'takeaway'
+ * - userAddress: object – user's selected delivery address
+ * - deliveryDate: string – selected delivery date (if delivery)
+ * - selectedWindow: object – selected delivery time window
+ * - cardDetails: object – contains card name, number, expiry, CVV
+ * - setCardDetails: function – updates the card details object
+ */
+const OrderConfirmationModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  total,
+  paymentMethod,
+  setPaymentMethod,
+  deliveryType,
+  userAddress,
+  deliveryDate,
+  selectedWindow,
+  cardDetails,
+  setCardDetails
+}) => {
+  // Don't render anything if modal is not open
+  if (!isOpen) return null;
 
-    return (
-      <div className="confirm-modal-overlay">
-        <div className="confirm-modal-box">
-          <h3>Confirm Your Order</h3>
+  return (
+    <div className="confirm-modal-overlay">
+      <div className="confirm-modal-box">
+        <h3>Confirm Your Order</h3>
 
-          {deliveryType === 'delivery' && userAddress && (
-            <div className="confirmation-address">
-              <p><strong>Deliver To:</strong></p>
-              <p>{userAddress.street}</p>
-              <p>{userAddress.city}, {userAddress.postcode}</p>
-            </div>
-          )}
+        {/* Show delivery address if applicable */}
+        {deliveryType === 'delivery' && userAddress && (
+          <div className="confirmation-address">
+            <p><strong>Deliver To:</strong></p>
+            <p>{userAddress.street}</p>
+            <p>{userAddress.city}, {userAddress.postcode}</p>
+          </div>
+        )}
 
-          {deliveryType === 'delivery' && deliveryDate && selectedWindow && (
-            <div className="confirmation-slot">
-              <p><strong>Delivery Date:</strong> {deliveryDate}</p>
-              <p><strong>Time Slot:</strong> {selectedWindow.timeFrom} - {selectedWindow.timeTo}</p>
-            </div>
-          )}
+        {/* Show delivery date & time slot if selected */}
+        {deliveryType === 'delivery' && deliveryDate && selectedWindow && (
+          <div className="confirmation-slot">
+            <p><strong>Delivery Date:</strong> {deliveryDate}</p>
+            <p><strong>Time Slot:</strong> {selectedWindow.timeFrom} - {selectedWindow.timeTo}</p>
+          </div>
+        )}
 
-          <p><strong>Total:</strong> €{total}</p>
+        {/* Total price summary */}
+        <p><strong>Total:</strong> €{total}</p>
 
-          <label>Payment Method:</label>
-          <select
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
-          >
-            <option value="cash">Cash</option>
-            <option value="card">Card</option>
-          </select>
+        {/* Payment method selection */}
+        <label>Payment Method:</label>
+        <select
+          value={paymentMethod}
+          onChange={(e) => setPaymentMethod(e.target.value)}
+        >
+          <option value="cash">Cash</option>
+          <option value="card">Card</option>
+        </select>
 
-          {paymentMethod === 'card' && (
+        {/* Card details form shown only if card is selected */}
+        {paymentMethod === 'card' && (
           <div className="card-details-form">
             <label>Cardholder Name:</label>
             <input
@@ -65,6 +89,7 @@
               onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
             />
 
+            {/* Row for expiry and CVV side-by-side */}
             <div className="card-details-row">
               <div>
                 <label>Expiry:</label>
@@ -88,16 +113,16 @@
           </div>
         )}
 
-
-          <div className="modal-actions">
-            <button className="cancel-btn" onClick={onClose}>Cancel</button>
-            <button className="confirm-button" onClick={onConfirm}>
-              Confirm Order
-            </button>
-          </div>
+        {/* Modal action buttons */}
+        <div className="modal-actions">
+          <button className="cancel-btn" onClick={onClose}>Cancel</button>
+          <button className="confirm-button" onClick={onConfirm}>
+            Confirm Order
+          </button>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default OrderConfirmationModal;
+export default OrderConfirmationModal;
