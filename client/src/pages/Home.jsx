@@ -29,17 +29,13 @@ function Home() {
   return (
     <div className="home-page">
       {/* Hero Video Section */}
-      <section className="hero-video-section" style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+      <section className="hero">
         <video
           autoPlay
           muted
           loop
           playsInline
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
+          className="home-video"
         >
           <source src="../assets/video/video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -47,7 +43,6 @@ function Home() {
 
         <div className="hero-content">
           <h1 data-aos="zoom-in">Welcome to Thendral Mess!</h1>
-          
         </div>
       </section>
 
