@@ -25,8 +25,7 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Moves content to the top */
-  
+  justify-content: flex-start;
 }
 
 .contact-page-heading {
@@ -62,7 +61,7 @@
 .contact-page-input:focus,
 .contact-page-textarea:focus {
   outline: none;
-  border-bottom: 1px solid #fa1515;
+  border-bottom: 1px solid #facc15;
 }
 
 .contact-page-textarea {
@@ -73,11 +72,10 @@
 .contact-page-submit-btn {
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
-  background-color: transparent;
+  background-color: #facc15;
   border: 2px solid #000000;
   color: #000000;
   font-weight: 600;
-  
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: flex-start;
@@ -85,11 +83,11 @@
 }
 
 .contact-page-submit-btn:hover {
-  background-color: #facc15;;
+  background-color: #facc15;
   border-color: #000000;
-  color: #000;
-  
+  color: #ffffff;
   transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive */
@@ -107,7 +105,6 @@
   }
 }
 
-
 .contact-info-box {
   background-color: #ffffff;
   border-radius: 10px;
@@ -115,14 +112,16 @@
   margin-top: 50px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 .contact-info-box h3 {
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
-  color: #8B2500;
+  color: #facc15;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+
 .contact-info-box p {
   margin: 0.2rem 0;
   font-size: 0.95rem;
@@ -135,7 +134,7 @@
 }
 
 .icon {
-  color: #C05A00;
+  color: #facc15;
 }
 
 .social-icons {
@@ -159,180 +158,8 @@
 .social-icons a:nth-child(3) { color: #C13584; } /* Instagram */
 .social-icons a:nth-child(4) { color: #1877F2; } /* Facebook */
 
-
-.map-newsletter-section {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0a0a0a;
-  color: white;
-  text-align: center;
-}
-
 .map-container {
   position: relative;
-}
-
-.newsletter-box {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #d2a96b;
-  padding: 1.5rem 2rem;
-
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 10;
-  color: #1a1a1a;
-}
-
-.newsletter-box h3 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-.newsletter-box p {
-  font-size: 0.9rem;
-  margin: 0.5rem 0 1rem;
-}
-
-.newsletter-input {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.newsletter-input input {
-  padding: 0.6rem 1rem;
-  border-radius: 25px;
-  border: none;
-  flex: 1;
-  max-width: 300px;
-  font-size: 0.95rem;
-}
-
-.newsletter-input button {
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  border: none;
-  background-color: #333;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.newsletter-input button:hover {
-  background-color: #000;
-}
-
-.after-map {
-  padding: 0rem 1rem 3rem;
-}
-
-.after-map h2 {
-  margin-bottom: 0.5rem;
-}
-
-.after-map p {
-  max-width: 500px;
-  margin: auto;
-  font-size: 0.95rem;
-  color: #cccccc;
-}
-
-
-
-.newsletter-content {
-  flex: 1;
-  min-width: 260px;
-}
-
-.newsletter-content h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #fff;
-}
-
-.newsletter-content p {
-  font-size: 1rem;
-  color: #f3f3f3;
-}
-
-.newsletter-form {
-  display: flex;
-  background-color: #f3f3f3;
-  padding: 0.5rem;
-  border-radius: 50px;
-  align-items: center;
-  max-width: 500px;
-  margin-left: 30px;
   width: 100%;
-}
-
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  padding-left: 0.8rem;
-}
-
-.email-icon {
-  color: #888;
-  font-size: 1rem;
-  margin-right: 0.5rem;
-}
-
-.newsletter-form input {
-  border: none;
-  outline: none;
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1rem;
-  border-radius: 50px;
-  background: transparent;
-  color: #333;
-}
-
-.newsletter-form button {
-  background-color: #111;
-  color: #fff;
-  padding: 0.8rem 1.6rem;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.newsletter-form button:hover {
-  background-color: #000;
-}
-
-@media (max-width: 768px) {
-  .newsletter-section {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .newsletter-form {
-    flex-direction: column;
-    border-radius: 15px;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .newsletter-form button {
-    width: 100%;
-  }
-
-  .input-wrapper {
-    width: 100%;
-    padding: 0 1rem;
-  }
-
-  .newsletter-form input {
-    width: 100%;
-  }
+  background: #0a0a0a;
 }
