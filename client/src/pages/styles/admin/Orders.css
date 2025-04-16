@@ -138,16 +138,17 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .orders-filters {
     width: 100%;
     flex-direction: column;
   }
-  
-  .search-input, .status-select {
+
+  .search-input,
+  .status-select {
     width: 100%;
   }
-  
+
   .orders-table th:nth-child(4),
   .orders-table td:nth-child(4) {
     display: none;
@@ -155,10 +156,42 @@
 }
 
 @media (max-width: 576px) {
+
   .orders-table th:nth-child(3),
   .orders-table td:nth-child(3),
   .orders-table th:nth-child(5),
   .orders-table td:nth-child(5) {
     display: none;
   }
-} 
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  margin: 15% auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.modal-content button {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  /* Add space below each button */
+}
+
+.modal-content .action-button.view {
+  margin-right: 10px;
+  /* Add space between the two buttons */
+}

@@ -1,14 +1,31 @@
 // TODO: This file needs to be converted to JSX
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/admin/Dashboard.css";
-import Orders from "./Orders.tsx";
-import Customers from "./Customers.tsx";
-import Reviews from "./Reviews.tsx";
+import Orders from "./Orders.jsx";
+import Customers from "./Customers.jsx";
+import Reviews from "./Reviews.jsx";
+import Menu from "./Menu.jsx"; 
+
+const Dashboard = () => {
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [totalCustomers, setTotalCustomers] = useState(0);
 
 
-const Dashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>("dashboard");
+  useEffect(() => {
+    const fetchCustomerCount = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/admin/customers/count");
+        const data = await res.json();
+        console.log("Fetched count:", data);
+        setTotalCustomers(data.totalCustomers);
+      } catch (err) {
+        console.error("Failed to fetch total customers", err);
+      }
+    };
+
+    fetchCustomerCount();
+  }, []);
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -25,7 +42,7 @@ const Dashboard: React.FC = () => {
               </div>
               <div className="dashboard-stat-card">
                 <h3>Total Customers</h3>
-                <p className="dashboard-stat-number">856</p>
+                <p className="dashboard-stat-number">{totalCustomers}</p>
                 <p className="dashboard-stat-change positive">
                   ↑ 8% from last month
                 </p>
@@ -50,33 +67,21 @@ const Dashboard: React.FC = () => {
                 <h3>Trending Menu</h3>
                 <div className="dashboard-trending-list">
                   <div className="dashboard-trending-item">
-                    <img
-                      src="https://source.unsplash.com/random/100x100?tacos"
-                      alt="Spicy Shrimp Tacos"
-                    />
                     <div className="dashboard-item-info">
-                      <h4>Spicy Shrimp Tacos</h4>
-                      <p>$12.99 • 156 orders</p>
+                      <h4>Ghee Roast</h4>
+                      <p>€8.95 • 156 orders</p>
                     </div>
                   </div>
                   <div className="dashboard-trending-item">
-                    <img
-                      src="https://source.unsplash.com/random/100x100?salmon"
-                      alt="Grilled Salmon"
-                    />
                     <div className="dashboard-item-info">
-                      <h4>Grilled Salmon</h4>
-                      <p>$18.99 • 142 orders</p>
+                      <h4>Chicken Biriyani</h4>
+                      <p>€14.95 • 142 orders</p>
                     </div>
                   </div>
                   <div className="dashboard-trending-item">
-                    <img
-                      src="https://source.unsplash.com/random/100x100?cake"
-                      alt="Chocolate Lava Cake"
-                    />
                     <div className="dashboard-item-info">
-                      <h4>Chocolate Lava Cake</h4>
-                      <p>$8.99 • 98 orders</p>
+                      <h4>Payasam</h4>
+                      <p>€5.85 • 98 orders</p>
                     </div>
                   </div>
                 </div>
@@ -97,6 +102,8 @@ const Dashboard: React.FC = () => {
         return <Customers />;
       case "reviews":
         return <Reviews />;
+      case "menu":
+        return <Menu />;  // Render the Menu component when the 'menu' tab is clicked
       default:
         return null;
     }
@@ -111,9 +118,7 @@ const Dashboard: React.FC = () => {
         <nav className="dashboard-nav-menu">
           <a
             href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "dashboard" ? "active" : ""
-            }`}
+            className={`dashboard-nav-item ${activeTab === "dashboard" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("dashboard");
@@ -124,9 +129,7 @@ const Dashboard: React.FC = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "orders" ? "active" : ""
-            }`}
+            className={`dashboard-nav-item ${activeTab === "orders" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("orders");
@@ -137,9 +140,7 @@ const Dashboard: React.FC = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "customers" ? "active" : ""
-            }`}
+            className={`dashboard-nav-item ${activeTab === "customers" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("customers");
@@ -150,9 +151,7 @@ const Dashboard: React.FC = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "reviews" ? "active" : ""
-            }`}
+            className={`dashboard-nav-item ${activeTab === "reviews" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("reviews");
@@ -163,9 +162,7 @@ const Dashboard: React.FC = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "menu" ? "active" : ""
-            }`}
+            className={`dashboard-nav-item ${activeTab === "menu" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("menu");
@@ -174,19 +171,6 @@ const Dashboard: React.FC = () => {
             <i className="dashboard-icon">🍽️</i>
             <span>Menu</span>
           </a>
-          <a
-            href="#"
-            className={`dashboard-nav-item ${
-              activeTab === "inventory" ? "active" : ""
-            }`}
-            onClick={(e) => {
-              e.preventDefault();
-              setActiveTab("inventory");
-            }}
-          >
-            <i className="dashboard-icon">📦</i>
-            <span>Inventory</span>
-          </a>
         </nav>
       </div>
 
@@ -194,17 +178,10 @@ const Dashboard: React.FC = () => {
         <header className="dashboard-header">
           <h1>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h1>
           <div className="dashboard-header-right">
-            <div className="dashboard-search-bar">
+            {/* <div className="dashboard-search-bar">
               <input type="text" placeholder="Search..." />
               <button className="dashboard-search-button">🔍</button>
-            </div>
-            <div className="dashboard-profile">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Profile"
-                className="dashboard-avatar"
-              />
-            </div>
+            </div> */}
           </div>
         </header>
 

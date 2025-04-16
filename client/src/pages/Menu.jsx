@@ -7,7 +7,7 @@ const MenuPage = () => {
   const [menuItems, setMenuItems] = useState({});
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/menu')
+    axios.get('http://localhost:5000/api/menu/')
       .then(res => {
         const grouped = groupByCategory(res.data.data);
         setMenuItems(grouped);

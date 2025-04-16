@@ -86,7 +86,7 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
                     </p>
                     <button
                         className="btn btn-outline-primary rounded-3"
-                        onClick={() => navigate('/signin?redirect=/reviews')}
+                        onClick={() => navigate('/signin?redirect=/review')}
                     >
                         Sign In
                     </button>
