@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/ReviewSection.css';
-import reviews from './reviewData';
+import reviews from './ReviewData';
 
 function ReviewCarousel3D() {
   const [current, setCurrent] = useState(0);
