@@ -1,5 +1,10 @@
 const Address = require('../models/Address');
 
+/**
+ * Controller for managing delivery addresses associated with users.
+ */
+
+// GET: Retrieve address for a specific user by userId
 const getAddressByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -13,15 +18,18 @@ const getAddressByUserId = async (req, res) => {
   }
 };
 
+// POST: Add a new address for a user
 const addAddress = async (req, res) => {
   try {
     const { userId, street, city, state, postcode, country, label } = req.body;
 
+    // Check if an address already exists for the user
     const existing = await Address.findOne({ userId });
     if (existing) {
       return res.status(400).json({ success: false, message: 'Address already exists. Use update instead.' });
     }
 
+    // Create and save the new address
     const newAddress = new Address({
       userId,
       street,
@@ -39,11 +47,13 @@ const addAddress = async (req, res) => {
   }
 };
 
+// PUT: Update an existing address for a user
 const updateAddress = async (req, res) => {
   try {
     const { userId } = req.params;
     const { street, city, state, postcode, country, label } = req.body;
 
+    // Find and update the address, returning the new updated version
     const updated = await Address.findOneAndUpdate(
       { userId },
       { street, city, state, postcode, country, label },
@@ -60,4 +70,4 @@ const updateAddress = async (req, res) => {
   }
 };
 
-module.exports = {getAddressByUserId, addAddress, updateAddress}
+module.exports = { getAddressByUserId, addAddress, updateAddress };

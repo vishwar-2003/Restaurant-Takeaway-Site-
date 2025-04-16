@@ -1,6 +1,10 @@
 const DeliveryWindow = require('../../models/DeliveryWindow');
 
-// GET all delivery windows
+/**
+ * Controller to manage admin CRUD operations for Delivery Windows
+ */
+
+// GET all delivery windows sorted by date and start time
 const getAllWindows = async (req, res) => {
   try {
     const windows = await DeliveryWindow.find().sort({ date: 1, timeFrom: 1 });
@@ -10,17 +14,18 @@ const getAllWindows = async (req, res) => {
   }
 };
 
-// POST create a new delivery window
+// POST: Create a new delivery window
 const createWindow = async (req, res) => {
   try {
     const { date, timeFrom, timeTo, allocatedSlots } = req.body;
 
+    // Create new window and initialize available slots to allocated slots
     const newWindow = new DeliveryWindow({
       date,
       timeFrom,
       timeTo,
       allocatedSlots,
-      availableSlots: allocatedSlots // initialize available = allocated
+      availableSlots: allocatedSlots // Ensures availability starts full
     });
 
     const saved = await newWindow.save();
@@ -30,12 +35,13 @@ const createWindow = async (req, res) => {
   }
 };
 
-// PUT update an existing delivery window
+// PUT: Update existing delivery window
 const updateWindow = async (req, res) => {
   try {
     const { id } = req.params;
     const { date, timeFrom, timeTo, allocatedSlots } = req.body;
 
+    // Update with new values; optionally reset available slots
     const updated = await DeliveryWindow.findByIdAndUpdate(
       id,
       {
@@ -43,9 +49,9 @@ const updateWindow = async (req, res) => {
         timeFrom,
         timeTo,
         allocatedSlots,
-        availableSlots: allocatedSlots // optionally reset on update
+        availableSlots: allocatedSlots
       },
-      { new: true }
+      { new: true } // Return the updated document
     );
 
     res.json(updated);
@@ -54,7 +60,7 @@ const updateWindow = async (req, res) => {
   }
 };
 
-// DELETE a delivery window
+// DELETE: Remove a delivery window by ID
 const deleteWindow = async (req, res) => {
   try {
     await DeliveryWindow.findByIdAndDelete(req.params.id);
