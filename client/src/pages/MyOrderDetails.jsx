@@ -40,6 +40,18 @@ const MyOrderDetailsPage = () => {
         <p><strong>Ordered At:</strong> {new Date(order.orderedAt).toLocaleString()}</p>
         <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
 
+        {order.deliveryType === 'delivery' && order.deliveryDate && order.deliveryWindowId && (
+          <p>
+            <strong>Delivery Slot:</strong>{' '}
+            {new Date(order.deliveryDate).toLocaleDateString('en-GB', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric'
+            })}{' '}
+            | {order.deliveryWindowId.timeFrom} - {order.deliveryWindowId.timeTo}
+          </p>
+        )}
+
         {order.deliveryAddressId && (
           <p><strong>Delivery Address:</strong> {order.deliveryAddressId.street}, {order.deliveryAddressId.city}, {order.deliveryAddressId.postcode}</p>
         )}

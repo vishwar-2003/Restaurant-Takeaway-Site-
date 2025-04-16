@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dynalight&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 .home-page {
   font-family: 'Segoe UI', sans-serif;
@@ -10,9 +12,13 @@
 .hero {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh; /* Full height of the viewport */
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers content both vertically and horizontally */
 }
+
 
 .home-video {
   width: 100%;
@@ -23,39 +29,58 @@
 
 .hero-content {
   position: absolute;
-  top: 50%;
-  font-family: "Dynalight";
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   color: white;
-  text-shadow: 2px 2px 4px #000;
+  z-index: 10; /* Ensure the text is on top of the video */
+  opacity: 0;
+  transform: translateY(30px); /* Start slightly below */
+  animation: fadeInUp 1.5s ease-out 0.5s forwards; /* Adjusted delay */
 }
 
 .hero-content h1 {
+  font-family: 'Playfair Display', serif;
   font-size: 5rem;
   margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(-30px); /* Start slightly above */
+  animation: fadeInUp 1.5s ease-out 0.3s forwards; /* Delayed animation */
 }
 
 .hero-content p {
   font-size: 2rem;
   margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(-30px); /* Start slightly above */
+  animation: fadeInUp 1.5s ease-out 0.6s forwards; /* Further delayed animation */
 }
 
-.cta-button {
-  background-color: #f7ac33;;
-  color: #fff;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* Start below */
+  }
+  60% {
+    opacity: 0.5; /* Partially visible before reaching full opacity */
+    transform: translateY(10px); /* Slightly moved up during the transition */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at original position */
+  }
 }
 
-.cta-button:hover {
-  background-color: #d8972d;
-  color: white;
+/* Optional hover effect for smooth interactivity */
+.hero-content h1:hover,
+.hero-content p:hover {
+  transform: translateY(-10px); /* Slightly more lift when hovered */
+  transition: transform 0.3s ease, text-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.hero-content p:hover {
+  transform: translateY(-10px); /* Slight lift when hovered */
+  text-shadow: 3px 3px 5px #f0ec14; /* Text shadow effect on hover */
+  transition: transform 0.3s ease, text-shadow 0.3s ease; /* Smooth shadow effect */
 }
 
 /* Sections below video */
@@ -69,4 +94,55 @@
 .specials-section h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+}
+
+/* Additional sections for Menu, Reviews, FAQ, and Gallery */
+.menu-page {
+  padding: 2rem 1rem;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.menu-tag {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.menu-cta {
+  background-color: #f7ac33;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-cta:hover {
+  background-color: #d8972d;
 }

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './styles/Order.css';
 import AddressModal from '../components/AddressModal';
 import OrderConfirmationModal from '../components/OrderConfirmationModal';
+import OrderSuccessModal from '../components/OrderSuccessfulModal';
+
 
 const OrderPage = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -10,21 +13,41 @@ const OrderPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('MAIN COURSE');
   const [orderType, setOrderType] = useState('TAKEAWAY');
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [deliveryDate, setDeliveryDate] = useState('');
+  const [deliverySlots, setDeliverySlots] = useState([]);
+  const [selectedWindow, setSelectedWindow] = useState(null);
   const [userAddress, setUserAddress] = useState(null);
   const [deliveryCharges, setDeliveryCharges] = useState([]);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressForm, setAddressForm] = useState({ street: '', city: '', postcode: '' });
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('cash');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [confirmedOrder, setConfirmedOrder] = useState(null);
+  const [cardDetails, setCardDetails] = useState({
+    name: '',
+    number: '',
+    expiry: '',
+    cvv: ''
+  });
+  
 
+  const navigate = useNavigate();
 
-  const userId = '67f51d6a2ab1a61c37c3fa8b';
+  const userId = localStorage.getItem('customerId');
 
   const kildareCities = [
     'Maynooth', 'Naas', 'Newbridge', 'Leixlip', 'Celbridge',
     'Clane', 'Kilcock', 'Kildare Town', 'Athy', 'Sallins'
   ];
+
+  useEffect(() => {
+      if (orderType === 'DELIVERY' && deliveryDate) {
+        axios.get(`http://localhost:5000/api/delivery/windows?date=${deliveryDate}`)
+          .then(res => setDeliverySlots(res.data.windows))
+          .catch(err => console.error('Failed to fetch delivery windows', err));
+      }
+    }, [deliveryDate, orderType]);
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/menu')
@@ -193,6 +216,45 @@ const OrderPage = () => {
 
           {orderType === 'DELIVERY' && (
             <>
+              <div className="delivery-slot-section">
+                <label>Select Delivery Date:</label>
+                <input
+                  type="date"
+                  value={deliveryDate}
+                  onChange={(e) => {
+                    setDeliveryDate(e.target.value);
+                    setSelectedWindow(null); // reset previously selected slot
+                  }}
+                />
+
+                {deliverySlots.length > 0 ? (
+                  <>
+                    <label>Select Time Slot:</label>
+                    <select
+                      value={selectedWindow?._id || ''}
+                      onChange={(e) => {
+                        const slot = deliverySlots.find(s => s._id === e.target.value);
+                        setSelectedWindow(slot || null);
+                      }}
+                      className="slot-dropdown"
+                    >
+                      <option value="" disabled>Select a time slot</option>
+                      {deliverySlots.map(slot => (
+                        <option key={slot._id} value={slot._id} disabled={slot.availableSlots <= 0}>
+                          {slot.timeFrom} - {slot.timeTo}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                ) : (
+                  <p style={{ marginTop: '10px', color: '#aa0000' }}>
+                    No slots available for this date.
+                  </p>
+                )}
+
+
+              </div>
+
               {userAddress ? (
                 <div className="delivery-address-details">
                   <p><strong>Delivery Address:</strong></p>
@@ -217,7 +279,7 @@ const OrderPage = () => {
             className="place-order-button"
             disabled={
               Object.values(cart).length === 0 ||
-              (orderType === 'DELIVERY' && (!userAddress || !deliveryCharge))
+              (orderType === 'DELIVERY' && (!userAddress || !deliveryCharge || !selectedWindow))
             }
             onClick={() => setShowConfirmationModal(true)}
           >
@@ -244,7 +306,19 @@ const OrderPage = () => {
         setPaymentMethod={setPaymentMethod}
         deliveryType={orderType.toLowerCase()}
         userAddress={userAddress}
+        deliveryDate={deliveryDate}
+        selectedWindow={selectedWindow}
+        cardDetails={cardDetails}
+        setCardDetails={setCardDetails}
         onConfirm={async () => {
+          if (paymentMethod === 'card') {
+            const { name, number, expiry, cvv } = cardDetails;
+            if (!name || !number || !expiry || !cvv) {
+              alert('Please fill in all card details.');
+              return;
+            }
+          }
+
           try {
             const payload = {
               customerId: userId,
@@ -252,14 +326,26 @@ const OrderPage = () => {
               deliveryType: orderType.toLowerCase(),
               deliveryAddressId: userAddress._id,
               totalPrice: total,
-              items: Object.values(cart)
-            };
+              items: Object.values(cart),
+              deliveryDate,
+              deliveryWindowId: selectedWindow?._id
+            };            
 
             const res = await axios.post('http://localhost:5000/api/order', payload);
             if (res.data.success) {
-              alert('Order placed successfully!');
+              setConfirmedOrder({
+                _id: res.data.orderId,
+                totalPrice: total,
+                deliveryType: orderType.toLowerCase(),
+                deliveryDate,
+                deliveryWindowId: selectedWindow,
+                deliveryAddress: userAddress,
+                items: Object.values(cart)
+              });
+            
               setCart({});
               setShowConfirmationModal(false);
+              setShowSuccessModal(true);
             } else {
               alert('Something went wrong.');
             }
@@ -270,6 +356,14 @@ const OrderPage = () => {
         }}
       />
 
+      <OrderSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => {
+          setShowSuccessModal(false);
+          navigate(`/order-details/${confirmedOrder._id}`);
+        }}
+        orderInfo={confirmedOrder}
+      />
 
     </div>
   );
