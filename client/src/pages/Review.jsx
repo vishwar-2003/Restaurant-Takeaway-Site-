@@ -62,7 +62,7 @@ const ReviewPage = () => {
     return (
         <div
             style={{
-                backgroundImage: `url(${bgImage})`,
+                backgroundColor: '#fff',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
@@ -74,13 +74,13 @@ const ReviewPage = () => {
             {/* Overlay */}
             <div
                 style={{
-                    position: 'absolute',
+                    position: 'relative',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
                     backgroundColor: 'rgba(255,255,255,0.9)',
-                    zIndex: 1,
+                    
                 }}
             ></div>
 
@@ -88,7 +88,6 @@ const ReviewPage = () => {
             <div
                 style={{
                     position: 'relative',
-                    zIndex: 2,
                     maxWidth: '1200px',
                     margin: '0 auto',
                     backgroundColor: '#F5F5F5',

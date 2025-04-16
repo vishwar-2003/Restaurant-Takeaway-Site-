@@ -29,13 +29,13 @@ function Home() {
   return (
     <div className="home-page">
       {/* Hero Video Section */}
-      <section className="hero">
+      <section className="hero-video-section">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="home-video"
+          className="background-video"
         >
           <source src="../assets/video/video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
