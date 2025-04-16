@@ -31,6 +31,7 @@ const OrderPage = () => {
   // Modal toggles
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('cash');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [confirmedOrder, setConfirmedOrder] = useState(null); // Used after placing order
