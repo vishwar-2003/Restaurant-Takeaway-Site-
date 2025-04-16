@@ -9,7 +9,7 @@
 .dashboard-sidebar {
   width: 200px;
   min-height: auto;
-  background-color: #1c4e6f;
+  background-color: #ffd700;
   padding: 1rem;
   position: fixed;
   left: 1rem;
@@ -28,7 +28,7 @@
 }
 
 .dashboard-logo h2 {
-  color: #fff;
+  color: #000;
   font-size: 1.1rem;
   font-weight: 500;
   margin: 0;
@@ -49,20 +49,13 @@
   padding: 0.6rem 0.75rem;
   font-size: 0.9rem;
   font-weight: 400;
-  color: #B0B7C3;
+  color: #000;
   text-decoration: none;
   border-radius: 6px;
   transition: all 0.2s ease;
 }
 
-/* Make Dashboard item more prominent */
-.dashboard-nav-item[href="#"]:first-child {
-  background-color: #f8f9fa;
-  color: #2c3e50;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  border-left: 3px solid #4299e1;
-}
+
 
 .dashboard-nav-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -70,18 +63,8 @@
 }
 
 .dashboard-nav-item.active {
-  background-color: #B68D40;
-  color: #fff;
-}
-
-/* Keep logout at bottom */
-.dashboard-nav-item.logout {
-  margin-top: auto;
-  color: #FF6B6B;
-}
-
-.dashboard-nav-item.logout:hover {
-  background-color: rgba(255, 99, 99, 0.1);
+  background-color: #fff;
+  color: #000;
 }
 
 .dashboard-icon {

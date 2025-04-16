@@ -1,0 +1,40 @@
+.admin-delivery-window {
+    padding: 2rem;
+    background-color: #fff;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .window-form input {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  
+  .window-form button {
+    padding: 8px 16px;
+    background-color: #f0c040;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .window-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .window-table th, .window-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .window-table button {
+    margin: 0 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  

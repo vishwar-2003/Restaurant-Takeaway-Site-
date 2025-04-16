@@ -4,7 +4,7 @@ import ReviewForm from '../components/ReviewForm';
 import { FaStar } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-import bgImage from '../assets/img/review-bg.jpg';
+import bgImage from '../assets/img/review_img.png';
 import AnimatedReviewCard from '../components/AnimatedReviewCard';
 
 const ReviewPage = () => {
@@ -62,7 +62,7 @@ const ReviewPage = () => {
     return (
         <div
             style={{
-                backgroundColor: '#fff',
+                backgroundImage: `url(${bgImage})`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
@@ -71,18 +71,6 @@ const ReviewPage = () => {
                 position: 'relative',
             }}
         >
-            {/* Overlay */}
-            <div
-                style={{
-                    position: 'relative',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: 'rgba(255,255,255,0.9)',
-                    
-                }}
-            ></div>
 
             {/* Content */}
             <div
@@ -95,7 +83,7 @@ const ReviewPage = () => {
                     WebkitBackdropFilter: 'blur(4px)',
                     borderRadius: '16px',
                     padding: '2rem',
-                    boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+                    boxShadow: '0 8px 20px #000',
                 }}
             >
                 {/* Review Form (shows only if logged in, else redirects) */}

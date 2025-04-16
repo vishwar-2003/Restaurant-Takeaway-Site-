@@ -41,7 +41,7 @@ const MyOrders = () => {
                 <span className="badge type">{order.deliveryType}</span>
               </div>
               <p><strong>Ordered At:</strong> {new Date(order.orderedAt).toLocaleString()}</p>
-              <p><strong>Total:</strong> ₹{order.totalPrice}</p>
+              <p><strong>Total:</strong> €{order.totalPrice}</p>
               {order.deliveryType === 'delivery' && order.deliveryDate && order.deliveryWindowId && (
             <p>
               <strong>Delivery Slot:</strong>{' '}

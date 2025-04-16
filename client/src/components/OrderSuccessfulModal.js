@@ -20,7 +20,7 @@ const OrderSuccessModal = ({ isOpen, onClose, orderInfo }) => {
         <h3>🎉 Order Confirmed!</h3>
 
         <p><strong>Order ID:</strong> #{_id.slice(-6)}</p>
-        <p><strong>Total Paid:</strong> ₹{totalPrice}</p>
+        <p><strong>Total Paid:</strong> €{totalPrice}</p>
 
         {deliveryType === 'delivery' && deliveryDate && deliveryWindowId && (
           <>
@@ -42,7 +42,7 @@ const OrderSuccessModal = ({ isOpen, onClose, orderInfo }) => {
           <ul>
             {items.map((item, idx) => (
               <li key={idx}>
-                {item.name} × {item.quantity} = ₹{item.quantity * item.price}
+                {item.name} × {item.quantity} = €{item.quantity * item.price}
               </li>
             ))}
           </ul>

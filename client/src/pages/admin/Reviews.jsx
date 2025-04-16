@@ -29,12 +29,6 @@ const AdminReviews = () => {
     return 0;
   });
 
-  // Handle reply button click
-  const handleReply = (reviewId) => {
-    alert(`Replying to review with ID: ${reviewId}`);
-    // You can add a custom reply function here, like opening a modal or setting a reply state
-  };
-
   return (
     <div className="reviews-container">
       <div className="reviews-header">
@@ -67,9 +61,6 @@ const AdminReviews = () => {
             <div className="review-footer">
               <span className="review-date">{new Date(review.createdAt).toLocaleDateString()}</span>
               <div className="review-actions">
-                <button className="action-button reply" onClick={() => handleReply(review._id)}>
-                  Reply
-                </button>
               </div>
             </div>
           </div>
