@@ -23,7 +23,6 @@ const AdminLogin = () => {
         e.preventDefault();
 
         try {
-            // Change the URL to point to the correct backend server port (5000)
             const response = await fetch('http://localhost:5000/api/admin/auth/adminLogin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -31,22 +30,18 @@ const AdminLogin = () => {
             });
 
             const data = await response.json();
-            console.log('Login Response:', data);  // Log the response from backend
 
             if (response.ok) {
-                localStorage.setItem('adminToken', data.token);  // Save token in localStorage
-                window.location.href = '/admin'; // Redirect to dashboard
+                localStorage.setItem('adminToken', data.token);
+                window.location.href = '/admin'; // This route is correct as it's the main admin dashboard
             } else {
-                alert(data.message);  // Show error message
+                setErrorMessage(data.message || 'Login failed');
             }
         } catch (error) {
-            console.error('Login failed:', error);  // Log any errors
-            alert('Login failed');
+            console.error('Login failed:', error);
+            setErrorMessage('Login failed. Please try again.');
         }
     };
-
-
-
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

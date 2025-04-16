@@ -1,31 +1,57 @@
 // TODO: This file needs to be converted to JSX
 
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/admin/Dashboard.css";
 import Orders from "./Orders.jsx";
 import Customers from "./Customers.jsx";
 import Reviews from "./Reviews.jsx";
 import Menu from "./Menu.jsx"; 
+import OrderSummaryChart from '../../components/OrderSummaryChart';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [totalCustomers, setTotalCustomers] = useState(0);
-
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [averageOrderValue, setAverageOrderValue] = useState(0);
 
   useEffect(() => {
-    const fetchCustomerCount = async () => {
+    const fetchDashboardData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/customers/count");
-        const data = await res.json();
-        console.log("Fetched count:", data);
-        setTotalCustomers(data.totalCustomers);
+        // Fetch customer count
+        const customerRes = await fetch("http://localhost:5000/api/admin/customers/count");
+        const customerData = await customerRes.json();
+        setTotalCustomers(customerData.totalCustomers);
+
+        // Fetch order statistics
+        const orderRes = await fetch("http://localhost:5000/api/admin/orders/stats");
+        const orderData = await orderRes.json();
+        setTotalOrders(orderData.totalOrders || 0);
+        setTotalRevenue(orderData.totalRevenue || 0);
+        setAverageOrderValue(orderData.averageOrderValue || 0);
       } catch (err) {
-        console.error("Failed to fetch total customers", err);
+        console.error("Failed to fetch dashboard data", err);
       }
     };
 
-    fetchCustomerCount();
+    fetchDashboardData();
   }, []);
+
+  const handleLogout = () => {
+    try {
+      // Clear all admin-related data from localStorage
+      localStorage.removeItem('adminToken');
+      
+      // Use navigate for programmatic navigation
+      navigate('/admin/login', { replace: true });
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Fallback redirect
+      window.location.href = '/admin/login';
+    }
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -35,7 +61,7 @@ const Dashboard = () => {
             <div className="dashboard-stats-grid">
               <div className="dashboard-stat-card">
                 <h3>Total Orders</h3>
-                <p className="dashboard-stat-number">1,234</p>
+                <p className="dashboard-stat-number">{totalOrders}</p>
                 <p className="dashboard-stat-change positive">
                   ↑ 12% from last month
                 </p>
@@ -49,49 +75,45 @@ const Dashboard = () => {
               </div>
               <div className="dashboard-stat-card">
                 <h3>Total Revenue</h3>
-                <p className="dashboard-stat-number">$12,345</p>
+                <p className="dashboard-stat-number">${totalRevenue.toFixed(2)}</p>
                 <p className="dashboard-stat-change positive">
                   ↑ 15% from last month
                 </p>
               </div>
-            </div>
-
-            <div className="dashboard-charts-grid">
-              <div className="dashboard-chart-card">
-                <h3>Order Summary</h3>
-                <div className="dashboard-chart-placeholder">
-                  [Bar Chart Placeholder]
-                </div>
-              </div>
-              <div className="dashboard-trending-card">
-                <h3>Trending Menu</h3>
-                <div className="dashboard-trending-list">
-                  <div className="dashboard-trending-item">
-                    <div className="dashboard-item-info">
-                      <h4>Ghee Roast</h4>
-                      <p>€8.95 • 156 orders</p>
-                    </div>
-                  </div>
-                  <div className="dashboard-trending-item">
-                    <div className="dashboard-item-info">
-                      <h4>Chicken Biriyani</h4>
-                      <p>€14.95 • 142 orders</p>
-                    </div>
-                  </div>
-                  <div className="dashboard-trending-item">
-                    <div className="dashboard-item-info">
-                      <h4>Payasam</h4>
-                      <p>€5.85 • 98 orders</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="dashboard-stat-card">
+                <h3>Average Order Value</h3>
+                <p className="dashboard-stat-number">${averageOrderValue.toFixed(2)}</p>
+                <p className="dashboard-stat-change positive">
+                  ↑ 5% from last month
+                </p>
               </div>
             </div>
 
-            <div className="dashboard-revenue-card">
-              <h3>Revenue Overview</h3>
-              <div className="dashboard-chart-placeholder">
-                [Line Chart Placeholder]
+            <div className="order-summary-section">
+              <div className="order-summary-chart">
+                <h3>Orders by Status</h3>
+                <OrderSummaryChart />
+              </div>
+              <div className="order-summary-chart">
+                <h3>Orders by Delivery Type</h3>
+                <OrderSummaryChart />
+              </div>
+              <div className="order-summary-chart">
+                <h3>Orders by Payment Status</h3>
+                <OrderSummaryChart />
+              </div>
+            </div>
+
+            <div className="dashboard-bottom-section">
+              <div className="sales-trend-section">
+                <h3>Sales Trend</h3>
+                {/* Sales trend chart will go here */}
+              </div>
+              <div className="trending-items-section">
+                <h3>Trending Items</h3>
+                <div className="trending-items-list">
+                  {/* Trending items will go here */}
+                </div>
               </div>
             </div>
           </div>
@@ -103,7 +125,7 @@ const Dashboard = () => {
       case "reviews":
         return <Reviews />;
       case "menu":
-        return <Menu />;  // Render the Menu component when the 'menu' tab is clicked
+        return <Menu />;
       default:
         return null;
     }
@@ -113,7 +135,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard-sidebar">
         <div className="dashboard-logo">
-          <h2>Restaurant Admin</h2>
+          <h2>Admin Panel</h2>
         </div>
         <nav className="dashboard-nav-menu">
           <a
@@ -171,20 +193,21 @@ const Dashboard = () => {
             <i className="dashboard-icon">🍽️</i>
             <span>Menu</span>
           </a>
+          <a
+            href="#"
+            className="dashboard-nav-item logout"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogout();
+            }}
+          >
+            <i className="dashboard-icon">🚪</i>
+            <span>Logout</span>
+          </a>
         </nav>
       </div>
 
       <div className="dashboard-main-content">
-        <header className="dashboard-header">
-          <h1>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h1>
-          <div className="dashboard-header-right">
-            {/* <div className="dashboard-search-bar">
-              <input type="text" placeholder="Search..." />
-              <button className="dashboard-search-button">🔍</button>
-            </div> */}
-          </div>
-        </header>
-
         {renderTabContent()}
       </div>
     </div>

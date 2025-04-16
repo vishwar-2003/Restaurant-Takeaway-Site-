@@ -16,32 +16,60 @@ import Dashboard from "./pages/admin/Dashboard.jsx";
 import AdminLogin from "./pages/admin/AdminLogin";
 import { Navigate } from 'react-router-dom';
 
+// Protected Route component
+const ProtectedRoute = ({ children }) => {
+  const adminToken = localStorage.getItem('adminToken');
+  if (!adminToken) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+};
 
+// Layout component for non-admin pages
+const MainLayout = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
+);
 
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/signin" element={<SignInForm />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/my-order" element={<MyOrderPage />} />
-        <Route path="/order-details/:orderId" element={<MyOrderDetailsPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/review" element={<ReviewPage />} />
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
-          path="/admin"
-          element={localStorage.getItem('adminToken') ? <Dashboard /> : <Navigate to="/adminLogin" />}
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/adminLogin" element={<AdminLogin />} />
-        <Route path="/home" element={<HomePage />} />{" "}
-        {/* Add the /home route here */}
+
+        {/* Main Routes with Header and Footer */}
+        <Route
+          path="/*"
+          element={
+            <MainLayout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/signin" element={<SignInForm />} />
+                <Route path="/menu" element={<MenuPage />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/order" element={<OrderPage />} />
+                <Route path="/my-order" element={<MyOrderPage />} />
+                <Route path="/order-details/:orderId" element={<MyOrderDetailsPage />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/review" element={<ReviewPage />} />
+              </Routes>
+            </MainLayout>
+          }
+        />
       </Routes>
-      <Footer />
     </Router>
   );
 }
