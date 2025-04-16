@@ -38,7 +38,7 @@ const MyOrderDetailsPage = () => {
         </div>
 
         <p><strong>Ordered At:</strong> {new Date(order.orderedAt).toLocaleString()}</p>
-        <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
+        <p><strong>Total Price:</strong> €{order.totalPrice}</p>
 
         {order.deliveryType === 'delivery' && order.deliveryDate && order.deliveryWindowId && (
           <p>
@@ -60,7 +60,7 @@ const MyOrderDetailsPage = () => {
           <h4>Items Ordered</h4>
           <ul>
             {order.items.map((item, idx) => (
-              <li key={idx}>{item.name} × {item.quantity} = ₹{item.price * item.quantity}</li>
+              <li key={idx}>{item.name} × {item.quantity} = €{item.price * item.quantity}</li>
             ))}
           </ul>
         </div>

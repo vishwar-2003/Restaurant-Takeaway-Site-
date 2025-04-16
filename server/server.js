@@ -13,6 +13,7 @@ const ordersRoute = require('./routes/orderRoute');
 const addressRoute = require('./routes/addressRoute');
 const deliveryChargeRoute = require('./routes/deliveryChargeRoute');
 const deliveryWindowRoute = require('./routes/deliveryWindowRoute');
+const deliveryWindowRoutes = require('./routes/admin/deliveryWindowRoute');
 
 const adminRoutes = require('./routes/adminRoutes');   // Admin auth routes (login, create admin)
 const adminDashboardRoutes = require('./routes/admin'); // Admin dashboard-related routes (get customers, reviews, etc.)
@@ -36,6 +37,8 @@ app.use('/api/order', ordersRoute);
 app.use('/api/address', addressRoute);
 app.use('/api/delivery/charges', deliveryChargeRoute);
 app.use('/api/delivery/windows', deliveryWindowRoute);
+app.use('/api/admin/delivery/windows', deliveryWindowRoutes);
+
 
 // Admin Authentication Routes
 app.use('/api/admin/auth', adminRoutes);  // Admin login, create admin, etc.

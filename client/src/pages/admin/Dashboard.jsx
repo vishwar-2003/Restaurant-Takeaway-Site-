@@ -7,6 +7,7 @@ import Orders from "./Orders.jsx";
 import Customers from "./Customers.jsx";
 import Reviews from "./Reviews.jsx";
 import Menu from "./Menu.jsx"; 
+import DeliveryWindow from "./AdminDeliveryWindow.jsx";
 import OrderSummaryChart from '../../components/OrderSummaryChart';
 
 const Dashboard = () => {
@@ -62,58 +63,18 @@ const Dashboard = () => {
               <div className="dashboard-stat-card">
                 <h3>Total Orders</h3>
                 <p className="dashboard-stat-number">{totalOrders}</p>
-                <p className="dashboard-stat-change positive">
-                  ↑ 12% from last month
-                </p>
               </div>
               <div className="dashboard-stat-card">
                 <h3>Total Customers</h3>
                 <p className="dashboard-stat-number">{totalCustomers}</p>
-                <p className="dashboard-stat-change positive">
-                  ↑ 8% from last month
-                </p>
               </div>
               <div className="dashboard-stat-card">
                 <h3>Total Revenue</h3>
-                <p className="dashboard-stat-number">${totalRevenue.toFixed(2)}</p>
-                <p className="dashboard-stat-change positive">
-                  ↑ 15% from last month
-                </p>
+                <p className="dashboard-stat-number">€{totalRevenue.toFixed(2)}</p>
               </div>
               <div className="dashboard-stat-card">
                 <h3>Average Order Value</h3>
-                <p className="dashboard-stat-number">${averageOrderValue.toFixed(2)}</p>
-                <p className="dashboard-stat-change positive">
-                  ↑ 5% from last month
-                </p>
-              </div>
-            </div>
-
-            <div className="order-summary-section">
-              <div className="order-summary-chart">
-                <h3>Orders by Status</h3>
-                <OrderSummaryChart />
-              </div>
-              <div className="order-summary-chart">
-                <h3>Orders by Delivery Type</h3>
-                <OrderSummaryChart />
-              </div>
-              <div className="order-summary-chart">
-                <h3>Orders by Payment Status</h3>
-                <OrderSummaryChart />
-              </div>
-            </div>
-
-            <div className="dashboard-bottom-section">
-              <div className="sales-trend-section">
-                <h3>Sales Trend</h3>
-                {/* Sales trend chart will go here */}
-              </div>
-              <div className="trending-items-section">
-                <h3>Trending Items</h3>
-                <div className="trending-items-list">
-                  {/* Trending items will go here */}
-                </div>
+                <p className="dashboard-stat-number">€{averageOrderValue.toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -126,6 +87,8 @@ const Dashboard = () => {
         return <Reviews />;
       case "menu":
         return <Menu />;
+      case "deliveryWindow":
+        return <DeliveryWindow/>
       default:
         return null;
     }
@@ -179,7 +142,7 @@ const Dashboard = () => {
               setActiveTab("reviews");
             }}
           >
-            <i className="dashboard-icon">⭐</i>
+            <i className="dashboard-icon">💬</i>
             <span>Reviews</span>
           </a>
           <a
@@ -192,6 +155,17 @@ const Dashboard = () => {
           >
             <i className="dashboard-icon">🍽️</i>
             <span>Menu</span>
+          </a>
+          <a
+            href="#"
+            className={`dashboard-nav-item ${activeTab === "deliveryWindow" ? "active" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveTab("deliveryWindow");
+            }}
+          >
+            <i className="dashboard-icon">🚚</i>
+            <span>Delivery Window</span>
           </a>
           <a
             href="#"

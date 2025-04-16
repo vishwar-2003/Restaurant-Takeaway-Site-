@@ -103,12 +103,8 @@ const Customers = () => {
                   <th>Customer ID</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Phone</th>
                   <th>Orders</th>
                   <th>Total Spent</th>
-                  <th>Status</th>
-                  <th>Join Date</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -119,26 +115,9 @@ const Customers = () => {
                       <td>{customer._id}</td>
                       <td>{customer.name}</td>
                       <td>{customer.email}</td>
-                      <td>{customer.phone || 'N/A'}</td>
                       <td>{stats.orders}</td>
                       <td>${stats.totalSpent.toFixed(2)}</td>
-                      <td>
-                        <span className={`status-badge ${stats.status}`}>
-                          {stats.status.charAt(0).toUpperCase() + stats.status.slice(1)}
-                        </span>
-                      </td>
-                      <td>{stats.joinDate}</td>
-                      <td className="action-buttons">
-                        <button className="action-button view">
-                          <FaEye />
-                        </button>
-                        <button className="action-button edit">
-                          <FaEdit />
-                        </button>
-                        <button className="action-button delete">
-                          <FaTrash />
-                        </button>
-                      </td>
+
                     </tr>
                   );
                 })}

@@ -86,6 +86,20 @@ const ReviewForm = ({ token, name, fetchReviews }) => {
                     </p>
                     <button
                         className="btn btn-outline-primary rounded-3"
+                        style={{
+                            backgroundColor: 'white',
+                            color: '#000',
+                            border: '2px solid #f0c040',
+                            transition: 'all 0.3s ease'
+                          }}
+                          onMouseOver={e => {
+                            e.target.style.backgroundColor = '#f0c040';
+                            e.target.style.color = '#000';
+                          }}
+                          onMouseOut={e => {
+                            e.target.style.backgroundColor = 'white';
+                            e.target.style.color = '#000';
+                          }}
                         onClick={() => navigate('/signin?redirect=/review')}
                     >
                         Sign In

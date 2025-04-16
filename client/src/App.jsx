@@ -17,7 +17,15 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import { Navigate } from 'react-router-dom';
 
 // Protected Route component
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({children}) => {
+  const customerToken = localStorage.getItem('token');
+  if (!customerToken) {
+    return <Navigate to="/signin" replace />;
+  }
+  return children;
+};
+
+const AdminProtectedRoute = ({ children }) => {
   const adminToken = localStorage.getItem('adminToken');
   if (!adminToken) {
     return <Navigate to="/admin/login" replace />;
@@ -43,9 +51,9 @@ function App() {
         <Route
           path="/admin/*"
           element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           }
         />
 
@@ -60,9 +68,19 @@ function App() {
                 <Route path="/signin" element={<SignInForm />} />
                 <Route path="/menu" element={<MenuPage />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/order" element={<OrderPage />} />
-                <Route path="/my-order" element={<MyOrderPage />} />
-                <Route path="/order-details/:orderId" element={<MyOrderDetailsPage />} />
+                <Route path="/order"  element={
+                              <ProtectedRoute>
+                                <OrderPage />
+                              </ProtectedRoute>
+                            } />
+                <Route path="/my-order" element={
+                              <ProtectedRoute>  
+                                <MyOrderPage />
+                              </ProtectedRoute>} />
+                <Route path="/order-details/:orderId" element={
+                              <ProtectedRoute>
+                                <MyOrderDetailsPage />
+                              </ProtectedRoute>} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/review" element={<ReviewPage />} />
               </Routes>

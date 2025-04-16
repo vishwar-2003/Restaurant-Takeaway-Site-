@@ -188,7 +188,7 @@ const OrderPage = () => {
                 .map(item => (
                   <div key={item._id} className="menu-card">
                     <h4>{item.name}</h4>
-                    <p>₹{item.price}</p>
+                    <p>€{item.price}</p>
                     <p>{item.description}</p>
                     <div className="card-controls">
                       <button onClick={() => handleRemove(item._id)} disabled={!cart[item._id]}>-</button>
@@ -209,7 +209,7 @@ const OrderPage = () => {
           ) : (
             <ul>
               {Object.values(cart).map(item => (
-                <li key={item._id}>{item.name} × {item.quantity} = ₹{item.price * item.quantity}</li>
+                <li key={item._id}>{item.name} × {item.quantity} = €{item.price * item.quantity}</li>
               ))}
             </ul>
           )}
@@ -259,7 +259,7 @@ const OrderPage = () => {
                 <div className="delivery-address-details">
                   <p><strong>Delivery Address:</strong></p>
                   <p>{userAddress.street}, {userAddress.city}, {userAddress.postcode}</p>
-                  <p><strong>Delivery Charge:</strong> ₹{deliveryCharge}</p>
+                  <p><strong>Delivery Charge:</strong> €{deliveryCharge}</p>
                   <button className="add-address-button" onClick={() => setShowAddressModal(true)}>
                     Change Address
                   </button>
@@ -273,7 +273,7 @@ const OrderPage = () => {
           )}
 
           <hr />
-          <h4>Total: ₹{total}</h4>
+          <h4>Total: €{total}</h4>
 
           <button
             className="place-order-button"

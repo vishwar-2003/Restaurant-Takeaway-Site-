@@ -203,7 +203,7 @@ function About() {
                 <img src="../assets/img/bg-img-2.jpg" alt="Team Member 3" />
               </div>
               <h4>Santhosh Prabhakaran</h4>
-              <p>Pastry Chef</p>
+              <p>Dessert Chef</p>
             </div>
 
             <div

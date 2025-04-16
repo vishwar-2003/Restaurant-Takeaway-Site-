@@ -37,7 +37,7 @@
             </div>
           )}
 
-          <p><strong>Total:</strong> ₹{total}</p>
+          <p><strong>Total:</strong> €{total}</p>
 
           <label>Payment Method:</label>
           <select
