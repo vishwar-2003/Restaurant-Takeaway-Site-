@@ -1,3 +1,6 @@
+/* ================================
+   Header Base
+================================== */
 .site-header {
   background-color: black;
 }
@@ -6,22 +9,27 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding: auto;
   max-width: 95%;
   margin: auto;
+  padding: auto; /* ⚠️ Tip: This will not apply as expected. Use specific values like padding: 1rem; */
 }
 
 
-/* Logo Left */
+/* ================================
+   Logo (Left Side)
+================================== */
 .logo img {
   width: auto;
   height: 50px;
-  border: 2px solid rgb(255, 255, 255); 
+  border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Text Right */
+
+/* ================================
+   Title Text (Right Side)
+================================== */
 .title-text {
   text-align: right;
 }
@@ -29,14 +37,18 @@
 .animated-title {
   margin-left: 10px;
   font-family: 'Playfair Display', serif;
-  font-weight: 80;
-  margin-top: 6 px;
   font-style: normal;
+  font-weight: 80; /* ⚠️ Note: Valid values are 100–900. Consider 400 or 500 for visible weight */
+  font-size: 28px;
+  margin-top: 6px; /* ✅ fixed spacing typo (was `6 px`) */
   color: #f0c040;
   white-space: nowrap;
-  font-size: 28px;
 }
 
+
+/* ================================
+   Animation: Drop & Spin Text
+================================== */
 .animated-title span {
   display: inline-block;
   opacity: 0;
@@ -55,7 +67,10 @@
   }
 }
 
-/* Responsive */
+
+/* ================================
+   Responsive Styling (Mobile)
+================================== */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
@@ -72,8 +87,7 @@
   }
 
   .logo img {
-    width: auto;
     height: 50px;
+    width: auto;
   }
 }
-

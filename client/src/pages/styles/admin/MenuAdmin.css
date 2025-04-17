@@ -1,342 +1,342 @@
 /* Main container for the menu section */
 .menu-container {
-    padding: 2rem;
-    /* Padding around the container */
-    position: relative;
-    /* Position relative for modal positioning */
-    background-color: #f8f9fa;
-    /* Light background color */
-    min-height: 100vh;
-    /* Ensure full height */
+  padding: 2rem;
+  /* Padding around the container */
+  position: relative;
+  /* Position relative for modal positioning */
+  /* background-color: #f8f9fa; */
+  /* Light background color */
+  min-height: 100vh;
+  /* Ensure full height */
 }
 
 /* Title for the menu section */
 .menu-container h2 {
-    color: #2c3e50;
-    /* Dark text color */
-    font-size: 1.5rem;
-    /* Title font size */
-    font-weight: 600;
-    /* Bold font weight */
-    margin: 0 0 1.5rem 0;
-    /* Margin below the title */
+  color: #2c3e50;
+  /* Dark text color */
+  font-size: 1.5rem;
+  /* Title font size */
+  font-weight: 600;
+  /* Bold font weight */
+  margin: 0 0 1.5rem 0;
+  /* Margin below the title */
 }
 
 /* Menu table container */
 .menu-table-container {
-    margin-top: 20px;
-    /* Margin above the table */
-    overflow-x: auto;
-    /* Allow horizontal scrolling on small screens */
-    background-color: #ffffff;
-    /* White background for the table */
-    border-radius: 0.75rem;
-    /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    /* Light shadow for table */
-    border: 1px solid #e9ecef;
-    /* Border around the table */
+  margin-top: 20px;
+  /* Margin above the table */
+  overflow-x: auto;
+  /* Allow horizontal scrolling on small screens */
+  background-color: #ffffff;
+  /* White background for the table */
+  border-radius: 0.75rem;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Light shadow for table */
+  border: 1px solid #e9ecef;
+  /* Border around the table */
 }
 
 /* Table styling */
 .menu-table {
-    width: 100%;
-    /* Full-width table */
-    border-collapse: collapse;
-    /* Collapse borders between table cells */
+  width: 100%;
+  /* Full-width table */
+  border-collapse: collapse;
+  /* Collapse borders between table cells */
 }
 
 /* Table headers and cells styling */
 .menu-table th,
 .menu-table td {
-    padding: 1rem;
-    /* Padding inside table cells */
-    text-align: left;
-    /* Left-aligned text */
-    border-bottom: 1px solid #e9ecef;
-    /* Border under each row */
+  padding: 1rem;
+  /* Padding inside table cells */
+  text-align: left;
+  /* Left-aligned text */
+  border-bottom: 1px solid #e9ecef;
+  /* Border under each row */
 }
 
 /* Header styling for the menu table */
 .menu-table th {
-    background-color: #f8f9fa;
-    /* Light background for headers */
-    color: #2c3e50;
-    /* Dark text color for header */
-    font-weight: 600;
-    /* Bold text */
-    font-size: 0.9rem;
-    /* Smaller font size for headers */
+  background-color: #f8f9fa;
+  /* Light background for headers */
+  color: #2c3e50;
+  /* Dark text color for header */
+  font-weight: 600;
+  /* Bold text */
+  font-size: 0.9rem;
+  /* Smaller font size for headers */
 }
 
 /* Table cell text color */
 .menu-table td {
-    color: #4a5568;
-    /* Dark gray text color */
+  color: #4a5568;
+  /* Dark gray text color */
 }
 
 /* Add new item button styling */
 .add-menu-item-btn {
-    background-color: #4299e1;
-    /* Blue background for the button */
-    color: #ffffff;
-    /* White text */
-    border: none;
-    /* No border */
-    cursor: pointer;
-    /* Pointer cursor on hover */
-    padding: 0.75rem 1rem;
-    /* Padding inside the button */
-    font-size: 0.9rem;
-    /* Button font size */
-    border-radius: 0.5rem;
-    /* Rounded corners */
-    position: absolute;
-    /* Position the button at the top-right corner */
-    top: 2rem;
-    right: 2rem;
-    font-weight: 500;
-    /* Medium font weight */
-    transition: all 0.2s ease;
-    /* Smooth transition on hover */
+  background-color: #4299e1;
+  /* Blue background for the button */
+  color: #ffffff;
+  /* White text */
+  border: none;
+  /* No border */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  padding: 0.75rem 1rem;
+  /* Padding inside the button */
+  font-size: 0.9rem;
+  /* Button font size */
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  position: absolute;
+  /* Position the button at the top-right corner */
+  top: 2rem;
+  right: 2rem;
+  font-weight: 500;
+  /* Medium font weight */
+  transition: all 0.2s ease;
+  /* Smooth transition on hover */
 }
 
 /* Hover effect for Add New Item button */
 .add-menu-item-btn:hover {
-    background-color: #3182ce;
-    /* Darker blue on hover */
-    transform: translateY(-1px);
-    /* Slight lift effect */
+  background-color: #3182ce;
+  /* Darker blue on hover */
+  transform: translateY(-1px);
+  /* Slight lift effect */
 }
 
 /* Modal overlay styling */
 .modal-overlay {
-    position: fixed;
-    /* Fixed overlay to cover the screen */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    /* Full viewport width */
-    height: 100vh;
-    /* Full viewport height */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background */
-    display: flex;
-    /* Center the modal */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    /* Ensure the overlay is on top */
+  position: fixed;
+  /* Fixed overlay to cover the screen */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* Full viewport width */
+  height: 100vh;
+  /* Full viewport height */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  display: flex;
+  /* Center the modal */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Ensure the overlay is on top */
 }
 
 /* Modal content styling */
 .modal-container {
-    background-color: #ffffff;
-    /* White background for the modal */
-    padding: 1.5rem;
-    /* Padding inside the modal */
-    border-radius: 0.75rem;
-    /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Light shadow around the modal */
-    width: 500px;
-    /* Set modal width */
-    max-width: 90%;
-    /* Max width for responsiveness */
-    max-height: 90vh;
-    /* Max height for responsiveness */
-    overflow-y: auto;
-    /* Allow scrolling if content overflows */
+  background-color: #ffffff;
+  /* White background for the modal */
+  padding: 1.5rem;
+  /* Padding inside the modal */
+  border-radius: 0.75rem;
+  /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Light shadow around the modal */
+  width: 500px;
+  /* Set modal width */
+  max-width: 90%;
+  /* Max width for responsiveness */
+  max-height: 90vh;
+  /* Max height for responsiveness */
+  overflow-y: auto;
+  /* Allow scrolling if content overflows */
 }
 
 /* Modal title styling */
 .modal-container h3 {
-    color: #2c3e50;
-    /* Dark text color for the title */
-    font-size: 1.25rem;
-    /* Title font size */
-    font-weight: 600;
-    /* Bold font weight */
-    margin: 0 0 1.5rem 0;
-    /* Margin below the title */
+  color: #2c3e50;
+  /* Dark text color for the title */
+  font-size: 1.25rem;
+  /* Title font size */
+  font-weight: 600;
+  /* Bold font weight */
+  margin: 0 0 1.5rem 0;
+  /* Margin below the title */
 }
 
 /* Input, select, and textarea styling inside modal */
 .modal-container input,
 .modal-container select,
 .modal-container textarea {
-    width: 100%;
-    /* Full width inputs */
-    padding: 0.75rem;
-    /* Padding inside inputs */
-    margin-bottom: 1rem;
-    /* Margin between inputs */
-    border: 1px solid #e9ecef;
-    /* Light border */
-    border-radius: 0.5rem;
-    /* Rounded corners */
-    font-size: 0.9rem;
-    /* Font size */
-    color: #2c3e50;
-    /* Dark text color */
-    background-color: #ffffff;
-    /* White background */
-    transition: all 0.2s ease;
-    /* Smooth transition on focus */
+  width: 100%;
+  /* Full width inputs */
+  padding: 0.75rem;
+  /* Padding inside inputs */
+  margin-bottom: 1rem;
+  /* Margin between inputs */
+  border: 1px solid #e9ecef;
+  /* Light border */
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  font-size: 0.9rem;
+  /* Font size */
+  color: #2c3e50;
+  /* Dark text color */
+  background-color: #ffffff;
+  /* White background */
+  transition: all 0.2s ease;
+  /* Smooth transition on focus */
 }
 
 /* Focus effect on input, select, and textarea */
 .modal-container input:focus,
 .modal-container select:focus,
 .modal-container textarea:focus {
-    outline: none;
-    /* Remove outline on focus */
-    border-color: #4299e1;
-    /* Blue border on focus */
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
-    /* Shadow effect on focus */
+  outline: none;
+  /* Remove outline on focus */
+  border-color: #4299e1;
+  /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  /* Shadow effect on focus */
 }
 
 /* Button styling inside modal */
 .modal-container button {
-    padding: 0.75rem 1rem;
-    /* Padding inside the button */
-    border: none;
-    /* No border */
-    border-radius: 0.5rem;
-    /* Rounded corners */
-    cursor: pointer;
-    /* Pointer cursor on hover */
-    font-size: 0.9rem;
-    /* Button font size */
-    font-weight: 500;
-    /* Medium font weight */
-    transition: all 0.2s ease;
-    /* Smooth transition on hover */
+  padding: 0.75rem 1rem;
+  /* Padding inside the button */
+  border: none;
+  /* No border */
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  font-size: 0.9rem;
+  /* Button font size */
+  font-weight: 500;
+  /* Medium font weight */
+  transition: all 0.2s ease;
+  /* Smooth transition on hover */
 }
 
 /* Primary action button in modal */
 .modal-container button:not(.cancel-button) {
-    background-color: #4299e1;
-    /* Blue background */
-    color: #ffffff;
-    /* White text */
-    margin-right: 0.75rem;
-    /* Margin between buttons */
+  background-color: #4299e1;
+  /* Blue background */
+  color: #ffffff;
+  /* White text */
+  margin-right: 0.75rem;
+  /* Margin between buttons */
 }
 
 /* Hover effect for primary action button */
 .modal-container button:not(.cancel-button):hover {
-    background-color: #3182ce;
-    /* Darker blue on hover */
+  background-color: #3182ce;
+  /* Darker blue on hover */
 }
 
 /* Cancel button in modal */
 .modal-container .cancel-button {
-    background-color: #fff5f5;
-    /* Light red background */
-    color: #dc3545;
-    /* Red text color */
+  background-color: #fff5f5;
+  /* Light red background */
+  color: #dc3545;
+  /* Red text color */
 }
 
 /* Hover effect for cancel button */
 .modal-container .cancel-button:hover {
-    background-color: #fed7d7;
-    /* Light red background on hover */
+  background-color: #fed7d7;
+  /* Light red background on hover */
 }
 
 /* Button styling for actions in the menu table */
 .menu-table td button {
-    padding: 0.5rem 0.75rem;
-    /* Padding inside buttons */
-    border: none;
-    /* No border */
-    border-radius: 0.5rem;
-    /* Rounded corners */
-    cursor: pointer;
-    /* Pointer cursor */
-    font-size: 0.85rem;
-    /* Button font size */
-    font-weight: 500;
-    /* Medium font weight */
-    transition: all 0.2s ease;
-    /* Smooth transition on hover */
-    margin-right: 0.5rem;
-    /* Space between buttons */
+  padding: 0.5rem 0.75rem;
+  /* Padding inside buttons */
+  border: none;
+  /* No border */
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor */
+  font-size: 0.85rem;
+  /* Button font size */
+  font-weight: 500;
+  /* Medium font weight */
+  transition: all 0.2s ease;
+  /* Smooth transition on hover */
+  margin-right: 0.5rem;
+  /* Space between buttons */
 }
 
 /* Edit button styling */
 .menu-table td button:first-child {
-    background-color: #ebf8ff;
-    /* Light blue background */
-    color: #4299e1;
-    /* Blue text */
+  background-color: #ebf8ff;
+  /* Light blue background */
+  color: #4299e1;
+  /* Blue text */
 }
 
 /* Hover effect for edit button */
 .menu-table td button:first-child:hover {
-    background-color: #bee3f8;
-    /* Darker blue on hover */
+  background-color: #bee3f8;
+  /* Darker blue on hover */
 }
 
 /* Delete button styling */
 .menu-table td button:last-child {
-    background-color: #fff5f5;
-    /* Light red background */
-    color: #dc3545;
-    /* Red text */
+  background-color: #fff5f5;
+  /* Light red background */
+  color: #dc3545;
+  /* Red text */
 }
 
 /* Hover effect for delete button */
 .menu-table td button:last-child:hover {
-    background-color: #fed7d7;
-    /* Darker red on hover */
+  background-color: #fed7d7;
+  /* Darker red on hover */
 }
 
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
-    .menu-container {
-        padding: 1rem;
-        /* Reduced padding for mobile */
-    }
+  .menu-container {
+    padding: 1rem;
+    /* Reduced padding for mobile */
+  }
 
-    .add-menu-item-btn {
-        position: static;
-        /* Reset position for mobile */
-        width: 100%;
-        /* Full width button */
-        margin-bottom: 1rem;
-        /* Margin below button */
-    }
+  .add-menu-item-btn {
+    position: static;
+    /* Reset position for mobile */
+    width: 100%;
+    /* Full width button */
+    margin-bottom: 1rem;
+    /* Margin below button */
+  }
 
-    .menu-table th,
-    .menu-table td {
-        padding: 0.75rem;
-        /* Smaller padding for table cells */
-        font-size: 0.85rem;
-        /* Smaller font size */
-    }
+  .menu-table th,
+  .menu-table td {
+    padding: 0.75rem;
+    /* Smaller padding for table cells */
+    font-size: 0.85rem;
+    /* Smaller font size */
+  }
 
-    .modal-container {
-        padding: 1rem;
-        /* Reduced padding for modal */
-        width: 95%;
-        /* Full width for modal */
-    }
+  .modal-container {
+    padding: 1rem;
+    /* Reduced padding for modal */
+    width: 95%;
+    /* Full width for modal */
+  }
 }
 
 @media (max-width: 576px) {
-    .menu-table td button {
-        display: block;
-        /* Stack buttons on mobile */
-        width: 100%;
-        /* Full width buttons */
-        margin-bottom: 0.5rem;
-        /* Space between buttons */
-    }
+  .menu-table td button {
+    display: block;
+    /* Stack buttons on mobile */
+    width: 100%;
+    /* Full width buttons */
+    margin-bottom: 0.5rem;
+    /* Space between buttons */
+  }
 
-    .menu-table td button:last-child {
-        margin-bottom: 0;
-        /* Remove margin for the last button */
-    }
+  .menu-table td button:last-child {
+    margin-bottom: 0;
+    /* Remove margin for the last button */
+  }
 }

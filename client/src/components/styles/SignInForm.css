@@ -1,7 +1,12 @@
-/* Import Google Fonts */
+/* ================================
+   Google Fonts
+================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700;800&display=swap');
 
-/* Container layout */
+
+/* ================================
+   Page Layout Container
+================================== */
 .signin-page-layout {
   display: flex;
   flex-direction: row;
@@ -19,7 +24,10 @@
   overflow-x: hidden;
 }
 
-/* Left section */
+
+/* ================================
+   Left Section (Text & CTA)
+================================== */
 .signin-left {
   flex: 1;
   max-width: 500px;
@@ -32,7 +40,6 @@
   left: 80px;
 }
 
-/* Heading */
 .signin-heading {
   font-size: 64px;
   font-weight: 900;
@@ -42,23 +49,21 @@
   font-family: 'Playfair Display', serif;
   letter-spacing: -1px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: left;
   margin-left: -20px;
   animation: slideInFromLeft 0.8s ease-out forwards;
   opacity: 0;
 }
 
-/* Info paragraph */
 .signin-info {
   font-size: 24px;
+  font-weight: 600;
   color: #8b7355;
   line-height: 1.7;
   margin-bottom: 36px;
-  text-align: left;
   margin-left: -20px;
   animation: slideInFromLeft 0.8s ease-out forwards 0.3s;
   opacity: 0;
-  font-weight: 600;
+  text-align: left;
 }
 
 .signin-info p {
@@ -66,27 +71,27 @@
   color: #5d4a2e;
 }
 
-/* Register link */
+
+/* ================================
+   Register Link Button
+================================== */
 .register-link {
-  color: #ffffff;
+  color: #fff;
+  background-color: #e0b030;
   font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
   font-size: 15px;
-  border: none;
   padding: 13px 17px;
   border-radius: 30px;
   display: inline-block;
   cursor: pointer;
-  background-color: #e0b030;
-  width: auto;
   text-align: center;
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: all 0.3s ease;
 }
 
 .register-link:hover {
-  color: #ffffff;
   background-color: #e0b030;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(240, 192, 64, 0.2);
@@ -97,7 +102,10 @@
   box-shadow: 0 0 0 2px rgba(240, 192, 64, 0.3);
 }
 
-/* Right form section */
+
+/* ================================
+   Right Section (Form Card)
+================================== */
 .signin-card-modern {
   max-width: 500px;
   min-height: 400px;
@@ -108,11 +116,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   margin-left: 290px;
+  position: relative;
 }
 
-/* Form layout */
+
+/* ================================
+   Sign-In Form Layout
+================================== */
 .signin-form-modern {
   display: flex;
   flex-direction: column;
@@ -125,6 +136,7 @@
   position: relative;
 }
 
+/* Input Icons */
 .signin-form-modern div::before {
   content: '';
   position: absolute;
@@ -147,59 +159,19 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0c040'%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/%3E%3C/svg%3E");
 }
 
-/* Password visibility toggle */
-.password-toggle {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #f0c040;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
 
-.password-toggle:hover {
-  opacity: 1;
-}
-
-.food-highlight {
-  color: #f0efed;
-  font-weight: 900;
-  position: relative;
-  display: inline-block;
-}
-
-.food-highlight::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #f0c040;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: underlineExpand 0.8s ease forwards 1.2s;
-}
-
+/* ================================
+   Input Fields & Password Toggle
+================================== */
 .signin-input {
   padding: 16px 16px 16px 45px;
   font-size: 16px;
   border: 1px solid #f0c040;
   border-radius: 30px;
-  background: #fff;
-  width: 100%;
-  transition: 0.3s ease;
-  color: #5d4a2e;
-  position: relative;
   background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  color: #5d4a2e;
+  transition: 0.3s ease;
 }
 
 .signin-input::placeholder {
@@ -214,7 +186,28 @@
   box-shadow: 0 0 0 2px rgba(240, 192, 64, 0.1);
 }
 
-/* Button styling */
+.password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f0c040;
+  padding: 0;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+}
+
+
+/* ================================
+   Button Styles
+================================== */
 .signin-button-modern {
   padding: 16px;
   background-color: #d4c19a;
@@ -231,7 +224,10 @@
   background-color: #e6d5ac;
 }
 
-/* Tab container */
+
+/* ================================
+   Tabs (Login/Register switch)
+================================== */
 .signin-tab {
   display: flex;
   justify-content: center;
@@ -239,87 +235,85 @@
   gap: 20px;
 }
 
-/* Active tab style */
 .active-tab {
-  color: #ffffff;
   background-color: #f0c040;
+  color: #fff;
   font-weight: 600;
   border-radius: 20px;
   padding: 10px 20px;
-  text-decoration: none;
   font-size: 18px;
   border: none;
   box-shadow: 0 4px 12px rgba(240, 192, 64, 0.2);
   transition: all 0.3s ease;
-  outline: none;
 }
 
 .active-tab:hover {
   background-color: #e0b030;
 }
 
-/* Inactive tab style */
 .inactive-tab {
+  background-color: transparent;
   color: #f0c040;
-  text-decoration: none;
   font-size: 18px;
   font-weight: 500;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: transparent;
   border: 2px solid #f0c040;
   transition: all 0.3s ease;
-  outline: none;
 }
 
 .inactive-tab:hover {
   background-color: rgba(240, 192, 64, 0.1);
 }
 
-/* Animations */
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+
+/* ================================
+   Highlights & Animation Effects
+================================== */
+.food-highlight {
+  color: #f0efed;
+  font-weight: 900;
+  display: inline-block;
+  position: relative;
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.food-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #f0c040;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineExpand 0.8s ease forwards 1.2s;
 }
 
 @keyframes underlineExpand {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  0%   { opacity: 0; transform: translateX(-100px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Responsive */
+
+/* ================================
+   Responsive Layout
+================================== */
 @media (max-width: 900px) {
   .signin-page-layout {
     flex-direction: column;
@@ -331,8 +325,8 @@
 
   .signin-left {
     position: relative;
-    left: 0;
     top: 0;
+    left: 0;
     padding: 20px;
     text-align: center;
     margin-bottom: 40px;
@@ -344,19 +338,17 @@
     max-width: 100%;
   }
 
+  .signin-heading,
+  .signin-info {
+    text-align: center;
+    margin-left: 0;
+  }
+
   .signin-heading {
     font-size: 42px;
-    text-align: center;
   }
 
   .signin-info {
     font-size: 18px;
-    text-align: center;
-  }
-
-  .signin-heading,
-  .signin-info {
-    margin-left: 0;
-    text-align: center;
   }
 }

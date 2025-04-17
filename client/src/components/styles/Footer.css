@@ -1,4 +1,6 @@
-/* Footer.css */
+/* ================================
+   Base Footer Container
+================================== */
 .modern-footer {
   background-color: #000000;
   color: #fff;
@@ -13,7 +15,10 @@
   padding: 0 20px;
 }
 
-/* Logo & Top Divider */
+
+/* ================================
+   Logo Section with Divider Line
+================================== */
 .footer-logo-wrapper {
   position: relative;
   text-align: center;
@@ -31,17 +36,20 @@
 }
 
 .footer-logo {
-  width: 120px;           /* 🔁 Make it bigger — you can adjust this */
+  width: 120px;
   height: 120px;
-  border-radius: 50%;     /* ✅ Makes it perfectly circular */
-  object-fit: cover;      /* ✅ Ensures the image doesn't stretch */
-  background-color: #1d1d1d; /* Match footer background if needed */
-  border: 3px solid #fff; /* Optional: add a white border */
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #1d1d1d;
+  border: 3px solid #fff;
   z-index: 2;
   position: relative;
 }
 
-/* Middle Columns */
+
+/* ================================
+   Footer Middle Columns
+================================== */
 .footer-columns {
   display: flex;
   justify-content: space-between;
@@ -73,7 +81,10 @@
   margin-bottom: 4px;
 }
 
-/* Delivery Logos */
+
+/* ================================
+   Delivery Partner Logos
+================================== */
 .delivery-logos {
   display: flex;
   justify-content: center;
@@ -90,7 +101,10 @@
   border-radius: 6px;
 }
 
-/* Bottom Divider */
+
+/* ================================
+   Bottom Divider Line
+================================== */
 .footer-line {
   border: none;
   border-top: 1px solid #444;
@@ -98,7 +112,10 @@
   margin: 20px auto 10px;
 }
 
-/* Bottom Row */
+
+/* ================================
+   Footer Bottom Section
+================================== */
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
@@ -110,11 +127,16 @@
   font-size: 13px;
 }
 
+
+/* ================================
+   Footer Links
+================================== */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
+
 .footer-links a {
   color: #bbb;
   text-decoration: none;
@@ -125,33 +147,22 @@
   color: #facc15;
 }
 
+
+/* ================================
+   Social Media Icons
+================================== */
 .footer-social-icons {
   display: flex;
   gap: 12px;
 }
 
-.footer-social-icons a {
-  color: #fff;
-  font-size: 16px;
-  background-color: #333;
-  padding: 8px;
-  border-radius: 50%;
-  transition: background 0.3s ease, transform 0.2s;
-}
-
-.footer-social-icons {
-  display: flex;
-  gap: 12px;
-}
-
-/* Base style for all icons */
 .footer-social-icons a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  font-size: 18px; /* Icon size */
+  font-size: 18px;
   border-radius: 50%;
   background-color: transparent;
   border: 2px solid currentColor;
@@ -159,6 +170,8 @@
   text-decoration: none;
 }
 
+
+/* === Platform-specific Social Colors === */
 
 /* Facebook */
 .footer-social-icons a.facebook {
@@ -197,7 +210,9 @@
 }
 
 
-/* Responsive */
+/* ================================
+   Responsive Styles
+================================== */
 @media (max-width: 768px) {
   .footer-columns {
     flex-direction: column;

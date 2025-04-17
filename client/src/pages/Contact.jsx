@@ -1,48 +1,104 @@
-import React from 'react';
-import './styles/Contact.css';
-import { FaMapMarkerAlt, FaClock, FaEnvelope} from 'react-icons/fa';
+import React from "react";
+import "./styles/Contact.css"; // Import CSS for styling the Contact page
 
+// React icons for location, time, and email
+import { FaMapMarkerAlt, FaClock, FaEnvelope } from "react-icons/fa";
+
+/**
+ * Contact Component
+ * Displays a contact form, business contact info, and embedded Google Map.
+ */
 const Contact = () => {
   return (
     <section className="contact-info-section">
       <div className="contact-page-container">
+        {/* Left Image Section */}
         <div className="contact-page-image">
           <img src="../assets/img/ho.png" alt="Delicious Food" />
         </div>
 
+        {/* Right Contact Form and Info Section */}
         <div className="contact-page-form-section">
           <h2 className="contact-page-heading">Contact us</h2>
+
+          {/* Contact Form */}
           <form className="contact-page-form">
             <div className="contact-page-form-row">
-              <input type="text" placeholder="Full name" className="contact-page-input" />
-              <input type="email" placeholder="Email address" className="contact-page-input" />
+              <input
+                type="text"
+                placeholder="Full name"
+                className="contact-page-input"
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                className="contact-page-input"
+              />
             </div>
             <div className="contact-page-form-row">
-              <input type="text" placeholder="Phone number" className="contact-page-input" />
-              <input type="text" placeholder="Subject" className="contact-page-input" />
+              <input
+                type="text"
+                placeholder="Phone number"
+                className="contact-page-input"
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                className="contact-page-input"
+              />
             </div>
-            <textarea placeholder="Message" className="contact-page-textarea"></textarea>
-            <button type="submit" className="contact-page-submit-btn">SUBMIT MESSAGE</button>
+            <textarea
+              placeholder="Message"
+              className="contact-page-textarea"
+            ></textarea>
+            <button type="submit" className="contact-page-submit-btn">
+              SUBMIT MESSAGE
+            </button>
           </form>
+
+          {/* Contact Information Boxes */}
           <div className="contact-info-box">
-            <h3><FaMapMarkerAlt className="icon" /> Address</h3>
-            <p><strong>Town:</strong> Callan Building, Maynooth University</p>
-            <p><strong>City:</strong> Maynooth</p>
+            <h3>
+              <FaMapMarkerAlt className="icon" /> Address
+            </h3>
+            <p>
+              <strong>Town:</strong> Callan Building, Maynooth University
+            </p>
+            <p>
+              <strong>City:</strong> Maynooth
+            </p>
           </div>
+
           <div className="contact-info-box">
-            <h3><FaClock className="icon" /> Open Hours</h3>
-            <p><strong>Day:</strong> Monday - Sunday</p>
-            <p><strong>Time:</strong> 11:00 AM - 11:00 PM</p>
-            <p><strong>Phone:</strong> +(353)-089-7654321</p>
+            <h3>
+              <FaClock className="icon" /> Open Hours
+            </h3>
+            <p>
+              <strong>Day:</strong> Monday - Sunday
+            </p>
+            <p>
+              <strong>Time:</strong> 11:00 AM - 11:00 PM
+            </p>
+            <p>
+              <strong>Phone:</strong> +(353)-089-7654321
+            </p>
           </div>
+
           <div className="contact-info-box">
-            <h3><FaEnvelope className="icon" /> Email</h3>
-            <p><strong>Mail:</strong> thendralmess@gmail.com</p>
-            <p><strong>Website:</strong> www.thendralmess.com</p>
+            <h3>
+              <FaEnvelope className="icon" /> Email
+            </h3>
+            <p>
+              <strong>Mail:</strong> thendralmess@gmail.com
+            </p>
+            <p>
+              <strong>Website:</strong> www.thendralmess.com
+            </p>
           </div>
         </div>
       </div>
-    
+
+      {/* Embedded Google Map Section */}
       <div className="map-container">
         <iframe
           title="Google Map"
