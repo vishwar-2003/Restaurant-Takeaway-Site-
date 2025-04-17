@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/OrderConfirmationModal.css";
+import "../styles/modals/OrderSuccessfulModal.css";
 
 /**
  * OrderSuccessModal Component

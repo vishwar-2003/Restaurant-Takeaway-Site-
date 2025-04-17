@@ -6,7 +6,6 @@ import Customers from "./Customers.jsx";
 import Reviews from "./Reviews.jsx";
 import Menu from "./Menu.jsx";
 import DeliveryWindow from "./AdminDeliveryWindow.jsx";
-import OrderSummaryChart from "../../components/OrderSummaryChart";
 
 /**
  * Dashboard component displays various statistics and tabs for the admin panel.

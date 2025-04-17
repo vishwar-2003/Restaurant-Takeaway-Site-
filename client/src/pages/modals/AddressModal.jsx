@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./styles/AddressModal.css";
+import "../styles/modals/AddressModal.css";
 
 /**
  * AddressModal Component
