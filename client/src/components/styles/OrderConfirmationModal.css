@@ -1,100 +1,117 @@
+/* ================================
+   Confirm Modal Overlay
+================================== */
 .confirm-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  
-  }
-  
-  .confirm-modal-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    color: #333;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding-right: 8px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-  .confirm-modal-box::-webkit-scrollbar {
-    width: 6px;
-  }
-  .confirm-modal-box::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-  }  
-  
-  .confirm-modal-box h3 {
-    margin-top: 0;
-  }
-  
-  .confirm-modal-box select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1.5rem;
-    gap: 1rem;
-  }
-  
-  .confirm-button {
-    background-color: #f0c040;
-    color: #000;
-    padding: 0.6rem 1.2rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
 
-  .cancel-btn {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 10px 20px;
-    font-weight: 500;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-right: -10px;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #d6d6d6;
-  }
-  
-  .card-details-form {
-    margin-top: 10px;
-    background: #f6f6f6;
-    padding: 10px 12px;
-    border-radius: 6px;
-  }
-  
-  .card-details-form input {
-    display: block;
-    width: 100%;
-    padding: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .card-details-row {
-    display: flex;
-    gap: 10px;
-  }
-  
-  
+/* ================================
+   Confirm Modal Box
+================================== */
+.confirm-modal-box {
+  background: #fff;
+  color: #333;
+  padding: 2rem;
+  padding-right: 8px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollbar Styling */
+.confirm-modal-box::-webkit-scrollbar {
+  width: 6px;
+}
+.confirm-modal-box::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+
+/* ================================
+   Modal Content
+================================== */
+.confirm-modal-box h3 {
+  margin-top: 0;
+}
+
+.confirm-modal-box select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+/* ================================
+   Modal Action Buttons
+================================== */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.confirm-button {
+  background-color: #f0c040;
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 10px 20px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: -10px;
+}
+
+.cancel-btn:hover {
+  background-color: #d6d6d6;
+}
+
+
+/* ================================
+   Card Details Form (Conditional Section)
+================================== */
+.card-details-form {
+  margin-top: 10px;
+  background: #f6f6f6;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.card-details-form input {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.card-details-row {
+  display: flex;
+  gap: 10px;
+}

@@ -6,7 +6,7 @@ import Customers from "./Customers.jsx";
 import Reviews from "./Reviews.jsx";
 import Menu from "./Menu.jsx";
 import DeliveryWindow from "./AdminDeliveryWindow.jsx";
-import OrderSummaryChart from '../../components/OrderSummaryChart';
+import OrderSummaryChart from "../../components/OrderSummaryChart";
 
 /**
  * Dashboard component displays various statistics and tabs for the admin panel.
@@ -28,12 +28,16 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         // Fetching customer count
-        const customerRes = await fetch("http://localhost:5000/api/admin/customers/count");
+        const customerRes = await fetch(
+          "http://localhost:5000/api/admin/customers/count"
+        );
         const customerData = await customerRes.json();
         setTotalCustomers(customerData.totalCustomers); // Set customer count
 
         // Fetching order statistics (total orders, revenue, and average order value)
-        const orderRes = await fetch("http://localhost:5000/api/admin/orders/stats");
+        const orderRes = await fetch(
+          "http://localhost:5000/api/admin/orders/stats"
+        );
         const orderData = await orderRes.json();
         setTotalOrders(orderData.totalOrders || 0); // Set total orders
         setTotalRevenue(orderData.totalRevenue || 0); // Set total revenue
@@ -53,14 +57,14 @@ const Dashboard = () => {
   const handleLogout = () => {
     try {
       // Clear admin-related data from localStorage
-      localStorage.removeItem('adminToken');
+      localStorage.removeItem("adminToken");
 
       // Use navigate to programmatically redirect the user to the login page
-      navigate('/admin/login', { replace: true });
+      navigate("/admin/login", { replace: true });
     } catch (error) {
-      console.error('Logout error:', error); // Log error in case of failure
+      console.error("Logout error:", error); // Log error in case of failure
       // Fallback in case the navigate method fails
-      window.location.href = '/admin/login';
+      window.location.href = "/admin/login";
     }
   };
 
@@ -74,38 +78,49 @@ const Dashboard = () => {
         return (
           <div className="dashboard-content">
             <div className="dashboard-stats-grid">
-              {/* Displaying the total orders, customers, revenue, and average order value */}
               <div className="dashboard-stat-card">
-                <h3>Total Orders</h3>
-                <p className="dashboard-stat-number">{totalOrders}</p>
+                <div className="dashboard-stat-info-centered">
+                  <h4 className="dashboard-stat-title">Total Orders</h4>
+                  <p className="dashboard-stat-value">{totalOrders}</p>
+                </div>
               </div>
               <div className="dashboard-stat-card">
-                <h3>Total Customers</h3>
-                <p className="dashboard-stat-number">{totalCustomers}</p>
+                <div className="dashboard-stat-info-centered">
+                  <h4 className="dashboard-stat-title">Total Customers</h4>
+                  <p className="dashboard-stat-value">{totalCustomers}</p>
+                </div>
               </div>
               <div className="dashboard-stat-card">
-                <h3>Total Revenue</h3>
-                <p className="dashboard-stat-number">€{totalRevenue.toFixed(2)}</p>
+                <div className="dashboard-stat-info-centered">
+                  <h4 className="dashboard-stat-title">Total Revenue</h4>
+                  <p className="dashboard-stat-value">
+                    €{totalRevenue.toFixed(2)}
+                  </p>
+                </div>
               </div>
               <div className="dashboard-stat-card">
-                <h3>Average Order Value</h3>
-                <p className="dashboard-stat-number">€{averageOrderValue.toFixed(2)}</p>
+                <div className="dashboard-stat-info-centered">
+                  <h4 className="dashboard-stat-title">Average Order Value</h4>
+                  <p className="dashboard-stat-value">
+                    €{averageOrderValue.toFixed(2)}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         );
       case "orders":
-        return <Orders />; // Display Orders component
+        return <Orders />;
       case "customers":
-        return <Customers />; // Display Customers component
+        return <Customers />;
       case "reviews":
-        return <Reviews />; // Display Reviews component
+        return <Reviews />;
       case "menu":
-        return <Menu />; // Display Menu component
+        return <Menu />;
       case "deliveryWindow":
-        return <DeliveryWindow />; // Display Delivery Window component
+        return <DeliveryWindow />;
       default:
-        return null; // Return null if no valid tab is selected
+        return null;
     }
   };
 
@@ -119,7 +134,9 @@ const Dashboard = () => {
           {/* Dashboard navigation menu items */}
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "dashboard" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "dashboard" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("dashboard"); // Switch to the "dashboard" tab
@@ -130,7 +147,9 @@ const Dashboard = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "orders" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "orders" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("orders"); // Switch to the "orders" tab
@@ -141,7 +160,9 @@ const Dashboard = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "customers" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "customers" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("customers"); // Switch to the "customers" tab
@@ -152,7 +173,9 @@ const Dashboard = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "reviews" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "reviews" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("reviews"); // Switch to the "reviews" tab
@@ -163,7 +186,9 @@ const Dashboard = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "menu" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "menu" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("menu"); // Switch to the "menu" tab
@@ -174,7 +199,9 @@ const Dashboard = () => {
           </a>
           <a
             href="#"
-            className={`dashboard-nav-item ${activeTab === "deliveryWindow" ? "active" : ""}`}
+            className={`dashboard-nav-item ${
+              activeTab === "deliveryWindow" ? "active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("deliveryWindow"); // Switch to the "deliveryWindow" tab

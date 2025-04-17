@@ -1,42 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles/Home.css';
-import './styles/MenuSection.css';
-import Review from './ReviewSection';
-import FAQ from './Faq';
-import Gallery from './Gallery';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import AOS from "aos";
 
+import "./styles/Home.css"; // Main Home styles
+import "./styles/MenuSection.css"; // Styles specific to Menu section
+import "aos/dist/aos.css"; // Animation on Scroll library styles
+
+import Review from "./ReviewSection"; // Review component
+import FAQ from "./Faq"; // FAQ component
+import Gallery from "./Gallery"; // Gallery component
+
+/**
+ * Home Component
+ * Displays the landing video, menu preview, gallery, reviews, and FAQ
+ */
 function Home() {
-  const [menuItems, setMenuItems] = useState([]);
+  const [menuItems, setMenuItems] = useState([]); // Menu data fetched from backend
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
+  // Run on component mount
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 1000 }); // Initialize AOS animations
 
-    axios.get('http://localhost:5000/api/menu')
-      .then(res => setMenuItems(res.data.data))
-      .catch(err => console.error('Menu fetch error:', err));
+    // Fetch menu items from backend
+    axios
+      .get("http://localhost:5000/api/menu")
+      .then((res) => setMenuItems(res.data.data))
+      .catch((err) => console.error("Menu fetch error:", err));
   }, []);
 
-  const navigate = useNavigate();
-
+  /**
+   * Navigate to the full menu page
+   */
   const handleClick = () => {
-    // optional: call API here if needed
-      navigate('/menu');
-    };
+    navigate("/menu");
+  };
+
   return (
     <div className="home-page">
-      {/* Hero Video Section */}
+      {/* Hero Section with Background Video */}
       <section className="hero-video-section">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="background-video"
-        >
+        <video autoPlay muted loop playsInline className="background-video">
           <source src="../assets/video/video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -45,8 +50,6 @@ function Home() {
           <h1 data-aos="zoom-in">Welcome to Thendral Mess!</h1>
         </div>
       </section>
-
-    
 
       {/* Menu Section */}
       <section className="menu-page">
@@ -63,13 +66,15 @@ function Home() {
           ))}
         </div>
 
+        {/* Call-to-action button to see full menu */}
         <div className="menu-btn-wrapper">
-        <button className="menu-cta" onClick={handleClick}>
-          Explore More
-        </button>
-    </div>
+          <button className="menu-cta" onClick={handleClick}>
+            Explore More
+          </button>
+        </div>
       </section>
 
+      {/* Gallery Section */}
       <Gallery />
 
       {/* Reviews Section */}
@@ -77,9 +82,6 @@ function Home() {
 
       {/* FAQ Section */}
       <FAQ />
-
-      {/* Gallery Section */}
-     
     </div>
   );
 }

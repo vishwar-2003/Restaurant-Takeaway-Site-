@@ -1,162 +1,177 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import ReviewForm from '../components/ReviewForm';
-import { FaStar } from 'react-icons/fa';
-import { AnimatePresence } from 'framer-motion';
-import { toast } from 'react-toastify';
-import bgImage from '../assets/img/review_img.png';
-import AnimatedReviewCard from '../components/AnimatedReviewCard';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import ReviewForm from "../components/ReviewForm";
+import { FaStar } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import bgImage from "../assets/img/review_img.png";
+import AnimatedReviewCard from "../components/AnimatedReviewCard";
 
+/**
+ * ReviewPage Component
+ * Displays the review submission form, rating breakdown, and existing reviews with animations.
+ */
 const ReviewPage = () => {
-    const [token] = useState(localStorage.getItem('token'));
-    const [name] = useState(localStorage.getItem('name'));
-    const [reviews, setReviews] = useState([]);
-    const [search, setSearch] = useState('');
-    const [ratingStats, setRatingStats] = useState({});
+  const [token] = useState(localStorage.getItem("token"));
+  const [name] = useState(localStorage.getItem("name"));
 
-    useEffect(() => {
-        const fetchInitialReviews = async () => {
-            try {
-                const res = await axios.get('http://localhost:5000/api/review');
-                setReviews(res.data);
-                calculateStats(res.data);
-            } catch {
-                toast.error('Failed to load reviews');
-            }
-        };
-        fetchInitialReviews();
-    }, []);
+  const [reviews, setReviews] = useState([]);
+  const [search, setSearch] = useState("");
+  const [ratingStats, setRatingStats] = useState({});
 
-    const handleRefreshReviews = async () => {
-        try {
-            const res = await axios.get('http://localhost:5000/api/review');
-            setReviews(res.data);
-            calculateStats(res.data);
-        } catch {
-            toast.error('Failed to reload reviews');
-        }
+  // Fetch all reviews on mount
+  useEffect(() => {
+    const fetchInitialReviews = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/review");
+        setReviews(res.data);
+        calculateStats(res.data);
+      } catch {
+        toast.error("Failed to load reviews");
+      }
     };
+    fetchInitialReviews();
+  }, []);
 
-    const calculateStats = (reviews) => {
-        const count = [0, 0, 0, 0, 0];
-        let total = 0;
+  /**
+   * Refresh reviews after new submission
+   */
+  const handleRefreshReviews = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/review");
+      setReviews(res.data);
+      calculateStats(res.data);
+    } catch {
+      toast.error("Failed to reload reviews");
+    }
+  };
 
-        reviews.forEach((r) => {
-            const i = 5 - r.rating;
-            count[i] += 1;
-            total += r.rating;
-        });
+  /**
+   * Calculate statistics for review breakdown
+   * @param {Array} reviews - Array of review objects
+   */
+  const calculateStats = (reviews) => {
+    const count = [0, 0, 0, 0, 0]; // Count for each star (5 to 1)
+    let total = 0;
 
-        const sum = count.reduce((a, b) => a + b, 0);
-        const average = sum ? (total / sum).toFixed(1) : 0;
-        const percent = count.map((c) => (sum ? ((c / sum) * 100).toFixed(1) : 0));
+    reviews.forEach((r) => {
+      const i = 5 - r.rating;
+      count[i] += 1;
+      total += r.rating;
+    });
 
-        setRatingStats({ count, percent, average, total: sum });
-    };
+    const sum = count.reduce((a, b) => a + b, 0);
+    const average = sum ? (total / sum).toFixed(1) : 0;
+    const percent = count.map((c) => (sum ? ((c / sum) * 100).toFixed(1) : 0));
 
-    const filtered = reviews.filter((r) =>
-        (r.customerName?.toLowerCase().includes(search.toLowerCase()) || false) ||
-        (r.comment?.toLowerCase().includes(search.toLowerCase()) || false)
-    );
+    setRatingStats({ count, percent, average, total: sum });
+  };
 
-    return (
-        <div
-            style={{
-                backgroundImage: `url(${bgImage})`,
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                minHeight: '100vh',
-                padding: '50px 0',
-                position: 'relative',
-            }}
-        >
+  // Filter reviews based on search input
+  const filtered = reviews.filter(
+    (r) =>
+      r.customerName?.toLowerCase().includes(search.toLowerCase()) ||
+      false ||
+      r.comment?.toLowerCase().includes(search.toLowerCase()) ||
+      false
+  );
 
-            {/* Content */}
-            <div
-                style={{
-                    position: 'relative',
-                    maxWidth: '1200px',
-                    margin: '0 auto',
-                    backgroundColor: '#F5F5F5',
-                    backdropFilter: 'blur(4px)',
-                    WebkitBackdropFilter: 'blur(4px)',
-                    borderRadius: '16px',
-                    padding: '2rem',
-                    boxShadow: '0 8px 20px #000',
-                }}
-            >
-                {/* Review Form (shows only if logged in, else redirects) */}
-                <div className="d-flex justify-content-center">
-                    <div style={{ width: '100%', maxWidth: '480px' }}>
-                        <ReviewForm
-                            token={token}
-                            name={name}
-                            fetchReviews={handleRefreshReviews}
-                        />
-                    </div>
-                </div>
-
-                {/* Rating Summary */}
-                {ratingStats.total > 0 && (
-                    <div className="my-4 text-center">
-                        <h4 className="mb-3">
-                            ⭐ {ratingStats.average} / 5{' '}
-                            <small className="text-muted">
-                                ({ratingStats.total} reviews)
-                            </small>
-                        </h4>
-                        {[5, 4, 3, 2, 1].map((star) => (
-                            <div className="d-flex align-items-center mb-2" key={star}>
-                                <div style={{ width: 40 }}>
-                                    {star} <FaStar className="text-warning" />
-                                </div>
-                                <div
-                                    className="progress flex-grow-1 mx-2"
-                                    style={{ height: '16px' }}
-                                >
-                                    <div
-                                        className="progress-bar bg-warning"
-                                        role="progressbar"
-                                        style={{
-                                            width: `${ratingStats.percent[5 - star]}%`,
-                                        }}
-                                    ></div>
-                                </div>
-                                <div style={{ width: 80, fontSize: '0.85rem' }}>
-                                    {ratingStats.percent[5 - star]}% (
-                                    {ratingStats.count[5 - star]})
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Search */}
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search reviews..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
-
-                {
-                    <div className="row">
-                        <AnimatePresence>
-                            {filtered.map((r, index) => (
-                                <div className="col-md-6" key={r._id}>
-                                    <AnimatedReviewCard review={r} index={index} />
-                                </div>
-                            ))}
-                        </AnimatePresence>
-                    </div>
-                }
-            </div>
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        padding: "50px 0",
+        position: "relative",
+      }}
+    >
+      {/* Card Container */}
+      <div
+        style={{
+          position: "relative",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          backgroundColor: "#F5F5F5",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+          borderRadius: "16px",
+          padding: "2rem",
+          boxShadow: "0 8px 20px #000",
+        }}
+      >
+        {/* Review Form */}
+        <div className="d-flex justify-content-center">
+          <div style={{ width: "100%", maxWidth: "480px" }}>
+            <ReviewForm
+              token={token}
+              name={name}
+              fetchReviews={handleRefreshReviews}
+            />
+          </div>
         </div>
-    );
+
+        {/* Rating Breakdown */}
+        {ratingStats.total > 0 && (
+          <div className="my-4 text-center">
+            <h4 className="mb-3">
+              ⭐ {ratingStats.average} / 5{" "}
+              <small className="text-muted">
+                ({ratingStats.total} reviews)
+              </small>
+            </h4>
+
+            {/* Breakdown Bar Chart */}
+            {[5, 4, 3, 2, 1].map((star) => (
+              <div className="d-flex align-items-center mb-2" key={star}>
+                <div style={{ width: 40 }}>
+                  {star} <FaStar className="text-warning" />
+                </div>
+                <div
+                  className="progress flex-grow-1 mx-2"
+                  style={{ height: "16px" }}
+                >
+                  <div
+                    className="progress-bar bg-warning"
+                    role="progressbar"
+                    style={{ width: `${ratingStats.percent[5 - star]}%` }}
+                  ></div>
+                </div>
+                <div style={{ width: 80, fontSize: "0.85rem" }}>
+                  {ratingStats.percent[5 - star]}% (
+                  {ratingStats.count[5 - star]})
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Search Input */}
+        <div className="mb-4">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search reviews..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
+        {/* Filtered Review Cards with Animation */}
+        <div className="row">
+          <AnimatePresence>
+            {filtered.map((r, index) => (
+              <div className="col-md-6" key={r._id}>
+                <AnimatedReviewCard review={r} index={index} />
+              </div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ReviewPage;

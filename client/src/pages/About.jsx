@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
-import "./styles/About.css"; // Import the corresponding CSS file for styling
+import "./styles/About.css"; // CSS for styling the About page
 
+/**
+ * About Component
+ * Renders the About page with various sections including:
+ * - Food introduction
+ * - Restaurant story
+ * - Mission & Vision
+ * - Team
+ * - Fun facts with animated counters
+ */
 function About() {
-  // State for animated counters
+  // State to store counter values for animated fun facts
   const [counters, setCounters] = useState({
     customers: 0,
     dishes: 0,
     awards: 0,
   });
 
-  // Add scroll animation effect
+  /**
+   * Scroll-based animation using Intersection Observer
+   * Adds 'animate' class to sections when they enter the viewport
+   * Triggers counter animation specifically when 'fun-facts-container' is visible
+   */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -17,29 +30,33 @@ function About() {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate");
 
-            // If it's the fun facts section, start the counters
+            // Trigger counter animation when fun-facts section is in view
             if (entry.target.classList.contains("fun-facts-container")) {
               animateCounters();
             }
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 } // Trigger when 10% of the element is visible
     );
 
-    // Observe all sections with animation classes
+    // Observe elements with animation classes
     document
       .querySelectorAll(".fade-in, .slide-in, .fun-facts-container")
       .forEach((section) => {
         observer.observe(section);
       });
 
+    // Cleanup observer on component unmount
     return () => {
       observer.disconnect();
     };
   }, []);
 
-  // Function to animate counters
+  /**
+   * Animate the counters for Fun Facts section
+   * Increments values gradually over 2 seconds
+   */
   const animateCounters = () => {
     const targetValues = {
       customers: 5000,
@@ -47,23 +64,23 @@ function About() {
       awards: 15,
     };
 
-    const duration = 2000; // 2 seconds
-    const steps = 60;
+    const duration = 2000; // Total duration: 2 seconds
+    const steps = 60; // Total animation steps
     const stepDuration = duration / steps;
-
     let currentStep = 0;
 
     const interval = setInterval(() => {
       currentStep++;
 
+      // Stop animation after reaching target steps
       if (currentStep >= steps) {
         clearInterval(interval);
         setCounters(targetValues);
         return;
       }
 
+      // Calculate progress and update counter values
       const progress = currentStep / steps;
-
       setCounters({
         customers: Math.floor(progress * targetValues.customers),
         dishes: Math.floor(progress * targetValues.dishes),
@@ -71,9 +88,13 @@ function About() {
       });
     }, stepDuration);
   };
+
+  /**
+   * Scrolls the page smoothly down by 800px when "Look Our Story" is clicked
+   */
   const scrollToSection = () => {
     window.scrollBy({
-      top: 800, // Change this value to control how much you want to scroll
+      top: 800,
       left: 0,
       behavior: "smooth",
     });
@@ -81,7 +102,7 @@ function About() {
 
   return (
     <div className="about-page">
-      {/* Food Section */}
+      {/* Food Intro Section */}
       <section className="food-section">
         <div className="food-content slide-in">
           <h2>
@@ -94,7 +115,7 @@ function About() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - Our Story */}
       <section className="about-container fade-in">
         <div className="about-content" id="target-section">
           <div className="about-text">
@@ -102,33 +123,29 @@ function About() {
             <h3 className="about-title">Who we are</h3>
             <p className="about-description">
               Welcome to our Thendral Mess! We are a passionate team dedicated
-              to serving you the best traditional and modern Indian dishes,
-              prepared with love and the finest ingredients. Our chefs blend
-              authentic spices with fresh produce to create a mouthwatering
-              experience.
+              to serving you the best traditional and modern Indian dishes...
             </p>
+
+            {/* Passion and Journey Cards */}
             <div className="about-cards">
               <div className="about-card">
                 <h4>Our Passion</h4>
                 <p>
                   Our passion lies in bringing the rich flavors of India to your
-                  table. From the streets of Delhi to the kitchens of Kerala, we
-                  showcase the diverse culinary traditions of India, all while
-                  maintaining the authenticity and soul of each dish
+                  table...
                 </p>
               </div>
               <div className="about-card">
                 <h4>Our Journey</h4>
                 <p>
                   Our journey began with a dream to share the authentic tastes
-                  of India. Over the years, we’ve expanded our menu, refined our
-                  techniques, and built relationships with local farmers and
-                  spice merchants, ensuring that every bite is as fresh and
-                  vibrant as the Indian culture itself.
+                  of India...
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Chef Image */}
           <div className="about-image">
             <img
               src="../assets/img/chef-animation.gif"
@@ -138,6 +155,7 @@ function About() {
         </div>
       </section>
 
+      {/* Mission & Vision Section */}
       <section className="mission-container fade-in">
         <div className="mission-content">
           <div className="mission-text">
@@ -148,16 +166,14 @@ function About() {
                 <h4>Our Mission</h4>
                 <p>
                   To deliver exceptional culinary experiences that bring people
-                  together, creating memorable moments through our passion for
-                  food and hospitality.
+                  together...
                 </p>
               </div>
               <div className="mission-card">
                 <h4>Our Vision</h4>
                 <p>
                   To be the most beloved restaurant brand, known for our
-                  innovative cuisine, sustainable practices, and commitment to
-                  community.
+                  innovative cuisine...
                 </p>
               </div>
             </div>
@@ -165,14 +181,13 @@ function About() {
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
-
       {/* Team Section */}
       <section className="team-container fade-in">
         <div className="team-content">
           <p className="team-subtitle">Meet Our Team</p>
           <h3 className="team-title">The People Behind Our Success</h3>
           <div className="team-members">
+            {/* Team Member 1 */}
             <div
               className="team-member fade-in"
               style={{ animationDelay: "0.2s" }}
@@ -184,6 +199,7 @@ function About() {
               <p>Executive Chef</p>
             </div>
 
+            {/* Team Member 2 */}
             <div
               className="team-member fade-in"
               style={{ animationDelay: "0.4s" }}
@@ -195,6 +211,7 @@ function About() {
               <p>Sous Chef</p>
             </div>
 
+            {/* Team Member 3 */}
             <div
               className="team-member fade-in"
               style={{ animationDelay: "0.6s" }}
@@ -206,17 +223,19 @@ function About() {
               <p>Dessert Chef</p>
             </div>
 
+            {/* Team Member 4 */}
             <div
               className="team-member fade-in"
               style={{ animationDelay: "0.8s" }}
             >
               <div className="member-image">
-                  <img src="../assets/img/team-4.png" alt="Team Member 4" />
+                <img src="../assets/img/team-4.png" alt="Team Member 4" />
               </div>
               <h4>Abenesh Ramesh</h4>
               <p>Restaurant Manager</p>
             </div>
 
+            {/* Team Member 5 */}
             <div
               className="team-member fade-in"
               style={{ animationDelay: "1s" }}
@@ -231,12 +250,13 @@ function About() {
         </div>
       </section>
 
-      {/* Fun Facts Section */}
+      {/* Fun Facts Section - Animated Counters */}
       <section className="fun-facts-container fade-in">
         <div className="fun-facts-content">
           <p className="fun-facts-subtitle">Our Achievements</p>
           <h3 className="fun-facts-title">Fun Facts</h3>
           <div className="fun-facts-cards">
+            {/* Fun Fact: Customers */}
             <div className="fun-fact-card">
               <div className="fun-fact-icon">
                 <img src="../assets/img/svg/lotus.svg" alt="Customers Icon" />
@@ -244,6 +264,8 @@ function About() {
               <div className="fun-fact-counter">{counters.customers}+</div>
               <p className="fun-fact-label">Happy Customers</p>
             </div>
+
+            {/* Fun Fact: Dishes */}
             <div className="fun-fact-card">
               <div className="fun-fact-icon">
                 <img src="../assets/img/svg/kolam.svg" alt="Dishes Icon" />
@@ -251,6 +273,8 @@ function About() {
               <div className="fun-fact-counter">{counters.dishes}+</div>
               <p className="fun-fact-label">Signature Dishes</p>
             </div>
+
+            {/* Fun Fact: Awards */}
             <div className="fun-fact-card">
               <div className="fun-fact-icon">
                 <img src="../assets/img/svg/border-img.svg" alt="Awards Icon" />

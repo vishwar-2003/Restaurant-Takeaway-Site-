@@ -1,13 +1,16 @@
-import React from 'react';
-import './styles/Footer.css';
-import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter } from 'react-icons/fa';
+import React from "react";
+import "./styles/Footer.css";
+import { FaFacebookF, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 
+/**
+ * Footer Component
+ * Displays the footer with contact info, delivery partners, links, and social icons.
+ */
 const Footer = () => {
   return (
     <footer className="modern-footer">
       <div className="footer-container">
-        {" "}
-        {/* ✅ Opening wrapper */}
+        {/* Logo with background line */}
         <div className="footer-logo-wrapper">
           <img
             src="../assets/img/images/Thendral_Mess.jpg"
@@ -16,16 +19,20 @@ const Footer = () => {
           />
           <hr className="footer-line-behind-logo" />
         </div>
+
+        {/* Footer Content Columns */}
         <div className="footer-columns">
+          {/* Address Section */}
           <div className="footer-col">
             <h4>Address</h4>
             <p>
               Callan Building, Maynooth University,
               <br />
-              Maynooth, Co. kildare
+              Maynooth, Co. Kildare
             </p>
           </div>
 
+          {/* Booking Info */}
           <div className="footer-col">
             <h4>Book a table</h4>
             <p>
@@ -41,6 +48,7 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Opening Hours */}
           <div className="footer-col">
             <h4>Opening hours</h4>
             <p>
@@ -50,6 +58,7 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Delivery Partners */}
           <div className="footer-col">
             <h4>Our Delivery Partners</h4>
             <div className="delivery-logos">
@@ -58,23 +67,26 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Divider Line */}
         <hr className="footer-line" />
+
+        {/* Bottom Footer: links, copyright, socials */}
         <div className="footer-bottom">
+          {/* Footer Navigation Links */}
           <div className="footer-links">
             <a href="about">About</a>
             <a href="menu">Menu</a>
             <a href="contact">Contact</a>
           </div>
 
+          {/* Copyright */}
           <p className="copyright">
             © 2025. Thendral Mess. All rights reserved
           </p>
 
+          {/* Social Media Icons */}
           <div className="footer-social-icons">
-            {/* <a href="/facebook" className="facebook"><FaFacebookF /></a>
-  <a href="/instagram" className="instagram"><FaInstagram /></a>
-  <a href="/youtube" className="youtube"><FaYoutube /></a>
-  <a href="/twitter" className="twitter"><FaTwitter /></a> */}
             <a
               href="https://www.instagram.com/maynoothuni/?hl=en"
               target="_blank"
@@ -110,7 +122,7 @@ const Footer = () => {
           </div>
         </div>
       </div>{" "}
-      {/* ✅ Proper closing of .footer-container */}
+      {/* ✅ End of footer-container */}
     </footer>
   );
 };

@@ -5,24 +5,36 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
+/**
+ * SignInForm Component
+ * Handles user login and registration functionality.
+ *
+ * Props:
+ * - setToken: Function to set the auth token in parent/global state
+ * - setName: Function to set the user name in parent/global state
+ */
 const SignInForm = ({ setToken, setName }) => {
-  const [formType, setFormType] = useState("login");
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [showPassword, setShowPassword] = useState(false);
+  const [formType, setFormType] = useState("login"); // "login" or "register"
+  const [form, setForm] = useState({ name: "", email: "", password: "" }); // form inputs
+  const [showPassword, setShowPassword] = useState(false); // password visibility toggle
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Get redirect query param (e.g. /signin?redirect=/reviews)
+  // Get redirect target from query param, default to /home
   const redirectTo =
     new URLSearchParams(location.search).get("redirect") || "/home";
 
+  // Update form state
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const validatePassword = (pw) => /^(?=.[A-Z])(?=.\d).{6,}$/.test(pw);
+  // Password validation
+  const validatePassword = (pw) => /^(?=.*[A-Z])(?=.*\d).{6,}$/.test(pw);
   const isPasswordStrong = () => validatePassword(form.password);
 
+  // Password strength visuals
   const getStrengthClass = () => {
     if (form.password.length >= 8) return "bg-success";
     if (form.password.length >= 5) return "bg-warning";
@@ -35,6 +47,7 @@ const SignInForm = ({ setToken, setName }) => {
     return "😐";
   };
 
+  // Handle login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -43,28 +56,24 @@ const SignInForm = ({ setToken, setName }) => {
         password: form.password,
       });
 
-      // Store the user data in local storage
+      // Save token and user info
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("name", res.data.name);
       localStorage.setItem("email", res.data.email);
       localStorage.setItem("customerId", res.data.customerId);
 
-      // Update state if necessary
       if (setToken) setToken(res.data.token);
       if (setName) setName(res.data.name);
 
       toast.success("Logged in successfully!");
-
-      // First, navigate to the correct page
-      navigate(redirectTo);
-
-      // Then force a page refresh
-      window.location.reload();
+      navigate(redirectTo); // Go to desired page
+      window.location.reload(); // Reload to refresh app state
     } catch {
       toast.error("Invalid email or password");
     }
   };
 
+  // Handle register form submission
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -91,17 +100,18 @@ const SignInForm = ({ setToken, setName }) => {
 
   return (
     <div className="signin-page-layout">
+      {/* Left side with heading and switch link */}
       <div className="signin-left">
         <h1 className="signin-heading">
           {formType === "login" ? (
             <>
-              Sign In to <br />
-              get your <span className="food-highlight">Food</span>
+              Sign In to <br /> get your{" "}
+              <span className="food-highlight">Food</span>
             </>
           ) : (
             <>
-              Register now <br />
-              & grab your <span className="food-highlight">Food!</span>
+              Register now <br /> & grab your{" "}
+              <span className="food-highlight">Food!</span>
             </>
           )}
         </h1>
@@ -135,12 +145,14 @@ const SignInForm = ({ setToken, setName }) => {
         </div>
       </div>
 
+      {/* Right side form card */}
       <motion.div
         className="signin-card-modern"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
       >
+        {/* Tabs for switching between login and register */}
         <motion.div
           className="signin-tab"
           initial={{ opacity: 0 }}
@@ -165,6 +177,7 @@ const SignInForm = ({ setToken, setName }) => {
           </motion.button>
         </motion.div>
 
+        {/* Login Form */}
         {formType === "login" && (
           <motion.form
             onSubmit={handleLogin}
@@ -188,6 +201,7 @@ const SignInForm = ({ setToken, setName }) => {
                 className="signin-input"
               />
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -210,6 +224,7 @@ const SignInForm = ({ setToken, setName }) => {
                 {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </motion.div>
+
             <motion.button
               type="submit"
               className="register-link"
@@ -224,6 +239,7 @@ const SignInForm = ({ setToken, setName }) => {
           </motion.form>
         )}
 
+        {/* Registration Form */}
         {formType === "register" && (
           <motion.form
             onSubmit={handleRegister}
@@ -247,6 +263,7 @@ const SignInForm = ({ setToken, setName }) => {
                 className="signin-input"
               />
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -262,6 +279,7 @@ const SignInForm = ({ setToken, setName }) => {
                 className="signin-input"
               />
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -284,6 +302,7 @@ const SignInForm = ({ setToken, setName }) => {
                 {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </motion.div>
+
             <motion.button
               type="submit"
               className="register-link"
