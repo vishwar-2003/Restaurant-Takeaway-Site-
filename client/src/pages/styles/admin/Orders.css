@@ -1,265 +1,477 @@
+/* Main container for orders page */
 .orders-container {
   padding: 2rem;
+  /* Padding around the container */
   background-color: #f8f9fa;
+  /* Light background color */
   min-height: 100vh;
+  /* Ensure full height of container */
 }
 
+/* Header section for the orders page */
 .orders-header {
   display: flex;
+  /* Flexbox layout for header */
   justify-content: space-between;
+  /* Space between header elements */
   align-items: center;
+  /* Align items vertically */
   margin-bottom: 1.5rem;
+  /* Margin below the header */
   flex-wrap: wrap;
+  /* Allow wrapping on small screens */
   gap: 1rem;
+  /* Space between items */
 }
 
+/* Title style for the orders header */
 .orders-header h2 {
   color: #2c3e50;
+  /* Dark text color */
   font-size: 1.5rem;
+  /* Font size */
   font-weight: 600;
+  /* Bold text */
   margin: 0;
+  /* No margin */
 }
 
+/* Filters container to align filters */
 .orders-filters {
   display: flex;
+  /* Flexbox layout */
   gap: 1rem;
+  /* Space between filters */
   flex-wrap: wrap;
+  /* Allow wrapping on small screens */
 }
 
+/* Search input container styling */
 .search-container {
   position: relative;
+  /* For positioning the search icon */
   flex: 1;
+  /* Allow input to take available space */
   max-width: 300px;
+  /* Max width for search input */
 }
 
+/* Search input field style */
 .search-input {
   padding: 0.75rem 1rem 0.75rem 2.5rem;
+  /* Padding with extra space for icon */
   border: 1px solid #e9ecef;
+  /* Light border */
   border-radius: 0.5rem;
+  /* Rounded corners */
   width: 100%;
+  /* Full width */
   font-size: 0.9rem;
+  /* Font size */
   transition: all 0.2s ease;
+  /* Smooth transition on focus */
   background-color: #ffffff;
+  /* White background */
   color: #2c3e50;
+  /* Dark text color */
 }
 
+/* Focus effect for search input */
 .search-input:focus {
   outline: none;
+  /* Remove outline on focus */
   border-color: #4299e1;
+  /* Blue border on focus */
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  /* Light shadow on focus */
 }
 
+/* Status filter dropdown style */
 .status-select {
   padding: 0.75rem 1rem;
+  /* Padding inside the dropdown */
   border: 1px solid #e9ecef;
+  /* Border around dropdown */
   border-radius: 0.5rem;
+  /* Rounded corners */
   background-color: #ffffff;
+  /* White background */
   font-size: 0.9rem;
+  /* Font size */
   cursor: pointer;
+  /* Pointer cursor */
   transition: all 0.2s ease;
+  /* Smooth transition on focus */
   min-width: 150px;
+  /* Minimum width for dropdown */
   color: #2c3e50;
+  /* Dark text color */
 }
 
+/* Focus effect for the status filter dropdown */
 .status-select:focus {
   outline: none;
+  /* Remove outline on focus */
   border-color: #4299e1;
+  /* Blue border on focus */
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  /* Light shadow on focus */
 }
 
+/* Orders table container */
 .orders-table-container {
   background-color: #ffffff;
+  /* White background */
   border-radius: 0.75rem;
+  /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Light shadow around the table */
   overflow: hidden;
+  /* Hide overflow */
   border: 1px solid #e9ecef;
+  /* Light border */
 }
 
+/* Styling for the orders table */
 .orders-table {
   width: 100%;
+  /* Full width */
   border-collapse: collapse;
+  /* Collapse borders between cells */
   text-align: left;
+  /* Left-aligned text */
 }
 
+/* Table header style */
 .orders-table th {
   background-color: #f8f9fa;
+  /* Light background for header */
   color: #2c3e50;
+  /* Dark text color */
   font-weight: 600;
+  /* Bold header text */
   padding: 1rem;
+  /* Padding inside header cells */
   font-size: 0.9rem;
+  /* Font size */
   border-bottom: 2px solid #e9ecef;
+  /* Border below header */
 }
 
+/* Table cell style */
 .orders-table td {
   padding: 1rem;
+  /* Padding inside cells */
   border-bottom: 1px solid #e9ecef;
+  /* Border below each row */
   color: #4a5568;
+  /* Dark gray text */
 }
 
+/* Hover effect for rows in the table */
 .order-row:hover {
   background-color: #f8f9fa;
+  /* Light background on hover */
 }
 
+/* Status badge for different order states */
 .status-badge {
   display: inline-block;
+  /* Inline block for badge */
   padding: 0.25rem 0.75rem;
+  /* Padding inside badge */
   border-radius: 1rem;
+  /* Round edges */
   font-size: 0.8rem;
+  /* Smaller font size */
   font-weight: 500;
+  /* Medium font weight */
 }
 
+/* Different status badges */
 .status-badge.completed {
   background-color: #e6ffed;
+  /* Green background for completed */
   color: #28a745;
+  /* Green text */
 }
 
 .status-badge.pending {
   background-color: #fff8e6;
+  /* Yellow background for pending */
   color: #ffc107;
+  /* Yellow text */
 }
 
 .status-badge.preparing {
   background-color: #ebf8ff;
+  /* Blue background for preparing */
   color: #4299e1;
+  /* Blue text */
 }
 
 .status-badge.ready {
   background-color: #e6fffb;
+  /* Green background for ready */
   color: #0ca678;
+  /* Dark green text */
 }
 
 .status-badge.cancelled {
   background-color: #fff5f5;
+  /* Red background for cancelled */
   color: #dc3545;
+  /* Red text */
 }
 
+/* Action button for table actions (view, edit, delete) */
 .action-button {
   padding: 0.5rem 0.75rem;
+  /* Padding inside button */
   border: none;
+  /* No border */
   border-radius: 0.5rem;
+  /* Rounded corners */
   cursor: pointer;
+  /* Pointer cursor */
   font-size: 0.85rem;
+  /* Font size */
   transition: all 0.2s ease;
+  /* Smooth transition */
   display: inline-flex;
+  /* Inline flex for button contents */
   align-items: center;
+  /* Center content vertically */
   justify-content: center;
+  /* Center content horizontally */
   gap: 0.5rem;
+  /* Space between icon and text */
   font-weight: 500;
+  /* Medium font weight */
 }
 
+/* Button style for "view" actions */
 .action-button.view {
   background-color: #ebf8ff;
+  /* Light blue background */
   color: #4299e1;
+  /* Blue text */
 }
 
+/* Hover effect for view button */
 .action-button.view:hover {
   background-color: #bee3f8;
+  /* Darker blue on hover */
 }
 
+/* Button style for "edit" actions */
 .action-button.edit {
   background-color: #fff8e6;
+  /* Light yellow background */
   color: #ed8936;
+  /* Orange text */
 }
 
+/* Hover effect for edit button */
 .action-button.edit:hover {
   background-color: #feebc8;
+  /* Darker yellow on hover */
 }
 
+/* Button style for "delete" actions */
 .action-button.delete {
   background-color: #fff5f5;
+  /* Light red background */
   color: #dc3545;
+  /* Red text */
 }
 
+/* Hover effect for delete button */
 .action-button.delete:hover {
   background-color: #fed7d7;
+  /* Darker red on hover */
 }
 
+/* No results message */
 .no-results {
   text-align: center;
+  /* Center the text */
   padding: 2rem;
+  /* Padding around message */
   background-color: #ffffff;
+  /* White background */
   border-radius: 0.75rem;
+  /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Light shadow */
   color: #6c757d;
+  /* Light gray text */
   border: 1px solid #e9ecef;
+  /* Light border */
 }
 
+/* Modal overlay styling */
 .modal {
   position: fixed;
+  /* Fixed position for overlay */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
   z-index: 1000;
+  /* Ensure modal is on top */
   display: flex;
+  /* Flexbox for centering content */
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  /* Allow overflow in modal */
 }
 
+/* Modal content styling */
 .modal-content {
   position: relative;
+  /* Position the content */
   padding: 1.5rem;
+  /* Padding inside modal */
   background-color: #ffffff;
+  /* White background */
   border-radius: 0.75rem;
+  /* Rounded corners */
   max-width: 500px;
+  /* Max width */
   width: 90%;
+  /* Full width on smaller screens */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Shadow around modal */
+  max-height: 80vh;
+  /* Max height */
+  overflow-y: auto;
+  /* Allow scrolling if needed */
+  text-align: left;
+  /* Left align text */
+  margin: 0 auto;
+  /* Center modal content */
 }
 
+/* Modal title styling */
 .modal-content h3 {
   margin-top: 0;
+  /* Remove top margin */
   color: #2c3e50;
+  /* Dark text color */
   font-size: 1.25rem;
+  /* Larger font size for title */
   font-weight: 600;
+  /* Bold font weight */
 }
 
+/* Modal paragraph and label styling */
 .modal-content p {
   margin-bottom: 1rem;
+  /* Bottom margin for paragraphs */
   color: #4a5568;
+  /* Gray text */
 }
 
 .modal-content label {
   display: block;
+  /* Block-level label */
   margin-bottom: 0.5rem;
+  /* Margin below label */
   font-weight: 500;
+  /* Medium font weight */
   color: #2c3e50;
+  /* Dark text color */
 }
 
-.modal-content .status-select {
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
+/* Modal button styling */
 .modal-content .action-button {
   margin-right: 0.75rem;
+  /* Space between buttons */
 }
 
+/* Additional button margin styling */
+.modal-content button {
+  margin-top: 10px;
+  /* Margin on top of button */
+}
+
+/* Cancel button in the modal */
+.modal-content .cancel-button {
+  margin-top: 10px;
+  /* Margin on top of cancel button */
+  background-color: #e0e0e0;
+  /* Light gray background */
+}
+
+/* Space between modal action buttons */
+.modal-content .action-button.view {
+  margin-bottom: 10px;
+  /* Adjust space below the view button */
+}
+
+.modal-content .action-button:last-child {
+  margin-right: 0;
+  /* No right margin for last button */
+}
+
+/* Button styling for all buttons */
+button {
+  padding: 0.5rem 1rem;
+  /* Padding inside buttons */
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor */
+  font-size: 0.85rem;
+  /* Button font size */
+  display: inline-flex;
+  /* Flexbox for content alignment */
+  align-items: center;
+  /* Center content vertically */
+  justify-content: center;
+  /* Center content horizontally */
+  gap: 0.5rem;
+  /* Space between button contents */
+  font-weight: 500;
+  /* Medium font weight */
+}
+
+/* Action button styles */
+.action-button.view {
+  background-color: #ebf8ff;
+  /* Light blue background */
+  color: #4299e1;
+  /* Blue text */
+}
+
+.action-button.view:hover {
+  background-color: #bee3f8;
+  /* Darker blue on hover */
+}
+
+/* Cancel button styles */
+.action-button.cancel-button {
+  background-color: #e0e0e0;
+  /* Gray background */
+  color: #4a5568;
+  /* Gray text */
+}
+
+/* Media queries for responsive design */
 @media (max-width: 768px) {
-  .orders-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .orders-filters {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .search-container,
-  .status-select {
-    width: 100%;
-    max-width: none;
+  .modal-content {
+    width: 95%;
+    /* Full width for modal */
   }
 }
 
 @media (max-width: 576px) {
-  .orders-container {
-    padding: 1rem;
-  }
-  
-  .action-button {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.8rem;
+  .modal-content {
+    width: 100%;
+    /* Full width on small screens */
   }
 }

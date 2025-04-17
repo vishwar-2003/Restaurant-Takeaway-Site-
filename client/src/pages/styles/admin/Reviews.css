@@ -1,219 +1,359 @@
+/* Main container for the reviews page */
 .reviews-container {
   padding: 2rem;
+  /* Padding around the container */
   background-color: #f8f9fa;
+  /* Light background color */
   min-height: 100vh;
+  /* Ensure full height of container */
 }
 
+/* Header section for the reviews page */
 .reviews-header {
   display: flex;
+  /* Flexbox layout for header */
   justify-content: space-between;
+  /* Space between header items */
   align-items: center;
+  /* Align items vertically */
   margin-bottom: 1.5rem;
+  /* Margin below header */
   flex-wrap: wrap;
+  /* Allow wrapping for smaller screens */
   gap: 1rem;
+  /* Space between items */
 }
 
+/* Title styling for the reviews header */
 .reviews-header h2 {
   color: #2c3e50;
+  /* Dark text color */
   font-size: 1.5rem;
+  /* Font size */
   font-weight: 600;
+  /* Bold text */
   margin: 0;
+  /* No margin */
 }
 
+/* Sort and filter section */
 .reviews-sort {
   display: flex;
+  /* Flexbox layout for sort options */
   align-items: center;
+  /* Align items vertically */
   gap: 0.75rem;
+  /* Space between elements */
 }
 
+/* Dropdown for sorting reviews */
 .sort-select {
   padding: 0.75rem 1rem;
+  /* Padding inside dropdown */
   border: 1px solid #e9ecef;
+  /* Light border */
   border-radius: 0.5rem;
+  /* Rounded corners */
   background-color: #ffffff;
+  /* White background */
   font-size: 0.9rem;
+  /* Font size */
   cursor: pointer;
+  /* Pointer cursor */
   transition: all 0.2s ease;
+  /* Smooth transition on focus */
   min-width: 150px;
+  /* Minimum width */
   color: #2c3e50;
+  /* Dark text color */
 }
 
+/* Focus effect for the sort dropdown */
 .sort-select:focus {
   outline: none;
+  /* Remove outline */
   border-color: #4299e1;
+  /* Blue border on focus */
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  /* Light shadow on focus */
 }
 
+/* Button for changing sort order */
 .sort-order-button {
   padding: 0.75rem;
+  /* Padding inside button */
   background-color: #ffffff;
+  /* White background */
   border: 1px solid #e9ecef;
+  /* Light border */
   border-radius: 0.5rem;
+  /* Rounded corners */
   cursor: pointer;
+  /* Pointer cursor */
   transition: all 0.2s ease;
+  /* Smooth transition on hover */
   display: flex;
+  /* Flexbox for centering content */
   align-items: center;
+  /* Align items in center */
   justify-content: center;
+  /* Center items horizontally */
   font-size: 1rem;
+  /* Font size */
   color: #2c3e50;
+  /* Dark text color */
 }
 
+/* Hover effect for the sort order button */
 .sort-order-button:hover {
   background-color: #f8f9fa;
+  /* Light background on hover */
   border-color: #4299e1;
+  /* Blue border on hover */
 }
 
+/* Grid layout for the review cards */
 .reviews-grid {
   display: grid;
+  /* Grid layout */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Responsive grid */
   gap: 1rem;
+  /* Space between grid items */
 }
 
+/* Style for each review card */
 .review-card {
   background-color: #ffffff;
+  /* White background */
   border-radius: 0.75rem;
+  /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Light shadow around card */
   padding: 1.25rem;
+  /* Padding inside card */
   transition: transform 0.2s ease;
+  /* Smooth transition for hover effect */
   border: 1px solid #e9ecef;
+  /* Light border around the card */
 }
 
+/* Hover effect for review card */
 .review-card:hover {
   transform: translateY(-2px);
+  /* Move the card up */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Darker shadow on hover */
 }
 
+/* Header section for each review */
 .review-header {
   display: flex;
+  /* Flexbox for reviewer name and rating */
   justify-content: space-between;
+  /* Space between reviewer name and rating */
   align-items: center;
+  /* Align items vertically */
   margin-bottom: 1rem;
+  /* Margin below header */
 }
 
+/* Reviewer name styling */
 .reviewer-name {
   color: #2c3e50;
+  /* Dark text color */
   font-size: 1rem;
+  /* Font size */
   font-weight: 600;
+  /* Bold text */
   margin: 0;
+  /* No margin */
 }
 
+/* Rating stars layout */
 .review-rating {
   display: flex;
+  /* Flexbox layout for stars */
   gap: 0.25rem;
+  /* Space between stars */
 }
 
+/* Individual star style */
 .star {
   font-size: 1rem;
+  /* Font size for stars */
   line-height: 1;
+  /* Align stars vertically */
 }
 
+/* Filled star style */
 .star.filled {
   color: #ffc107;
+  /* Yellow color for filled stars */
 }
 
+/* Empty star style */
 .star.empty {
   color: #e9ecef;
+  /* Light gray color for empty stars */
 }
 
+/* Review comment style */
 .review-comment {
   color: #4a5568;
+  /* Gray text color */
   font-size: 0.9rem;
+  /* Font size */
   line-height: 1.5;
+  /* Line height */
   margin: 0 0 1rem 0;
+  /* Margin below the comment */
 }
 
+/* Footer section for each review */
 .review-footer {
   display: flex;
+  /* Flexbox layout */
   justify-content: space-between;
+  /* Space between date and actions */
   align-items: center;
+  /* Align items vertically */
 }
 
+/* Review date style */
 .review-date {
   color: #6c757d;
+  /* Light gray text color */
   font-size: 0.8rem;
+  /* Font size */
 }
 
+/* Review actions (Reply, Delete buttons) */
 .review-actions {
   display: flex;
+  /* Flexbox layout */
   gap: 0.5rem;
+  /* Space between action buttons */
 }
 
+/* Action button style */
 .action-button {
   padding: 0.5rem 0.75rem;
+  /* Padding inside button */
   border: none;
+  /* No border */
   border-radius: 0.5rem;
+  /* Rounded corners */
   cursor: pointer;
+  /* Pointer cursor */
   font-size: 0.85rem;
+  /* Font size */
   transition: all 0.2s ease;
+  /* Smooth transition on hover */
   display: inline-flex;
+  /* Flexbox layout for button content */
   align-items: center;
+  /* Center button content vertically */
   justify-content: center;
+  /* Center button content horizontally */
   gap: 0.5rem;
+  /* Space between icon and text */
   font-weight: 500;
+  /* Medium font weight */
 }
 
+/* Reply button style */
 .action-button.reply {
   background-color: #ebf8ff;
+  /* Light blue background */
   color: #4299e1;
+  /* Blue text */
 }
 
+/* Hover effect for reply button */
 .action-button.reply:hover {
   background-color: #bee3f8;
+  /* Darker blue on hover */
 }
 
+/* Delete button style */
 .action-button.delete {
   background-color: #fff5f5;
+  /* Light red background */
   color: #dc3545;
+  /* Red text */
 }
 
+/* Hover effect for delete button */
 .action-button.delete:hover {
   background-color: #fed7d7;
+  /* Darker red on hover */
 }
 
+/* Mobile Styles for responsiveness */
 @media (max-width: 768px) {
   .reviews-container {
     padding: 1rem;
+    /* Less padding on mobile */
   }
-  
+
   .reviews-header {
     flex-direction: column;
+    /* Stack header items vertically */
     align-items: flex-start;
+    /* Align items to the left */
   }
-  
+
   .reviews-sort {
     width: 100%;
+    /* Full width for sort section */
     flex-wrap: wrap;
+    /* Allow wrapping */
   }
-  
+
   .sort-select {
     flex: 1;
+    /* Allow select to fill space */
     min-width: 0;
+    /* Remove min-width */
   }
-  
+
   .reviews-grid {
     grid-template-columns: 1fr;
+    /* Single column grid on mobile */
   }
 }
 
 @media (max-width: 576px) {
+
+  /* Smaller adjustments for very small screens */
   .review-card {
     padding: 1rem;
+    /* Less padding for cards */
   }
-  
+
   .review-header {
     flex-direction: column;
+    /* Stack reviewer name and rating */
     align-items: flex-start;
+    /* Align to the left */
     gap: 0.5rem;
+    /* Space between name and rating */
   }
-  
+
   .review-footer {
     flex-direction: column;
+    /* Stack date and actions */
     align-items: flex-start;
+    /* Align to the left */
     gap: 0.75rem;
+    /* Space between footer items */
   }
-  
+
   .action-button {
     width: 100%;
+    /* Full width for buttons */
     justify-content: center;
+    /* Center content in buttons */
   }
-} 
+}

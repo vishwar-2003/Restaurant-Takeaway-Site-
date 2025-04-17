@@ -8,7 +8,7 @@ import '../styles/admin/AdminDeliveryWindow.css';
  * Displays a list of current delivery windows in a table.
  */
 const AdminDeliveryWindows = () => {
-  // State to hold list of delivery windows from the backend
+  // State to store delivery window data, form data, and current edit ID
   const [windows, setWindows] = useState([]);
 
   // State to manage form inputs
@@ -18,47 +18,54 @@ const AdminDeliveryWindows = () => {
     timeTo: '',
     allocatedSlots: ''
   });
+  const [editId, setEditId] = useState(null);  // Keeps track of the ID of the window being edited
 
-  // Holds the ID of the delivery window being edited (null means add mode)
-  const [editId, setEditId] = useState(null);
-
-  // Fetch delivery windows on component mount
+  // Fetch delivery windows from the backend when the component mounts
   useEffect(() => {
-    fetchWindows();
+    fetchWindows();  // Call to fetch existing delivery windows from the API
   }, []);
 
-  // Fetch all delivery windows from the backend
+  // Function to fetch delivery windows from the server
   const fetchWindows = async () => {
-    const res = await axios.get('http://localhost:5000/api/admin/delivery/windows');
-    setWindows(res.data); // Set the fetched data into state
+    try {
+      const res = await axios.get('http://localhost:5000/api/admin/delivery/windows');
+      setWindows(res.data);  // Update state with fetched windows
+    } catch (err) {
+      console.error('Error fetching delivery windows:', err);
+    }
   };
 
-  // Handle input field changes
+  // Handle changes in form fields
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value  // Update specific field in the formData state
     }));
   };
 
-  // Submit form for creating or updating a delivery window
+  // Handle form submission for adding or updating a delivery window
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (editId) {
-      // Update existing window
-      await axios.put(`http://localhost:5000/api/admin/delivery/windows/${editId}`, formData);
-    } else {
-      // Create new window
-      await axios.post('http://localhost:5000/api/admin/delivery/windows', formData);
-    }
+    e.preventDefault();  // Prevent default form submission behavior
+    try {
+      if (editId) {
+        // If an ID is set, update the existing window
+        await axios.put(`http://localhost:5000/api/admin/delivery/windows/${editId}`, formData);
+      } else {
+        // Otherwise, create a new delivery window
+        await axios.post('http://localhost:5000/api/admin/delivery/windows', formData);
+      }
 
-    // Reset form and reload windows
-    setFormData({ date: '', timeFrom: '', timeTo: '', allocatedSlots: '' });
-    setEditId(null);
-    fetchWindows();
+      // Reset form data after submit
+      setFormData({ date: '', timeFrom: '', timeTo: '', allocatedSlots: '' });
+      setEditId(null);  // Clear edit ID
+      fetchWindows();  // Fetch updated list of windows
+    } catch (err) {
+      console.error('Error submitting delivery window:', err);
+    }
   };
 
-  // Load a delivery window into the form for editing
+  // Handle edit button click to pre-fill form data with the selected window's details
   const handleEdit = (window) => {
     setFormData({
       date: window.date,
@@ -66,14 +73,18 @@ const AdminDeliveryWindows = () => {
       timeTo: window.timeTo,
       allocatedSlots: window.allocatedSlots
     });
-    setEditId(window._id); // Set edit mode
+    setEditId(window._id);  // Set the ID of the window to be edited
   };
 
-  // Delete a delivery window by ID
+  // Handle delete button click for a specific delivery window
   const handleDelete = async (id) => {
     if (window.confirm('Delete this delivery window?')) {
-      await axios.delete(`http://localhost:5000/api/admin/delivery/windows/${id}`);
-      fetchWindows(); // Refresh list
+      try {
+        await axios.delete(`http://localhost:5000/api/admin/delivery/windows/${id}`);
+        fetchWindows();  // Refresh the list after deletion
+      } catch (err) {
+        console.error('Error deleting delivery window:', err);
+      }
     }
   };
 
@@ -81,11 +92,27 @@ const AdminDeliveryWindows = () => {
     <div className="admin-delivery-window">
       <h2>Manage Delivery Windows</h2>
 
-      {/* Form for adding/updating delivery window */}
+      {/* Form for adding or updating a delivery window */}
       <form onSubmit={handleSubmit} className="window-form">
-        <input name="date" type="date" value={formData.date} onChange={handleChange} required />
-        <input type="time" name="timeFrom" value={formData.timeFrom} onChange={handleChange} />
-        <input type="time" name="timeTo" value={formData.timeTo} onChange={handleChange} />
+        <input
+          name="date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="time"
+          name="timeFrom"
+          value={formData.timeFrom}
+          onChange={handleChange}
+        />
+        <input
+          type="time"
+          name="timeTo"
+          value={formData.timeTo}
+          onChange={handleChange}
+        />
         <input
           name="allocatedSlots"
           type="number"
@@ -94,10 +121,12 @@ const AdminDeliveryWindows = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">{editId ? 'Update' : 'Add'} Window</button>
+        <button type="submit">
+          {editId ? 'Update' : 'Add'} Window
+        </button>
       </form>
 
-      {/* Table showing all delivery windows */}
+      {/* Table displaying the delivery windows */}
       <table className="window-table">
         <thead>
           <tr>
@@ -110,7 +139,7 @@ const AdminDeliveryWindows = () => {
           </tr>
         </thead>
         <tbody>
-          {windows.map(win => (
+          {windows.map((win) => (
             <tr key={win._id}>
               <td>{win.date}</td>
               <td>{win.timeFrom}</td>

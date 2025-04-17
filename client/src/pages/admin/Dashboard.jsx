@@ -1,65 +1,80 @@
-// TODO: This file needs to be converted to JSX
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/admin/Dashboard.css";
 import Orders from "./Orders.jsx";
 import Customers from "./Customers.jsx";
 import Reviews from "./Reviews.jsx";
-import Menu from "./Menu.jsx"; 
+import Menu from "./Menu.jsx";
 import DeliveryWindow from "./AdminDeliveryWindow.jsx";
 import OrderSummaryChart from '../../components/OrderSummaryChart';
 
+/**
+ * Dashboard component displays various statistics and tabs for the admin panel.
+ * It fetches data like total orders, total revenue, and other statistics on page load.
+ */
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("dashboard");
-  const [totalCustomers, setTotalCustomers] = useState(0);
-  const [totalOrders, setTotalOrders] = useState(0);
-  const [totalRevenue, setTotalRevenue] = useState(0);
-  const [averageOrderValue, setAverageOrderValue] = useState(0);
+  const navigate = useNavigate(); // Navigate for routing
+  const [activeTab, setActiveTab] = useState("dashboard"); // Active tab to display
+  const [totalCustomers, setTotalCustomers] = useState(0); // State for total customers count
+  const [totalOrders, setTotalOrders] = useState(0); // State for total orders count
+  const [totalRevenue, setTotalRevenue] = useState(0); // State for total revenue
+  const [averageOrderValue, setAverageOrderValue] = useState(0); // State for average order value
 
+  /**
+   * Fetch dashboard data including customer count and order statistics.
+   * This function is executed when the component is mounted.
+   */
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        // Fetch customer count
+        // Fetching customer count
         const customerRes = await fetch("http://localhost:5000/api/admin/customers/count");
         const customerData = await customerRes.json();
-        setTotalCustomers(customerData.totalCustomers);
+        setTotalCustomers(customerData.totalCustomers); // Set customer count
 
-        // Fetch order statistics
+        // Fetching order statistics (total orders, revenue, and average order value)
         const orderRes = await fetch("http://localhost:5000/api/admin/orders/stats");
         const orderData = await orderRes.json();
-        setTotalOrders(orderData.totalOrders || 0);
-        setTotalRevenue(orderData.totalRevenue || 0);
-        setAverageOrderValue(orderData.averageOrderValue || 0);
+        setTotalOrders(orderData.totalOrders || 0); // Set total orders
+        setTotalRevenue(orderData.totalRevenue || 0); // Set total revenue
+        setAverageOrderValue(orderData.averageOrderValue || 0); // Set average order value
       } catch (err) {
-        console.error("Failed to fetch dashboard data", err);
+        console.error("Failed to fetch dashboard data", err); // Log error if fetch fails
       }
     };
 
-    fetchDashboardData();
-  }, []);
+    fetchDashboardData(); // Call the fetch function
+  }, []); // Empty dependency array ensures the effect runs only once on mount
 
+  /**
+   * Handles the logout functionality by clearing the admin token from localStorage
+   * and redirecting to the login page.
+   */
   const handleLogout = () => {
     try {
-      // Clear all admin-related data from localStorage
+      // Clear admin-related data from localStorage
       localStorage.removeItem('adminToken');
-      
-      // Use navigate for programmatic navigation
+
+      // Use navigate to programmatically redirect the user to the login page
       navigate('/admin/login', { replace: true });
     } catch (error) {
-      console.error('Logout error:', error);
-      // Fallback redirect
+      console.error('Logout error:', error); // Log error in case of failure
+      // Fallback in case the navigate method fails
       window.location.href = '/admin/login';
     }
   };
 
+  /**
+   * Renders the content of the active tab.
+   * @returns The content of the active tab (dashboard, orders, customers, etc.)
+   */
   const renderTabContent = () => {
     switch (activeTab) {
       case "dashboard":
         return (
           <div className="dashboard-content">
             <div className="dashboard-stats-grid">
+              {/* Displaying the total orders, customers, revenue, and average order value */}
               <div className="dashboard-stat-card">
                 <h3>Total Orders</h3>
                 <p className="dashboard-stat-number">{totalOrders}</p>
@@ -80,17 +95,17 @@ const Dashboard = () => {
           </div>
         );
       case "orders":
-        return <Orders />;
+        return <Orders />; // Display Orders component
       case "customers":
-        return <Customers />;
+        return <Customers />; // Display Customers component
       case "reviews":
-        return <Reviews />;
+        return <Reviews />; // Display Reviews component
       case "menu":
-        return <Menu />;
+        return <Menu />; // Display Menu component
       case "deliveryWindow":
-        return <DeliveryWindow/>
+        return <DeliveryWindow />; // Display Delivery Window component
       default:
-        return null;
+        return null; // Return null if no valid tab is selected
     }
   };
 
@@ -101,12 +116,13 @@ const Dashboard = () => {
           <h2>Admin Panel</h2>
         </div>
         <nav className="dashboard-nav-menu">
+          {/* Dashboard navigation menu items */}
           <a
             href="#"
             className={`dashboard-nav-item ${activeTab === "dashboard" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("dashboard");
+              setActiveTab("dashboard"); // Switch to the "dashboard" tab
             }}
           >
             <i className="dashboard-icon">📊</i>
@@ -117,7 +133,7 @@ const Dashboard = () => {
             className={`dashboard-nav-item ${activeTab === "orders" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("orders");
+              setActiveTab("orders"); // Switch to the "orders" tab
             }}
           >
             <i className="dashboard-icon">🛍️</i>
@@ -128,7 +144,7 @@ const Dashboard = () => {
             className={`dashboard-nav-item ${activeTab === "customers" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("customers");
+              setActiveTab("customers"); // Switch to the "customers" tab
             }}
           >
             <i className="dashboard-icon">👥</i>
@@ -139,7 +155,7 @@ const Dashboard = () => {
             className={`dashboard-nav-item ${activeTab === "reviews" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("reviews");
+              setActiveTab("reviews"); // Switch to the "reviews" tab
             }}
           >
             <i className="dashboard-icon">💬</i>
@@ -150,7 +166,7 @@ const Dashboard = () => {
             className={`dashboard-nav-item ${activeTab === "menu" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("menu");
+              setActiveTab("menu"); // Switch to the "menu" tab
             }}
           >
             <i className="dashboard-icon">🍽️</i>
@@ -161,7 +177,7 @@ const Dashboard = () => {
             className={`dashboard-nav-item ${activeTab === "deliveryWindow" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
-              setActiveTab("deliveryWindow");
+              setActiveTab("deliveryWindow"); // Switch to the "deliveryWindow" tab
             }}
           >
             <i className="dashboard-icon">🚚</i>
@@ -172,7 +188,7 @@ const Dashboard = () => {
             className="dashboard-nav-item logout"
             onClick={(e) => {
               e.preventDefault();
-              handleLogout();
+              handleLogout(); // Call the logout function
             }}
           >
             <i className="dashboard-icon">🚪</i>
@@ -182,7 +198,7 @@ const Dashboard = () => {
       </div>
 
       <div className="dashboard-main-content">
-        {renderTabContent()}
+        {renderTabContent()} {/* Render the content based on the active tab */}
       </div>
     </div>
   );

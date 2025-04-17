@@ -1,230 +1,499 @@
+/* Main Dashboard Container */
 .dashboard {
   display: flex;
+  /* Flexbox for layout */
   min-height: 100vh;
+  /* Full height */
   background-color: #f8f9fa;
+  /* Light background color */
   font-family: 'Poppins', sans-serif;
+  /* Font family */
 }
 
 /* Sidebar Styling */
 .dashboard-sidebar {
   width: 200px;
+  /* Sidebar width */
   min-height: auto;
+  /* Auto height */
   background-color: #ffd700;
+  /* Yellow background */
   padding: 1rem;
+  /* Padding inside sidebar */
   position: fixed;
+  /* Fixed position */
   left: 1rem;
+  /* Left margin */
   top: 1rem;
+  /* Top margin */
   display: flex;
+  /* Flexbox for alignment */
   flex-direction: column;
+  /* Vertical stacking of items */
   box-sizing: border-box;
+  /* Include padding in width */
   border-radius: 8px;
+  /* Rounded corners */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* Box shadow for depth */
 }
 
+/* Sidebar Logo */
 .dashboard-logo {
   padding: 0.5rem;
+  /* Padding around logo */
   margin-bottom: 1rem;
+  /* Margin below logo */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Light bottom border */
 }
 
 .dashboard-logo h2 {
   color: #000;
+  /* Black text color */
   font-size: 1.1rem;
+  /* Font size */
   font-weight: 500;
+  /* Font weight */
   margin: 0;
+  /* Remove margin */
 }
 
+/* Navigation Menu */
 .dashboard-nav-menu {
   display: flex;
+  /* Flexbox for vertical navigation */
   margin: 0;
+  /* Remove margin */
   padding: 0;
+  /* Remove padding */
   flex-direction: column;
+  /* Stack items vertically */
   gap: 0.25rem;
+  /* Gap between items */
 }
 
+/* Navigation Item */
 .dashboard-nav-item {
   display: flex;
+  /* Flexbox for item content */
   align-items: center;
+  /* Center content vertically */
   gap: 0.75rem;
+  /* Space between icon and text */
   padding: 0.6rem 0.75rem;
+  /* Padding inside items */
   font-size: 0.9rem;
+  /* Font size */
   font-weight: 400;
+  /* Font weight */
   color: #000;
+  /* Text color */
   text-decoration: none;
+  /* No underline */
   border-radius: 6px;
+  /* Rounded corners */
   transition: all 0.2s ease;
+  /* Smooth transition on hover */
 }
 
-
-
+/* Hover effect for navigation item */
 .dashboard-nav-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  /* Light background on hover */
   color: #fff;
+  /* White text color */
 }
 
+/* Active navigation item */
 .dashboard-nav-item.active {
   background-color: #fff;
+  /* White background for active item */
   color: #000;
+  /* Black text for active item */
 }
 
+/* Icon styling for navigation items */
 .dashboard-icon {
   font-size: 1rem;
+  /* Font size for icons */
   width: 18px;
+  /* Icon width */
   text-align: center;
+  /* Center the icon */
 }
 
-/* Main content area */
+/* Main Content Area */
 .dashboard-main-content {
   flex: 1;
+  /* Take up remaining space */
   margin-left: 220px;
+  /* Space for sidebar */
   padding: 1rem;
+  /* Padding for content */
   background-color: #f8f9fa;
+  /* Light background color */
+  min-height: 100vh;
+  /* Full height */
 }
 
 /* Dashboard Overview Content */
 .dashboard-content {
   display: flex;
+  /* Flexbox layout for content */
   flex-direction: column;
+  /* Stack items vertically */
   gap: 1.5rem;
+  /* Gap between sections */
+  position: relative;
+  /* Relative positioning for overlay */
+  padding: 1rem;
+  /* Padding inside content */
+  background: rgba(255, 255, 255, 0.9);
+  /* Semi-transparent white */
+  backdrop-filter: blur(10px);
+  /* Blurred background effect */
+  border-radius: 20px;
+  /* Rounded corners */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* Box shadow for depth */
+  animation: fadeIn 0.5s ease-out;
+  /* Fade-in animation */
 }
 
+/* Fade-in animation for dashboard content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Start from below */
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    /* End at original position */
+  }
+}
+
+/* Dashboard Stats Grid */
 .dashboard-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.dashboard-stat-card {
-  background-color: #ffffff;
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  border: 1px solid #e9ecef;
+  /* Grid layout for stats */
+  grid-template-columns: repeat(2, 1fr);
+  /* Two-column layout */
+  gap: 2rem;
+  /* Gap between stats */
+  padding: 1.5rem;
+  /* Padding around stats */
+  width: 100%;
+  /* Full width */
   position: relative;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  /* Relative positioning */
 }
 
+/* Background for stats grid */
+.dashboard-stats-grid::before {
+  content: '';
+  /* Empty content for background */
+  position: absolute;
+  /* Absolute positioning */
+  top: 0;
+  /* Align to top */
+  left: 0;
+  /* Align to left */
+  right: 0;
+  /* Align to right */
+  bottom: 0;
+  /* Align to bottom */
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 183, 0, 0.05) 100%);
+  /* Gradient */
+  border-radius: 25px;
+  /* Rounded corners */
+  z-index: 0;
+  /* Layer behind content */
+}
+
+/* Individual Stat Card */
+.dashboard-stat-card {
+  background: rgba(255, 255, 255, 0.95);
+  /* Slightly transparent white background */
+  padding: 2rem;
+  /* Padding inside card */
+  border-radius: 16px;
+  /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* Light border */
+  position: relative;
+  /* Relative positioning */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Box shadow */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smooth hover transition */
+  width: 100%;
+  /* Full width */
+  height: 180px;
+  /* Fixed height */
+  display: flex;
+  /* Flexbox layout */
+  align-items: center;
+  /* Center content vertically */
+  gap: 2rem;
+  /* Gap between content */
+  overflow: hidden;
+  /* Hide overflow */
+  z-index: 1;
+  /* Ensure it is above the background */
+  backdrop-filter: blur(5px);
+  /* Blurred effect */
+}
+
+/* Hover effect for stat card */
 .dashboard-stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.02);
+  /* Move card up and scale */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  /* Deeper shadow */
+  border-color: rgba(255, 215, 0, 0.3);
+  /* Yellow border */
 }
 
+/* Stat Icon Style */
+.dashboard-stat-icon {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+  /* Gradient background */
+  width: 80px;
+  /* Icon width */
+  height: 80px;
+  /* Icon height */
+  border-radius: 20px;
+  /* Rounded corners */
+  display: flex;
+  /* Flexbox layout */
+  align-items: center;
+  /* Center icon */
+  justify-content: center;
+  /* Center content */
+  font-size: 2rem;
+  /* Icon font size */
+  color: #ffffff;
+  /* White icon color */
+  flex-shrink: 0;
+  /* Prevent shrinking */
+  transition: all 0.4s ease;
+  /* Smooth transition */
+  position: relative;
+  /* Relative positioning */
+  overflow: hidden;
+  /* Hide overflow */
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+  /* Shadow effect */
+}
+
+/* Hover effect for stat icon */
+.dashboard-stat-card:hover .dashboard-stat-icon {
+  transform: rotate(10deg) scale(1.1);
+  /* Rotate and scale */
+  background: linear-gradient(135deg, #ffed4a 0%, #ffd700 100%);
+  /* Change gradient */
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+  /* Stronger shadow */
+}
+
+/* Stat Content Area */
+.dashboard-stat-content {
+  flex-grow: 1;
+  /* Allow content to grow */
+  display: flex;
+  /* Flexbox layout */
+  justify-content: space-between;
+  /* Space between content */
+  align-items: center;
+  /* Align items vertically */
+  padding-right: 2rem;
+  /* Padding on the right */
+  position: relative;
+  /* Relative positioning */
+  z-index: 2;
+  /* Ensure it's above other elements */
+}
+
+/* Stat Information (Number, Change) */
+.dashboard-stat-info {
+  display: flex;
+  /* Flexbox layout */
+  flex-direction: column;
+  /* Stack items vertically */
+  gap: 0.8rem;
+  /* Space between items */
+}
+
+/* Stat Header */
 .dashboard-stat-card h3 {
-  color: #6c757d;
-  margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.dashboard-stat-number {
-  color: #2c3e50;
-  font-size: 1.75rem;
-  font-weight: 600;
+  color: #ffd700;
+  /* Yellow text */
   margin: 0;
+  /* No margin */
+  font-size: 1.2rem;
+  /* Font size */
+  font-weight: 600;
+  /* Bold text */
+  text-transform: uppercase;
+  /* Uppercase text */
+  letter-spacing: 0.5px;
+  /* Letter spacing */
+  position: relative;
+  /* Relative positioning */
+  transition: all 0.3s ease;
+  /* Smooth transition */
 }
 
+/* Stat Number */
+.dashboard-stat-number {
+  color: #1a1a1a;
+  /* Dark text color */
+  font-size: 2.5rem;
+  /* Font size */
+  font-weight: 700;
+  /* Bold text */
+  margin: 0;
+  /* No margin */
+  line-height: 1;
+  /* Single line height */
+  background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+  /* Gradient background */
+  -webkit-background-clip: text;
+  /* Clip background to text */
+  -webkit-text-fill-color: transparent;
+  /* Make text transparent */
+  transition: all 0.3s ease;
+  /* Smooth transition */
+}
+
+/* Hover effect for stat number */
+.dashboard-stat-card:hover .dashboard-stat-number {
+  transform: scale(1.05);
+  /* Slight scale on hover */
+  background: linear-gradient(135deg, #ffed4a 0%, #ffd700 100%);
+  /* Change gradient */
+  -webkit-background-clip: text;
+  /* Clip background to text */
+  -webkit-text-fill-color: transparent;
+  /* Transparent text color */
+}
+
+/* Stat Change (Increase/Decrease) */
 .dashboard-stat-change {
-  margin: 0.5rem 0 0 0;
-  font-size: 0.8rem;
-  color: #28a745;
+  display: flex;
+  /* Flexbox layout */
+  align-items: center;
+  /* Align items vertically */
+  gap: 0.5rem;
+  /* Space between items */
+  font-size: 1rem;
+  /* Font size */
+  font-weight: 500;
+  /* Medium font weight */
+  color: #ffd700;
+  /* Yellow color */
 }
 
+/* Negative stat change */
 .dashboard-stat-change.negative {
   color: #dc3545;
+  /* Red color for negative changes */
 }
 
 /* Order Summary Section */
 .order-summary-section {
   display: grid;
+  /* Grid layout for summary */
   grid-template-columns: repeat(3, 1fr);
+  /* Three-column grid */
   gap: 1rem;
+  /* Gap between items */
   margin-bottom: 1.5rem;
+  /* Margin below section */
 }
 
+/* Order Summary Chart Container */
 .order-summary-chart {
   background-color: #ffffff;
+  /* White background */
   padding: 1.5rem;
+  /* Padding inside chart */
   border-radius: 0.75rem;
+  /* Rounded corners */
   border: 1px solid #e9ecef;
+  /* Light border */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Light shadow */
 }
 
+/* Order Summary Chart Title */
 .order-summary-chart h3 {
   color: #2c3e50;
+  /* Dark text color */
   margin: 0 0 1.5rem 0;
+  /* Margin below title */
   font-size: 1rem;
+  /* Font size */
   font-weight: 600;
-}
-
-/* Chart colors */
-.chart-pending { background-color: #ffd700; }
-.chart-processing { background-color: #4299e1; }
-.chart-completed { background-color: #48bb78; }
-.chart-cancelled { background-color: #f56565; }
-.chart-delivery { background-color: #805ad5; }
-.chart-pickup { background-color: #ed8936; }
-
-/* Bottom Section */
-.dashboard-bottom-section {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem;
-}
-
-.sales-trend-section,
-.trending-items-section {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid #e9ecef;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.sales-trend-section h3,
-.trending-items-section h3 {
-  color: #2c3e50;
-  margin: 0 0 1.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
+  /* Bold text */
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .dashboard-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    /* Reduced gap for smaller screens */
   }
-  
+
+  .dashboard-stat-card {
+    height: 160px;
+    /* Adjust height for smaller screens */
+  }
+
   .order-summary-section {
     grid-template-columns: repeat(2, 1fr);
+    /* Two-column grid for smaller screens */
   }
-  
+
   .dashboard-bottom-section {
     grid-template-columns: 1fr;
+    /* Single column layout for smaller screens */
   }
 }
 
 @media (max-width: 992px) {
   .dashboard-sidebar {
     width: 200px;
+    /* Adjust sidebar width */
   }
-  
+
   .dashboard-main-content {
     margin-left: 200px;
+    /* Adjust main content margin */
   }
 }
 
 @media (max-width: 768px) {
   .dashboard-stats-grid {
     grid-template-columns: 1fr;
+    /* Single-column grid on small screens */
+    padding: 1rem;
+    gap: 1rem;
+    /* Adjust gap */
   }
-  
+
   .order-summary-section {
     grid-template-columns: 1fr;
+    /* Single column grid */
   }
 
   .dashboard-sidebar {
     width: 100%;
+    /* Full width sidebar */
     position: relative;
     left: 0;
     top: 0;
@@ -234,16 +503,45 @@
 
   .dashboard-main-content {
     margin-left: 0;
+    /* No left margin for small screens */
+  }
+
+  .dashboard-stat-card {
+    height: 120px;
+    /* Adjust height */
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .dashboard-stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+    border-radius: 15px;
+  }
+
+  .dashboard-stat-card h3 {
+    font-size: 1rem;
+  }
+
+  .dashboard-stat-number {
+    font-size: 2rem;
+  }
+
+  .dashboard-stat-change {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
   .dashboard {
     flex-direction: column;
+    /* Stack dashboard items on small screens */
   }
 
   .dashboard-sidebar {
     width: 100%;
+    /* Full width sidebar */
     height: auto;
     position: relative;
   }
@@ -251,15 +549,19 @@
   .dashboard-main-content {
     margin-left: 0;
     padding: 1rem;
+    /* Padding for content */
   }
 
   .dashboard-nav-menu {
     flex-direction: row;
+    /* Row layout for small screens */
     overflow-x: auto;
   }
+
+  .dashboard-stat-content {
+    flex-direction: column;
+    /* Stack stat content vertically */
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 }
-
-
-
-
-
