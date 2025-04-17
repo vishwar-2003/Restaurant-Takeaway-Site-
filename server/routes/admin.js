@@ -4,6 +4,7 @@ const Customer = require('../models/Customer');
 const Review = require('../models/Review');
 const MenuItem = require('../models/MenuItem'); // Import the MenuItem model
 const Order = require('../models/Order');
+const OrderItem = require('../models/OrderItem');
 
 // Route to get all customers
 router.get('/customers', async (req, res) => {
@@ -13,6 +14,36 @@ router.get('/customers', async (req, res) => {
     } catch (error) {
         console.error("Error fetching customers:", error);
         res.status(500).json({ error: "Failed to fetch customers" });
+    }
+});
+
+// Route to get customers with order count and total spent
+router.get('/customers-with-stats', async (req, res) => {
+    try {
+        const customers = await Customer.find(); // Fetch all customers
+
+        const customersWithStats = [];
+
+        // Loop through each customer to calculate their stats
+        for (let customer of customers) {
+            const orders = await Order.find({ customerId: customer._id }); // Fetch all orders for this customer
+            const orderCount = orders.length; // Get the count of orders for this customer
+
+            // Calculate total spent by summing up all orders' totalPrice
+            const totalSpent = orders.reduce((acc, order) => acc + order.totalPrice, 0);
+
+            // Add the customer with their stats
+            customersWithStats.push({
+                ...customer.toObject(),
+                orders: orderCount,
+                totalSpent: totalSpent
+            });
+        }
+
+        res.json(customersWithStats); // Send back the customers with order stats
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to fetch customer data with stats' });
     }
 });
 
@@ -80,8 +111,29 @@ router.post('/menu', async (req, res) => {
         res.status(500).json({ error: "Failed to add menu item" });
     }
 });
+// admin.js route for calculating stats
+router.get('/orders/stats', async (req, res) => {
+    try {
+        // Fetch all orders
+        const orders = await Order.find();
 
-// Route to get customer count
+        // Calculate total orders
+        const totalOrders = orders.length;
+
+        // Calculate total revenue
+        const totalRevenue = orders.reduce((acc, order) => acc + order.totalPrice, 0);
+
+        // Calculate average order value
+        const averageOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+
+        // Send the stats as JSON response
+        res.json({ totalOrders, totalRevenue, averageOrderValue });
+    } catch (err) {
+        console.error("Error fetching order stats:", err);
+        res.status(500).json({ message: 'Failed to fetch order stats' });
+    }
+});
+
 // Route to get total customer count
 router.get('/customers/count', async (req, res) => {
     try {

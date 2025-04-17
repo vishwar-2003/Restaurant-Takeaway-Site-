@@ -1,185 +1,305 @@
+/* Main container for the customers page */
 .customers-container {
   padding: 2rem;
+  /* Padding around the container */
   background-color: #f8f9fa;
+  /* Light background color */
   min-height: 100vh;
+  /* Full viewport height */
 }
 
+/* Filters section that includes search and filter dropdown */
 .customers-filters {
   display: flex;
+  /* Flexbox layout */
   justify-content: space-between;
+  /* Space between search and filter */
   align-items: center;
+  /* Align items in the center */
   margin-bottom: 2rem;
+  /* Space below the filters */
   gap: 1rem;
+  /* Add gap between elements */
 }
 
+/* Styling for the search input container */
 .customers-search {
   position: relative;
+  /* Position for absolute positioning of the icon */
   flex: 1;
+  /* Allow search input to grow */
   max-width: 400px;
+  /* Limit the width of the search input */
 }
 
+/* Search icon styling */
 .search-icon {
   position: absolute;
+  /* Position inside the input */
   left: 1rem;
+  /* Left alignment */
   top: 50%;
+  /* Center vertically */
   transform: translateY(-50%);
+  /* Adjust for perfect centering */
   color: #6c757d;
+  /* Light gray color */
 }
 
+/* Styling for the search input field */
 .search-input {
   width: 100%;
+  /* Full width input field */
   padding: 0.75rem 1rem 0.75rem 2.5rem;
+  /* Padding with space for icon */
   border: 1px solid #dee2e6;
+  /* Border color */
   border-radius: 0.5rem;
+  /* Rounded corners */
   font-size: 1rem;
+  /* Font size */
   transition: border-color 0.15s ease-in-out;
+  /* Smooth border color transition */
 }
 
+/* Focus effect on search input field */
 .search-input:focus {
   outline: none;
+  /* Remove outline on focus */
   border-color: #80bdff;
+  /* Blue border color */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  /* Blue glow around input */
 }
 
+/* Filters section for customer status filter */
 .customers-filter {
   position: relative;
+  /* Position for the filter icon */
   min-width: 200px;
+  /* Minimum width for the filter */
 }
 
+/* Filter icon inside the filter dropdown */
 .filter-icon {
   position: absolute;
+  /* Position inside the input */
   left: 1rem;
+  /* Left alignment */
   top: 50%;
+  /* Center vertically */
   transform: translateY(-50%);
+  /* Adjust for perfect centering */
   color: #6c757d;
+  /* Light gray color */
 }
 
+/* Styling for the filter select dropdown */
 .filter-select {
   width: 100%;
+  /* Full width dropdown */
   padding: 0.75rem 1rem 0.75rem 2.5rem;
+  /* Padding for text and icon */
   border: 1px solid #dee2e6;
+  /* Border color */
   border-radius: 0.5rem;
+  /* Rounded corners */
   font-size: 1rem;
+  /* Font size */
   background-color: white;
+  /* White background for the dropdown */
   cursor: pointer;
+  /* Pointer cursor for dropdown */
   appearance: none;
+  /* Remove default dropdown styling */
 }
 
+/* Focus effect on filter dropdown */
 .filter-select:focus {
   outline: none;
+  /* Remove outline on focus */
   border-color: #80bdff;
+  /* Blue border color */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  /* Blue glow around dropdown */
 }
 
+/* Table container for displaying customers */
 .customers-table-container {
   background-color: white;
+  /* White background for the table */
   border-radius: 0.5rem;
+  /* Rounded corners */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  /* Light shadow */
   overflow: hidden;
+  /* Hide content overflowing the table */
 }
 
+/* Styling for the customer table */
 .customers-table {
   width: 100%;
+  /* Full width table */
   border-collapse: collapse;
+  /* Remove spacing between cells */
 }
 
+/* Table headers and cells */
 .customers-table th,
 .customers-table td {
   padding: 1rem;
+  /* Padding for table cells */
   text-align: left;
+  /* Left-align text */
   border-bottom: 1px solid #dee2e6;
+  /* Bottom border for cells */
 }
 
+/* Styling for table headers */
 .customers-table th {
   background-color: #f8f9fa;
+  /* Light gray background for header */
   font-weight: 600;
+  /* Bold text */
   color: #495057;
+  /* Dark gray text color */
 }
 
+/* Hover effect for table rows */
 .customers-table tbody tr:hover {
   background-color: #f8f9fa;
+  /* Light background on hover */
 }
 
+/* Badge style for customer status (active/inactive) */
 .status-badge {
   padding: 0.25rem 0.5rem;
+  /* Padding around the badge */
   border-radius: 0.25rem;
+  /* Rounded corners */
   font-size: 0.875rem;
+  /* Font size */
   font-weight: 500;
+  /* Medium weight font */
 }
 
+/* Style for active status badge */
 .status-badge.active {
   background-color: #d4edda;
+  /* Light green background */
   color: #155724;
+  /* Dark green text color */
 }
 
+/* Style for inactive status badge */
 .status-badge.inactive {
   background-color: #f8d7da;
+  /* Light red background */
   color: #721c24;
+  /* Dark red text color */
 }
 
+/* Container for action buttons */
 .action-buttons {
   display: flex;
+  /* Flexbox for horizontal alignment */
   gap: 0.5rem;
+  /* Gap between buttons */
 }
 
+/* Styling for action buttons */
 .action-button {
   padding: 0.5rem;
+  /* Padding around the button */
   border: none;
+  /* Remove default border */
   border-radius: 0.25rem;
+  /* Rounded corners */
   cursor: pointer;
+  /* Pointer cursor on hover */
   transition: background-color 0.15s ease-in-out;
+  /* Smooth background color transition */
   display: flex;
+  /* Flexbox for center alignment */
   align-items: center;
+  /* Center button content */
   justify-content: center;
+  /* Center button content */
 }
 
+/* Styling for view action button */
 .action-button.view {
   background-color: #e3f2fd;
+  /* Light blue background */
   color: #0d47a1;
+  /* Blue text color */
 }
 
+/* Styling for edit action button */
 .action-button.edit {
   background-color: #fff3e0;
+  /* Light orange background */
   color: #e65100;
+  /* Dark orange text color */
 }
 
+/* Styling for delete action button */
 .action-button.delete {
   background-color: #ffebee;
+  /* Light red background */
   color: #c62828;
+  /* Dark red text color */
 }
 
+/* Hover effect for action buttons */
 .action-button:hover {
   opacity: 0.8;
+  /* Slightly reduce opacity on hover */
 }
 
+/* Loading, error, and no results container styling */
 .loading-container,
 .error-container,
 .no-results {
   text-align: center;
+  /* Center-align text */
   padding: 2rem;
+  /* Padding around the content */
   background-color: white;
+  /* White background */
   border-radius: 0.5rem;
+  /* Rounded corners */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  /* Light shadow */
 }
 
+/* Error message styling */
 .error-container {
   color: #721c24;
+  /* Dark red text color */
   background-color: #f8d7da;
+  /* Light red background */
 }
 
+/* Responsive design for medium screens (1024px or smaller) */
 @media (max-width: 1024px) {
   .customers-table {
     display: block;
+    /* Make table scrollable */
     overflow-x: auto;
+    /* Enable horizontal scrolling */
   }
-  
+
   .customers-filters {
     flex-direction: column;
+    /* Stack filter elements vertically */
     align-items: stretch;
+    /* Stretch filter elements */
   }
-  
+
   .customers-search,
   .customers-filter {
     max-width: none;
+    /* Remove width restriction */
   }
-} 
+}

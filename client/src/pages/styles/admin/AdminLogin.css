@@ -1,0 +1,280 @@
+/* Container for the Admin login page */
+.admin-login-container {
+    min-height: 100vh;
+    /* Full viewport height */
+    width: 100%;
+    /* Full width */
+    display: flex;
+    /* Flexbox layout */
+    align-items: center;
+    /* Vertically center content */
+    justify-content: center;
+    /* Horizontally center content */
+    background-image: url('../../../../public/assets/img/admin-bg.jpg');
+    /* Background image */
+    background-size: cover;
+    /* Cover the container */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* No repeating background */
+    position: relative;
+    /* Set relative position for overlay */
+    font-family: 'Poppins', sans-serif;
+    /* Font styling */
+}
+
+/* Overlay effect on the background */
+.admin-login-overlay {
+    position: absolute;
+    /* Absolute position */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Cover the entire container */
+    background: linear-gradient(135deg,
+            /* Gradient background */
+            rgba(0, 0, 0, 0.6) 0%,
+            /* Darken the overlay */
+            rgba(0, 0, 0, 0.3) 100%);
+    /* Transparent gradient effect */
+    z-index: 1;
+    /* Ensure overlay is above background */
+}
+
+/* Container for the login form */
+.admin-login-form-container {
+    position: relative;
+    /* Relative positioning for z-index stacking */
+    z-index: 2;
+    /* Ensure it's above the overlay */
+    width: 100%;
+    /* Full width */
+    max-width: 400px;
+    /* Limit width */
+    padding: 20px;
+    /* Padding for content */
+}
+
+/* Styling for the login form */
+.admin-login-form {
+    background: rgba(255, 255, 255, 0.95);
+    /* Slightly transparent white background */
+    padding: 30px;
+    /* Form padding */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Box shadow for a soft 3D effect */
+    backdrop-filter: blur(10px);
+    /* Blurred background effect */
+}
+
+/* Heading style for the login form */
+.admin-login-form h2 {
+    color: #5d4a2e;
+    /* Dark brown color */
+    text-align: center;
+    /* Center the heading */
+    margin-bottom: 30px;
+    /* Space below the heading */
+    font-size: 28px;
+    /* Font size */
+    font-weight: 600;
+    /* Bold font weight */
+    text-transform: uppercase;
+    /* Uppercase text */
+    letter-spacing: 1px;
+    /* Letter spacing */
+}
+
+/* Form group for input fields */
+.form-group {
+    margin-bottom: 20px;
+    /* Space between input fields */
+}
+
+/* Styling for the input fields with icons */
+.input-icon-wrapper {
+    position: relative;
+    /* Position for placing icons inside input */
+    display: flex;
+    /* Flexbox layout for aligning icon and input */
+    align-items: center;
+    /* Center icon and input */
+}
+
+/* Styling for the input icons */
+.input-icon {
+    position: absolute;
+    /* Absolute position within the input wrapper */
+    left: 12px;
+    /* Position icon on the left */
+    color: #b8860b;
+    /* Gold color for the icon */
+    font-size: 16px;
+    /* Icon size */
+}
+
+/* Styling for input fields inside the form */
+.input-icon-wrapper input {
+    width: 100%;
+    /* Full width input field */
+    padding: 12px 40px;
+    /* Padding for input text and icon */
+    border: 2px solid #d4c19a;
+    /* Border color */
+    border-radius: 8px;
+    /* Rounded corners */
+    font-size: 14px;
+    /* Font size */
+    color: #5d4a2e;
+    /* Dark brown text color */
+    transition: all 0.3s ease;
+    /* Smooth transition for focus effect */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Slightly transparent background */
+}
+
+/* Focus effect on input fields */
+.input-icon-wrapper input:focus {
+    outline: none;
+    /* Remove outline on focus */
+    border-color: #b8860b;
+    /* Change border color to gold */
+    box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+    /* Add subtle shadow on focus */
+}
+
+/* Placeholder text color */
+.input-icon-wrapper input::placeholder {
+    color: #8b7355;
+    /* Lighter brown for placeholder text */
+}
+
+/* Styling for the password toggle button */
+.password-toggle {
+    position: absolute;
+    /* Absolute position for toggle button */
+    right: 12px;
+    /* Position on the right side */
+    background: none;
+    /* No background */
+    border: none;
+    /* Remove default border */
+    color: #b8860b;
+    /* Gold color for icon */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    font-size: 16px;
+    /* Icon size */
+    padding: 0;
+    /* No padding */
+    display: flex;
+    /* Flexbox layout */
+    align-items: center;
+    /* Center the icon vertically */
+}
+
+/* Styling for the login button */
+.login-button {
+    width: 100%;
+    /* Full width button */
+    padding: 12px;
+    /* Button padding */
+    background-color: #b8860b;
+    /* Gold background color */
+    color: white;
+    /* White text color */
+    border: none;
+    /* Remove default border */
+    border-radius: 8px;
+    /* Rounded corners */
+    font-size: 16px;
+    /* Font size */
+    font-weight: 600;
+    /* Bold text */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: all 0.3s ease;
+    /* Smooth transition */
+    margin-top: 20px;
+    /* Space above the button */
+    text-transform: uppercase;
+    /* Uppercase text */
+    letter-spacing: 1px;
+    /* Letter spacing */
+}
+
+/* Hover effect for the login button */
+.login-button:hover {
+    background-color: #8b7355;
+    /* Darker shade on hover */
+    transform: translateY(-2px);
+    /* Slight movement on hover */
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+    /* Add subtle shadow */
+}
+
+/* Message under the login form */
+.security-message {
+    text-align: center;
+    /* Center text */
+    color: #8b7355;
+    /* Lighter brown color */
+    font-size: 12px;
+    /* Smaller font size */
+    margin-top: 20px;
+    /* Space above the message */
+    font-style: italic;
+    /* Italic style */
+}
+
+/* Responsive Design for smaller screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .admin-login-form-container {
+        padding: 15px;
+        /* Reduced padding */
+    }
+
+    .admin-login-form {
+        padding: 20px;
+        /* Reduced padding for the form */
+    }
+
+    .admin-login-form h2 {
+        font-size: 24px;
+        /* Smaller font size for the heading */
+    }
+
+    .input-icon-wrapper input {
+        padding: 10px 35px;
+        /* Reduced padding for input fields */
+        font-size: 14px;
+        /* Smaller font size */
+    }
+}
+
+/* Animation for fading in the form */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        /* Start with opacity 0 */
+        transform: translateY(-20px);
+        /* Start from a lower position */
+    }
+
+    to {
+        opacity: 1;
+        /* End with full opacity */
+        transform: translateY(0);
+        /* Move to original position */
+    }
+}
+
+/* Apply fade-in animation to the login form */
+.admin-login-form {
+    animation: fadeIn 0.5s ease-out;
+    /* Smooth fade-in animation */
+}
