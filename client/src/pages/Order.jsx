@@ -5,9 +5,9 @@ import axios from "axios";
 import "./styles/Order.css";
 
 // Modal components
-import AddressModal from "../components/AddressModal";
-import OrderConfirmationModal from "../components/OrderConfirmationModal";
-import OrderSuccessModal from "../components/OrderSuccessfulModal";
+import AddressModal from "./modals/AddressModal";
+import OrderConfirmationModal from "./modals/OrderConfirmationModal";
+import OrderSuccessModal from "./modals/OrderSuccessfulModal";
 
 /**
  * OrderPage Component
