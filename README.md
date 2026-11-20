@@ -82,7 +82,7 @@ The server folder contains the back-end application built with Node.js and Expre
 ### Steps
 -*1. Clone the repository:*
    ```bash
-   git clone <"https://github.com/Abenesh-Ramesh/Restaurant-Takeaway-Site.git">
+   git clone <"https://github.com/vishwar-2003/Restaurant-Takeaway-Site-.git">
 
 "2.Navigate to the client and server directories and install dependencies:"
 cd client
